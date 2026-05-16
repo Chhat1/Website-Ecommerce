@@ -1,0 +1,43 @@
+
+import Home from '../components/views/Home.vue'
+import Shop from '../components/views/Shop.vue'
+import About from '../components/views/About.vue'
+import Contact from '../components/views/Contact.vue'
+import ProductDetails from '../components/views/ProductDetails.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+
+
+
+const routes = [
+    {
+        path: "/",
+        component: Home
+    },
+    {
+        path: "/shop",
+        component: Shop
+    },
+    {
+        path: "/about",
+        component: Shop
+    },
+    {
+        path: "/contact",
+        component: Contact
+    },
+    {
+        path: "/shop",
+        component: Shop
+    },
+    {
+        path: "/productdetails/:id",
+        component: ProductDetails
+    }
+]
+
+
+
+export const router = createRouter({
+    history: createWebHistory(),
+    routes
+})
