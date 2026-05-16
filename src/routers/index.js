@@ -19,7 +19,7 @@ const routes = [
     },
     {
         path: "/about",
-        component: Shop
+        component: About
     },
     {
         path: "/contact",
