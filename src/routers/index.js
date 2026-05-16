@@ -26,10 +26,6 @@ const routes = [
         component: Contact
     },
     {
-        path: "/shop",
-        component: Shop
-    },
-    {
         path: "/productdetails/:id",
         component: ProductDetails
     }
