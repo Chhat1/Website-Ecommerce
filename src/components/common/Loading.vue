@@ -14,5 +14,6 @@ const productStore = useProductStore();
       src="@/assets/images/loading.gif"
       alt="Loading..."
     />
+    
   </div>
 </template>
