@@ -27,7 +27,7 @@
       </div>
 
       <!-- decoration circle -->
-      <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-gray-700 rounded-full opacity-30"></div>
+      <div class="absolute -right-10 -bottom-10 lg:w-60 lg:h-60 w-40 h-40 bg-gray-700 rounded-full opacity-30"></div>
     </div>
 
 

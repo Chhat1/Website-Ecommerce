@@ -2,7 +2,7 @@
   <div class="home-page container mx-auto lg:px-0 lg:py-0 px-5 py-5">
     <!-- Banner -->
     <div
-      class="banner w-full lg:h-[90vh] h-50 bg-[url('/src/assets/images/image-banner.png')] bg-cover bg-no-repeat lg:rounded-none rounded-xl shadow relative lg:pl-30 pl-3"
+      class="banner  w-full lg:h-[90vh] h-50 bg-[url('/src/assets/images/image-banner.png')] bg-cover bg-no-repeat lg:rounded-none rounded-xl shadow relative lg:pl-30 pl-3"
     >
       <!-- Banner Title -->
       <div class="absolute lg:top-[40%] top-[30%]">
@@ -56,7 +56,7 @@
           v-if="productStore.loading"
           class="main-products w-full flex flex-wrap justify-between"
         >
-          <!-- skeleton card -->
+          <!-- Skeleton Card -->
           <div
             v-for="n in 4"
             :key="n"
@@ -65,45 +65,47 @@
                 ? 'bg-[#1e293b] border border-[#334155]'
                 : 'bg-white border border-gray-200'
             "
-            class="lg:w-[23%] md:w-[48%] w-[48%] lg:h-125 h-72 shadow-xl rounded-xl mb-5 overflow-hidden animate-pulse"
+            class="lg:w-[23%] md:w-[48%] w-[48%] lg:h-125 h-72 shadow-xl rounded-xl mb-5 overflow-hidden"
           >
             <!-- image skeleton -->
             <div
               :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
-              class="h-[55%] w-full"
+              class="card-header h-[55%] w-full animate-pulse"
             ></div>
 
-            <!-- body skeleton -->
-            <div class="h-[45%] lg:p-5 p-2 flex flex-col justify-between">
+            <!-- body -->
+            <div
+              class="card-body h-[45%] lg:p-5 p-2 flex flex-col justify-between"
+            >
               <div>
                 <!-- title -->
                 <div
                   :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
-                  class="h-4 lg:h-5 w-[80%] rounded mb-3"
+                  class="lg:h-5 md:h-4 h-3 w-[80%] rounded mb-2 animate-pulse"
                 ></div>
 
                 <!-- description -->
                 <div
                   :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
-                  class="h-3 w-full rounded mb-2"
+                  class="lg:h-3 h-2 w-full rounded mb-2 animate-pulse"
                 ></div>
 
                 <div
                   :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
-                  class="h-3 w-[70%] rounded mb-4"
+                  class="lg:h-3 h-2 w-[70%] rounded mb-3 animate-pulse"
                 ></div>
 
                 <!-- price -->
                 <div
                   :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
-                  class="h-5 lg:h-7 w-[40%] rounded"
+                  class="lg:h-7 h-4 w-[35%] rounded animate-pulse"
                 ></div>
               </div>
 
               <!-- button -->
               <div
                 :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
-                class="w-full lg:h-12 h-9 rounded-[5px]"
+                class="w-full lg:h-12 h-9 rounded-[5px] animate-pulse"
               ></div>
             </div>
           </div>
@@ -181,27 +183,57 @@
           v-if="productStore.isLoading"
           class="main-products w-full flex flex-wrap justify-between"
         >
+          <!-- skeleton card -->
           <div
             v-for="i in 4"
             :key="i"
-            class="lg:w-[23%] md:w-[48%] w-[48%] lg:h-125 h-72 shadow-xl border border-gray-200 rounded-xl mb-5 overflow-hidden animate-pulse"
+            :class="
+              mode.darkMode
+                ? 'bg-[#1e293b] border border-[#334155]'
+                : 'bg-white border border-gray-200'
+            "
+            class="lg:w-[23%] md:w-[48%] w-[48%] lg:h-125 h-72 shadow-xl rounded-xl mb-5 overflow-hidden animate-pulse"
           >
-            <div class="card-header h-[60%] bg-gray-300"></div>
-
+            <!-- image -->
             <div
-              class="card-body h-[40%] p-3 lg:p-5 flex flex-col justify-between"
+              :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
+              class="card-header h-[55%] w-full"
+            ></div>
+
+            <!-- body -->
+            <div
+              class="card-body h-[45%] lg:p-5 p-2 flex flex-col justify-between"
             >
               <div>
-                <div class="h-5 bg-gray-300 rounded-md w-3/4 mb-3"></div>
+                <!-- title -->
+                <div
+                  :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
+                  class="lg:h-5 md:h-4 h-3 w-[80%] rounded mb-2"
+                ></div>
 
-                <div class="h-3 bg-gray-200 rounded-md w-full mb-2"></div>
+                <!-- description -->
+                <div
+                  :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
+                  class="lg:h-3 h-2 w-full rounded mb-2"
+                ></div>
+
+                <div
+                  :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
+                  class="lg:h-3 h-2 w-[70%] rounded mb-3"
+                ></div>
+
+                <!-- price -->
+                <div
+                  :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
+                  class="lg:h-7 h-4 w-[35%] rounded"
+                ></div>
               </div>
 
-              <div>
-                <div class="h-5 bg-gray-300 rounded-md w-1/3 mb-4"></div>
-
-                <div class="h-10 bg-gray-200 rounded-[5px] w-full"></div>
-              </div>
+              <!-- button -->
+              <div
+                :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-300'"
+                class="w-full lg:h-12 h-9 rounded-[5px]"
+              ></div>
             </div>
           </div>
         </div>
