@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page container mx-auto min-h-screen lg:px-0 px-3">
+  <div class="home-page container mb-10 mx-auto min-h-screen lg:px-0 px-3">
     <!-- header-title -->
     <div class="header-title py-10 lg:py-15">
       <h1 class="text-center lg:text-3xl md:text-2xl text-xl font-medium mb-2">

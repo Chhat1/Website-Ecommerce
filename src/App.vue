@@ -3,7 +3,7 @@ import Navbar from './components/layout/Navbar.vue';
 import { useDarkModeStore } from './stores/darkMode';
 import Footer from './components/layout/Footer.vue'
 const mode = useDarkModeStore()
-
+mode.initTheme();
 </script>
 
 <template>

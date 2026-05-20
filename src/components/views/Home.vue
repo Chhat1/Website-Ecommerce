@@ -486,7 +486,7 @@
     <!-- Form Join -->
     <div
       :class="mode.darkMode ? 'bg-blue-950/40' : 'bg-[#F3F0EF]'"
-      class="form-join w-full min-h-125 lg:min-h-125 rounded-2xl px-4 lg:px-10 py-6 lg:py-10"
+      class="form-join w-full mb-15 min-h-125 lg:min-h-125 rounded-2xl px-4 lg:px-10 py-6 lg:py-10"
     >
       <div
         :class="
