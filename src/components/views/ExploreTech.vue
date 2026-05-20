@@ -1,19 +1,36 @@
 <template>
-  <div class="home-page container mx-auto min-h-screen lg:px-0 px-3">
-    <!-- header-title -->
-    <div class="header-title py-10 lg:py-15">
-      <h1 class="text-center lg:text-3xl md:text-2xl text-xl font-medium mb-2">
-        Shop All Technology
-      </h1>
+  <div class="exploreTech container mx-auto min-h-screen lg:px-0 px-4 py-10">
 
-      <p
-      :class="mode.darkMode ? 'text-white' : 'text-gray-400'"
-        class="text-center lg:text-base md:text-sm text-[11px] text-gray-500 lg:w-[60%] w-full mx-auto"
-      >
-        Refined sound and precision engineering. Discover the latest in
-        minimalist tech essentials designed for the modern professional.
-      </p>
+    <!-- HERO SECTION -->
+    <div 
+    :class="mode.darkMode ? 'bg-blue-800' : 'bg-black'"
+    class=" lg:w-full  lg:h-70 h-50 text-white rounded-2xl p-10 mb-10 relative overflow-hidden">
+
+      <div class="max-w-xl">
+        <p class="text-sm text-gray-300 lg:mb-2 mb-0">NEW COLLECTION</p>
+
+        <h1 class="lg:text-5xl text-2xl font-bold lg:mb-4 mb-2">
+          Explore Tech Universe
+        </h1>
+
+        <p class="text-gray-400 lg:mb-6 mb-5 lg:text-base text-[10px]">
+          Discover the latest laptops, smartphones, accessories and smart devices
+          built for performance and style.
+        </p>
+
+        <router-link
+          to="/shop"
+          class="inline-block bg-white text-black lg:px-6 lg:py-3 px-5 py-1 lg:rounded-xl rounded-[5px] font-semibold hover:bg-gray-200 transition"
+        >
+          Shop Now
+        </router-link>
+      </div>
+
+      <!-- decoration circle -->
+      <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-gray-700 rounded-full opacity-30"></div>
     </div>
+
+
 
     <!-- search -->
     <div class="search-products lg:mb-15 mb-10 flex justify-center">
@@ -35,6 +52,10 @@
         />
       </div>
     </div>
+
+
+
+    <!-- FEATURE Products -->
 
     <!-- Skeleton Loading -->
     <div v-if="productStore.isLoading"
@@ -69,8 +90,7 @@
     </div>
 
     <!-- Products -->
-    <div
-      v-else-if="searchProducts.length > 0"
+    <div v-else-if="searchProducts.length>0"
       class="main-products w-full flex flex-wrap justify-center lg:gap-5 gap-2"
     >
 
@@ -121,8 +141,9 @@
             </div>
           </div>
 
-
     </div>
+
+
 
     <!-- No Product -->
     <div v-else 
@@ -136,23 +157,31 @@
 
       <p class=" mt-2 text-sm">"{{ search }}" was not found.</p>
     </div>
+
   </div>
 </template>
 
+
 <script setup>
-import { onMounted, computed, ref } from "vue";
-import { useProductStore } from "../../stores/productStore";
-import { useDarkModeStore } from "../../stores/darkMode";
+import {  onMounted,computed, ref } from 'vue';
+import { useProductStore } from '../../stores/productStore';
+import { useDarkModeStore } from '../../stores/darkMode';
 
-const productStore = useProductStore();
 
-const search = ref("");
 
-onMounted(() => {
-  if (productStore.products.length === 0) {
-    productStore.getAllProducts();
-  }
-});
+
+const productStore = useProductStore()
+    
+
+    onMounted(()=>{
+        if(productStore.products.length===0){
+            productStore.getAllProducts();
+        }
+    })
+
+const mode = useDarkModeStore()
+
+const search = ref("")
 
 const searchProducts = computed(() => {
   const keyword = search.value.trim().toLowerCase();
@@ -165,9 +194,4 @@ const searchProducts = computed(() => {
     item.title.toLowerCase().includes(keyword)
   );
 });
-
-
-const mode = useDarkModeStore()
-
 </script>
-

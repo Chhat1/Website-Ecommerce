@@ -5,6 +5,8 @@ import About from '../components/views/About.vue'
 import Contact from '../components/views/Contact.vue'
 import ProductDetails from '../components/views/ProductDetails.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import ExploreTech from '../components/views/ExploreTech.vue'
+import CheckSummery from '../components/views/CheckSummery.vue'
 
 
 
@@ -28,6 +30,14 @@ const routes = [
     {
         path: "/productdetails/:id",
         component: ProductDetails
+    },
+    {
+        path: "/exploretech",
+        component: ExploreTech
+    },
+    {
+        path: '/checksummery',
+        component: CheckSummery
     }
 ]
 
