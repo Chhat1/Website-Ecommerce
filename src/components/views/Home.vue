@@ -42,10 +42,10 @@
     <div class="lg:mt-30 mt-15">
       <div class="Curated-Categories">
         <!-- Title -->
-        <div class="flex justify-between items-center mb-10">
-          <h1 class="text-2xl font-bold">Curated Categories</h1>
+        <div class="flex justify-between items-center mb-5">
+          <h1 class="lg:text-2xl text-[15px] font-bold">Curated Categories</h1>
           <router-link
-            class="text-gray-500 font-medium transition-all hover:underline"
+            class="text-gray-500 lg:text-2xl text-[15px]  font-medium transition-all hover:underline"
             to="/shop"
             >View All <i class="bi bi-arrow-right"></i
           ></router-link>
@@ -171,9 +171,9 @@
     <!-- Trending Now Products-->
     <div class="lg:mt-10 mt-5">
       <div class="Trending-Now">
-        <div class="mb-10">
-          <h1 class="text-2xl font-bold mb-2">Trending Now</h1>
-          <p class="text-gray-500">
+        <div class="mb-5">
+          <h1 class="lg:text-2xl text-[15px] font-bold mb-2">Trending Now</h1>
+          <p class="text-gray-500 lg:text-base text-[11px]">
             The most sought-after pieces of the season.
           </p>
         </div>

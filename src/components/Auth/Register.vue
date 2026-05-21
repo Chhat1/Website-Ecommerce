@@ -1,9 +1,34 @@
 
 
 <script setup>
+import { useRouter } from "vue-router";
 import { useDarkModeStore } from "../../stores/darkMode";
+import { ref } from "vue";
+
 
 const mode = useDarkModeStore();
+const router = useRouter()
+
+const name = ref('')
+const email = ref('')
+const password = ref('')
+const confirm_password = ref('')
+const register = () =>{
+  if(password.value !== confirm_password.value){
+    alert('Password does not match')
+    return
+  }
+  const user = {
+    name : name.value,
+    email : email.value,
+    password : password.value,
+  }
+  
+  localStorage.setItem('registerUser',JSON.stringify(user))
+  alert("Register Success!")
+  router.push('/login')
+}
+
 </script>
 
 <template>
@@ -37,6 +62,7 @@ const mode = useDarkModeStore();
         </label>
 
         <input
+          v-model="name"
           :class="
             mode.darkMode
               ? 'text-white border-blue-800'
@@ -58,6 +84,7 @@ const mode = useDarkModeStore();
         </label>
 
         <input
+        v-model="email"
           :class="
             mode.darkMode
               ? 'text-white border-blue-800'
@@ -71,18 +98,14 @@ const mode = useDarkModeStore();
 
       <!-- Password -->
       <div class="mb-6">
-        
           <label
             :class="mode.darkMode ? 'text-white ' : ''"
             class="text-gray-500 text-sm sm:text-base"
           >
             Password
           </label>
-
-          
-        
-
         <input
+          v-model="password"
           :class="
             mode.darkMode
               ? 'text-white border-blue-800'
@@ -90,22 +113,20 @@ const mode = useDarkModeStore();
           "
           class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl w-full"
           type="password"
-          placeholder="Password"
+          placeholder="Create Password"
         />
       </div>
 
-      <!-- Confirm Password -->
+      <!--Confirm Password -->
       <div class="mb-6">
-        
           <label
             :class="mode.darkMode ? 'text-white ' : ''"
             class="text-gray-500 text-sm sm:text-base"
           >
             Confirm Password
           </label>
-        
-
         <input
+          v-model="confirm_password"
           :class="
             mode.darkMode
               ? 'text-white border-blue-800'
@@ -119,8 +140,8 @@ const mode = useDarkModeStore();
 
       <!-- Sign In Button -->
       <div class="btn mb-8">
-        <router-link
-          to=""
+        <button
+          @click="register"
           :class="
             mode.darkMode
               ? 'bg-blue-700 hover:bg-blue-800'
@@ -129,7 +150,7 @@ const mode = useDarkModeStore();
           class="py-3 sm:py-4 font-medium cursor-pointer w-full rounded-xl flex justify-center items-center duration-300"
         >
             Register
-        </router-link>
+        </button>
       </div>
 
       <!-- Divider -->

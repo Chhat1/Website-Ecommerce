@@ -1,7 +1,27 @@
 <script setup>
+
+import { useRouter } from "vue-router";
 import { useDarkModeStore } from "../../stores/darkMode";
+import { useAuthStore } from "../../stores/AuthStore";
+import { ref } from "vue";
 
 const mode = useDarkModeStore();
+const router = useRouter()
+const AuthStore = useAuthStore()
+
+const email = ref('')
+const password = ref('')
+
+const login = () =>{
+  const saveUser = JSON.parse(localStorage.getItem('registerUser'))
+  if(email.value === saveUser.email && password.value === saveUser.password){
+    AuthStore.login(saveUser)
+  alert("Login Success!")
+  router.push('/account')
+  }else{
+    alert('Invalid email or password!')
+  }
+}
 </script>
 
 <template>
@@ -35,6 +55,7 @@ const mode = useDarkModeStore();
         </label>
 
         <input
+          v-model="email"
           :class="
             mode.darkMode
               ? 'text-white border-blue-800'
@@ -62,6 +83,7 @@ const mode = useDarkModeStore();
         </div>
 
         <input
+          v-model="password"
           :class="
             mode.darkMode
               ? 'text-white border-blue-800'
@@ -75,7 +97,7 @@ const mode = useDarkModeStore();
 
       <!-- Sign In Button -->
       <div class="btn mb-8">
-        <router-link
+        <button @click="login"
           to=""
           :class="
             mode.darkMode
@@ -84,8 +106,8 @@ const mode = useDarkModeStore();
           "
           class="py-3 sm:py-4 font-medium cursor-pointer w-full rounded-xl flex justify-center items-center duration-300"
         >
-          Sign In
-        </router-link>
+          Login
+        </button>
       </div>
 
       <!-- Divider -->
