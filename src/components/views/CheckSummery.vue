@@ -169,7 +169,7 @@ const finalTotal = computed(() => {
                           ? 'text-slate-400'
                           : 'text-gray-500'
                       "
-                      class="text-[11px] lg:text-sm line-clamp-2"
+                      class="text-[11px] lg:text-sm line-clamp-1"
                     >
                       {{ item.description }}
                     </p>
@@ -239,7 +239,7 @@ const finalTotal = computed(() => {
                 <div class="text-right">
                   <h1
                     :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-                    class="text-lg lg:text-2xl font-bold"
+                    class="text-[13px] lg:text-2xl font-bold"
                   >
                     $
                     {{
