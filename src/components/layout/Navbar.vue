@@ -81,7 +81,8 @@ import { useDarkModeStore } from '../../stores/darkMode';
             </div>
             <!-- account -->
             <div class="icon-person">
-                <i class="bi text-3xl cursor-pointer bi-person-fill"></i>
+               <router-link to="/register">
+                <i class="bi text-3xl cursor-pointer bi-person-fill"></i></router-link>
             </div>
         </div>
 

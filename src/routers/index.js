@@ -7,7 +7,8 @@ import ProductDetails from '../components/views/ProductDetails.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import ExploreTech from '../components/views/ExploreTech.vue'
 import CheckSummery from '../components/views/CheckSummery.vue'
-
+import Register from '../components/views/Register.vue'
+import Login from '../components/views/Login.vue'
 
 
 const routes = [
@@ -38,6 +39,14 @@ const routes = [
     {
         path: '/checksummery',
         component: CheckSummery
+    },
+    {
+        path: '/register',
+        component: Register
+    },
+    {
+        path: '/login',
+        component: Login
     }
 ]
 
