@@ -1,152 +1,250 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import { useCartStore } from "../../stores/cartStore";
 import { useProductStore } from "../../stores/productStore";
 import { useDarkModeStore } from "../../stores/darkMode";
 
 const productStore = useProductStore();
 const cartStore = useCartStore();
+const mode = useDarkModeStore();
 
-onMounted(() => {
-  if (productStore.products.length === 0) {
-    productStore.getAllProducts();
+
+onMounted(async () => {
+  if (!productStore.products.length) {
+    await productStore.getAllProducts();
   }
 });
 
-const mode = useDarkModeStore()
+
+const totalItems = computed(() => {
+  return cartStore.cart.reduce((total, item) => total + item.qty, 0);
+});
+
+
+const tax = computed(() => {
+  return cartStore.totalPrice * 0.1;
+});
+
+
+const finalTotal = computed(() => {
+  return cartStore.totalPrice + tax.value;
+});
+
 </script>
 
 <template>
-
-  <div 
-  :class="mode.darkMode ? 'bg-[#0f172a]': 'bg-[#F5F5F7]'"
-  class="shopping-cart min-h-screen  py-6 lg:py-10">
+  <div
+    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#f8fafc]'"
+    class="shopping-cart min-h-screen py-6 lg:py-10 transition-all duration-300"
+  >
     <div class="container mx-auto lg:px-0 px-4">
-
-      <div class="text-center mb-8 lg:mb-12">
-        <h1 
-        :class="mode.darkMode ? 'text-white': 'text-gray-900'"
-        class="text-3xl sm:text-4xl lg:text-5xl font-bold  mb-3">
-          Your Cart
+      <!-- TITLE -->
+      <div class="text-center mb-10 lg:mb-14">
+        <h1
+          :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
+          class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-3"
+        >
+          Your Shopping Cart
         </h1>
 
-        <p 
-        :class="mode.darkMode ? 'text-white': 'text-gray-500'"
-        class="text-sm sm:text-base  max-w-xl mx-auto">
-          Review your selection before proceeding to checkout.
+        <p
+          :class="mode.darkMode ? 'text-slate-300' : 'text-gray-500'"
+          class="text-sm sm:text-base max-w-2xl mx-auto leading-7"
+        >
+          Review your selected products before proceeding to secure checkout.
         </p>
       </div>
 
+      <!-- Main Item cart -->
+      <div
+        class="flex flex-col lg:flex-row justify-between items-start gap-8"
+      >
 
-
-      <div class="flex flex-col lg:flex-row justify-between items-start gap-8 w-full">
-        <!-- Check item in  cart -->
-        <div v-if="cartStore.cart.length === 0"
-        :class="mode.darkMode ? 'bg-blue-950 border-blue-950/50' : 'bg-white border-gray-100'"
-          class=" w-full lg:w-[65%] min-h-100 flex flex-col items-center justify-center rounded-3xl p-8 lg:p-16 text-center shadow-sm border  shrink-0"
+        
+        <!-- EMPTY CART -->
+        <div
+          v-if="cartStore.cart.length === 0"
+          :class="
+            mode.darkMode
+              ? 'bg-[#1e293b] border border-[#334155]'
+              : 'bg-white border border-gray-200'
+          "
+          class="w-full lg:w-[65%] min-h-125 rounded-3xl shadow-xl flex flex-col justify-center items-center text-center px-6"
         >
-          <div 
-          :class="mode.darkMode ? 'bg-blue-800 border-blue-800/50' : 'bg-gray-50 border-gray-100 text-gray-400'"
-          class="w-24 h-24 rounded-full  flex items-center justify-center mb-6 border  shadow-sm">
-            <i class="bi bi-bag-x text-4xl "></i>
+          <!-- Icon -->
+          <div
+            :class="
+              mode.darkMode
+                ? 'bg-blue-500/20 text-blue-400'
+                : 'bg-gray-100 text-gray-400'
+            "
+            class="w-28 h-28 rounded-full flex items-center justify-center mb-8"
+          >
+            <i class="bi bi-bag-x text-5xl"></i>
           </div>
 
-          <h1 
-          :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-          class="text-xl lg:text-2xl font-bold  mb-2">
+          <!-- Title -->
+          <h1
+            :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
+            class="text-2xl lg:text-4xl font-bold mb-3"
+          >
             Your cart is empty
           </h1>
 
-          <p class="text-gray-400 text-sm lg:text-base mb-8 max-w-sm mx-auto leading-relaxed">
-            Looks like you haven’t added anything to your cart yet.
+          <!-- Description -->
+          <p
+            :class="mode.darkMode ? 'text-slate-400' : 'text-gray-500'"
+            class="max-w-md leading-7 mb-8"
+          >
+            Looks like you haven’t added any products to your cart yet.
+            Start exploring our latest tech collection.
           </p>
 
+          <!-- Button -->
           <router-link
-          :class="mode.darkMode ? 'bg-blue-500' : 'text-white'"
             to="/shop"
-            class="bg-black px-12 py-4 rounded-2xl inline-block font-medium hover:bg-gray-800 active:scale-[0.98] transition-all duration-300 w-full sm:w-auto text-center shadow-md hover:shadow-lg"
+            :class="
+              mode.darkMode
+                ? 'bg-blue-500 hover:bg-blue-600'
+                : 'bg-black hover:bg-gray-800'
+            "
+            class="px-10 py-4 rounded-2xl text-white font-semibold transition-all duration-300 hover:scale-105"
           >
             Continue Shopping
           </router-link>
         </div>
 
-        <!-- Card Items -->
-        <div v-else class="w-full lg:w-[65%] flex flex-col gap-4 shrink-0">
+        
+        <!-- CART ITEMS -->
+        <div
+          v-else
+          class="w-full lg:w-[65%] flex flex-col gap-5"
+        >
+          <!-- Card -->
           <div
             v-for="item in cartStore.cart"
             :key="item.id"
-            :class="mode.darkMode ? 'bg-blue-950 border-blue-800/50': 'bg-white border-gray-100'"
-            class=" w-full rounded-3xl shadow-sm border  p-4 lg:p-5 hover:shadow-lg transition-all duration-300"
+            :class="
+              mode.darkMode
+                ? 'bg-[#1e293b] border border-[#334155]'
+                : 'bg-white border border-gray-200'
+            "
+            class="rounded-3xl p-4 lg:p-5 shadow-xl hover:shadow-2xl transition-all duration-300"
           >
-            <div class="flex flex-row items-start lg:items-center justify-between gap-4 w-full">
+            <div
+              class="flex flex-row justify-between items-start gap-4"
+            >
 
-              <div class="flex flex-row gap-4 flex-1 min-w-0">
-                <div class="w-24 h-24 lg:w-32 lg:h-32 bg-gray-100 rounded-2xl overflow-hidden shrink-0">
+              <!-- LEFT -->
+              <div class="flex gap-4 flex-1 min-w-0">
+
+                <!-- IMAGE -->
+                <div
+                  class="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl overflow-hidden bg-gray-100 shrink-0"
+                >
                   <img
                     :src="item.images"
                     :alt="item.title"
-                    class="w-full h-full object-cover hover:scale-105 duration-500 cursor-pointer"
+                    class="w-full h-full object-cover hover:scale-105 transition-all duration-500"
                   />
                 </div>
 
-                <div class="flex flex-col justify-between flex-1 min-w-0 h-24 lg:h-32">
+                <!-- CONTENT -->
+                <div
+                  class="flex flex-col justify-between flex-1 min-w-0"
+                >
                   <div>
-                    <h1 
-                    :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                    class="text-base lg:text-xl font-bold text-gray-800 line-clamp-1 mb-0.5">
+                    <!-- Title -->
+                    <h1
+                      :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
+                      class="text-sm lg:text-xl font-bold line-clamp-1 mb-1"
+                    >
                       {{ item.title }}
                     </h1>
-                    <p 
-                    :class="mode.darkMode ? 'text-white' : 'text-gray-400'"
-                    class=" text-xs lg:text-sm line-clamp-1">
+
+                    <!-- Description -->
+                    <p
+                      :class="
+                        mode.darkMode
+                          ? 'text-slate-400'
+                          : 'text-gray-500'
+                      "
+                      class="text-[11px] lg:text-sm line-clamp-2"
+                    >
                       {{ item.description }}
                     </p>
                   </div>
 
-                  <!-- Qty cart -->
-                  <div 
-                  :class="mode.darkMode ? 'bg-blue-100 border-blue-100/50' : 'bg-gray-50 border border-gray-200'"
-                  class="flex items-center justify-between gap-2  rounded-full p-1 w-28 lg:w-32">
-                      <button
-                        @click="cartStore.updateQty(item.id, -1)"
-                        :class="mode.darkMode ? 'bg-blue-500' : 'bg-white border border-gray-200 hover:bg-black hover:text-white'"
-                        class="w-7 h-7 lg:w-9 lg:h-9 rounded-full  transition-all duration-300 text-base flex items-center justify-center cursor-pointer"
-                      >
-                        -
-                      </button>
-                      <span 
-                      :class="mode.darkMode ? 'text-blue-500' : 'text-black'"
-                      class="text-sm lg:text-base font-bold w-6 text-center">
-                        {{ item.qty }}
-                      </span>
-                      <button
-                      
-                        @click="cartStore.addToCart(item)"
-                        :class="mode.darkMode ? 'bg-blue-500' : 'bg-white border border-gray-200 hover:bg-black hover:text-white'"
-                        class="w-7 h-7 lg:w-9 lg:h-9 rounded-full  transition-all duration-300 text-base flex items-center justify-center cursor-pointer"
-                      >
-                        +
-                      </button>
-                  </div>
+                  <!-- QUANTITY -->
+                  <div
+                    :class="
+                      mode.darkMode
+                        ? 'bg-[#0f172a] border border-[#334155]'
+                        : 'bg-gray-50 border border-gray-200'
+                    "
+                    class="flex items-center justify-between rounded-full p-1 w-30 lg:w-36 mt-3"
+                  >
+                    <!-- Minus -->
+                    <button
+                      @click="cartStore.updateQty(item.id, -1)"
+                      :class="
+                        mode.darkMode
+                          ? 'bg-blue-500 hover:bg-blue-600 text-white'
+                          : 'bg-white hover:bg-black hover:text-white border border-gray-200'
+                      "
+                      class="w-8 h-8 lg:w-10 lg:h-10 rounded-full transition-all duration-300 flex items-center justify-center font-bold cursor-pointer"
+                    >
+                      -
+                    </button>
 
+                    <!-- Qty -->
+                    <span
+                      :class="
+                        mode.darkMode ? 'text-white' : 'text-gray-800'
+                      "
+                      class="font-bold text-sm lg:text-base"
+                    >
+                      {{ item.qty }}
+                    </span>
+
+                    <!-- Plus -->
+                    <button
+                      @click="cartStore.addToCart(item)"
+                      :class="
+                        mode.darkMode
+                          ? 'bg-blue-500 hover:bg-blue-600 text-white'
+                          : 'bg-white hover:bg-black hover:text-white border border-gray-200'
+                      "
+                      class="w-8 h-8 lg:w-10 lg:h-10 rounded-full transition-all duration-300 flex items-center justify-center font-bold cursor-pointer"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              <div class="flex flex-col items-end justify-between h-24 lg:h-32 shrink-0">
+              <!-- RIGHT -->
+              <div
+                class="flex flex-col items-end justify-between h-24 lg:h-32"
+              >
                 <!-- Remove -->
                 <button
                   @click="cartStore.removeFromCart(item.id)"
-                  :class="mode.darkMode ? 'hover:text-white' : 'hover:text-red-500'"
-                  class="text-gray-400  transition-colors duration-200 p-1 cursor-pointer"
+                  class="text-gray-400 hover:text-red-500 transition-all duration-300 cursor-pointer"
                 >
                   <i class="bi bi-x-lg text-lg"></i>
                 </button>
-                <!-- Price Item -->
+
+                <!-- Price -->
                 <div class="text-right">
-                  <h1 
-                  :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                  class="text-lg lg:text-2xl font-bold text-gray-800">
-                    ${{ item?.price?.toFixed(2) || '0.00' }}
+                  <h1
+                    :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
+                    class="text-lg lg:text-2xl font-bold"
+                  >
+                    $
+                    {{
+                      (item.price * item.qty).toFixed(2)
+                    }}
                   </h1>
                 </div>
               </div>
@@ -155,82 +253,159 @@ const mode = useDarkModeStore()
           </div>
         </div>
 
-        <div class="lg:w-[30%] w-full shrink-0">
+       
+        <!-- ORDER SUMMARY -->
+        <div class="w-full lg:w-[30%]">
           <div
-          :class="mode.darkMode ? 'bg-blue-950 border-blue-800/50' : 'bg-white border-gray-100'"
-           class=" rounded-3xl shadow-sm border  p-5 sm:p-7 lg:sticky lg:top-5">
-
-            <h1 
-            :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-            class="text-2xl sm:text-3xl font-bold  mb-8">
+            :class="
+              mode.darkMode
+                ? 'bg-[#1e293b] border border-[#334155]'
+                : 'bg-white border border-gray-200'
+            "
+            class="rounded-3xl shadow-xl p-5 sm:p-7 lg:sticky lg:top-5"
+          >
+            <!-- Title -->
+            <h1
+              :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
+              class="text-2xl sm:text-3xl font-bold mb-8"
+            >
               Order Summary
             </h1>
 
-            <div class="flex flex-col gap-5">
+            <!-- Summary -->
+            <div class="space-y-5">
+
+              <!-- Items -->
               <div class="flex justify-between items-center">
-                <span 
-                :class="mode.darkMode ? 'text-white' : 'text-gray-500'"
-                class=" text-sm sm:text-base">Subtotal</span>
-                <span 
-                :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                
-                class="font-semibold text-gray-800 text-sm sm:text-base">
-                  ${{ cartStore.totalPrice?.toFixed(2) || '0.00' }}
+                <span
+                  :class="
+                    mode.darkMode ? 'text-slate-300' : 'text-gray-500'
+                  "
+                >
+                  Items
+                </span>
+
+                <span
+                  :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
+                  class="font-semibold"
+                >
+                  {{ totalItems }}
                 </span>
               </div>
 
+              <!-- Subtotal -->
               <div class="flex justify-between items-center">
-                <span 
-                :class="mode.darkMode ? 'text-white' : 'text-gray-500'"
-                class=" text-sm sm:text-base">Shipping</span>
-                <span 
-                :class="mode.darkMode ? 'text-white' : 'text-green-600'"
-                class="font-semibold  text-sm sm:text-base">Free</span>
+                <span
+                  :class="
+                    mode.darkMode ? 'text-slate-300' : 'text-gray-500'
+                  "
+                >
+                  Subtotal
+                </span>
+
+                <span
+                  :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
+                  class="font-semibold"
+                >
+                  ${{ cartStore.totalPrice.toFixed(2) }}
+                </span>
               </div>
 
+              <!-- Shipping -->
               <div class="flex justify-between items-center">
-                <span 
-                :class="mode.darkMode ? 'text-white' : 'text-gray-500'"
-                class="text-gray-500 text-sm sm:text-base">Tax</span>
-                <span 
-                :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                class="font-semibold  text-sm sm:text-base">$0.00</span>
+                <span
+                  :class="
+                    mode.darkMode ? 'text-slate-300' : 'text-gray-500'
+                  "
+                >
+                  Shipping
+                </span>
+
+                <span class="font-semibold text-green-500">
+                  Free
+                </span>
               </div>
 
-              <div class="border-t border-dashed border-gray-300 py-2"></div>
-
+              <!-- Tax -->
               <div class="flex justify-between items-center">
-                <span 
-                :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                class="text-lg sm:text-xl font-bold ">Total</span>
-                <span 
-                :class="mode.darkMode ? 'text-white' : 'text-black'"
-                class="text-2xl sm:text-3xl font-bold text-black">
-                  ${{ cartStore.totalPrice?.toFixed(2) || '0.00' }}
+                <span
+                  :class="
+                    mode.darkMode ? 'text-slate-300' : 'text-gray-500'
+                  "
+                >
+                  Tax (10%)
+                </span>
+
+                <span
+                  :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
+                  class="font-semibold"
+                >
+                  ${{ tax.toFixed(2) }}
+                </span>
+              </div>
+
+              <!-- Divider -->
+              <div
+                class="border-t border-dashed border-gray-300 pt-5"
+              ></div>
+
+              <!-- Total -->
+              <div class="flex justify-between items-center">
+                <span
+                  :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
+                  class="text-xl font-bold"
+                >
+                  Total
+                </span>
+
+                <span
+                  :class="mode.darkMode ? 'text-white' : 'text-black'"
+                  class="text-3xl font-extrabold"
+                >
+                  ${{ finalTotal.toFixed(2) }}
                 </span>
               </div>
             </div>
 
+            <!-- Checkout -->
             <button
-              :class="mode.darkMode ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-black hover:bg-gray-800 text-white'"
-              class="w-full  py-4 rounded-2xl mt-8 text-base sm:text-lg font-semibold transition-all duration-300 shadow-md active:scale-[0.98] cursor-pointer"
+              :class="
+                mode.darkMode
+                  ? 'bg-blue-500 hover:bg-blue-600'
+                  : 'bg-black hover:bg-gray-800'
+              "
+              class="w-full py-4 rounded-2xl mt-8 text-white text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.02] cursor-pointer"
             >
               Proceed to Checkout
             </button>
 
+            <!-- Continue Shopping -->
             <router-link
               to="/shop"
-              :class="mode.darkMode ? 'bg-white text-black hover:bg-gray-200': 'text-gray-700 border-gray-300 hover:bg-gray-50'"
-              class="w-full border  py-4 rounded-2xl mt-4 font-medium  transition-all duration-300 text-center block text-sm sm:text-base "
+              :class="
+                mode.darkMode
+                  ? 'bg-white text-black hover:bg-gray-200'
+                  : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
+              "
+              class="block text-center w-full py-4 rounded-2xl mt-4 font-medium transition-all duration-300"
             >
               Continue Shopping
             </router-link>
 
-            <div 
-            :class="mode.darkMode ? 'text-white' : 'text-gray-400'"
-            class="mt-8">
-              <p class=" text-sm mb-4 text-center">Secure Payment Methods</p>
-              <div class="flex justify-center gap-4 text-2xl sm:text-3xl ">
+            <!-- Payment -->
+            <div
+              :class="
+                mode.darkMode ? 'text-slate-300' : 'text-gray-400'
+              "
+              class="mt-8"
+            >
+              <p class="text-center text-sm mb-4">
+                Secure Payment Methods
+              </p>
+
+              <div
+                class="flex justify-center gap-5 text-3xl"
+              >
                 <i class="bi bi-credit-card"></i>
                 <i class="bi bi-paypal"></i>
                 <i class="bi bi-wallet2"></i>
@@ -240,7 +415,7 @@ const mode = useDarkModeStore()
           </div>
         </div>
 
-      </div> 
+      </div>
     </div>
   </div>
 </template>

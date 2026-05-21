@@ -137,21 +137,20 @@ const sidebar = () =>{
         </div>
 
         <!-- account -->
-        <div class="icon-person">
+        <div class="icon-person  lg:flex lg:items-center hidden">
           <button @click="goToAccount">
             <!-- If user has profile image -->
-
             <img
               :class="mode.darkMode ? 'border-blue-500' : ' border-gray-400 '"
               v-if="authStore.user?.profile"
               :src="authStore.user.profile"
-              class="w-11 h-11 rounded-full border-2 shadow-sm object-cover cursor-pointer"
+              class="lg:w-10 lg:h-10 w-7 h-7 rounded-full border-2 shadow-sm object-cover cursor-pointer"
             />
 
             <!-- If login but no profile -->
             <div
               v-else-if="authStore.user"
-              class="w-11 h-11 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-lg cursor-pointer"
+              class="lg:w-10 lg:h-10 w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold lg:text-lg text-[10px] cursor-pointer"
             >
               {{ authStore.user.name.charAt(0).toUpperCase() }}
             </div>
@@ -164,82 +163,17 @@ const sidebar = () =>{
                   ? 'bg-slate-700 text-white'
                   : 'bg-gray-200 text-black'
               "
-              class="lg:w-10 lg:h-10 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
+              class="lg:w-10 lg:h-10 w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
             >
               <i class="bi bi-person-fill lg:text-2xl text-xl"></i>
             </div>
           </button>
+
         </div>
+
       </div>
+
     </div>
   </header>
-
-
-<div 
-  class="w-full bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-xl transition-all duration-300 ease-in-out overflow-hidden" 
-  :class="isOpen ? 'max-h-80 opacity-100 transform translate-y-0' : 'max-h-0 opacity-0 transform -translate-y-2'"
->
-  <ul class="flex flex-col px-4 py-4 space-y-2">
-    <!-- Home -->
-    <li>
-      <router-link 
-        to="/" 
-        class="group flex items-center justify-between h-12 px-4 rounded-xl text-gray-600 font-medium transition-all duration-200 hover:bg-slate-50 hover:text-black"
-        active-class="bg-indigo-50/80  font-semibold"
-      >
-        <div class="flex items-center space-x-3">
-          <i class="bi bi-house-door text-lg transition-transform group-hover:scale-110"></i>
-          <span>Home</span>
-        </div>
-        <i class="bi bi-chevron-right text-xs opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"></i>
-      </router-link>
-    </li>
-
-    <!-- Shop -->
-    <li>
-      <router-link 
-        to="/shop" 
-        class="group flex items-center justify-between h-12 px-4 rounded-xl text-gray-600 font-medium transition-all duration-200 hover:bg-slate-100 hover:text-black"
-        active-class="bg-indigo-50/80  font-semibold"
-      >
-        <div class="flex items-center space-x-3">
-          <i class="bi bi-bag text-lg transition-transform group-hover:scale-110"></i>
-          <span>Shop</span>
-        </div>
-        <i class="bi bi-chevron-right text-xs opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"></i>
-      </router-link>
-    </li>
-
-    <!-- About -->
-    <li>
-      <router-link 
-        to="/about" 
-        class="group flex items-center justify-between h-12 px-4 rounded-xl text-gray-600 font-medium transition-all duration-200 hover:bg-slate-100 hover:text-black"
-        active-class="bg-indigo-50/80  font-semibold"
-      >
-        <div class="flex items-center space-x-3">
-          <i class="bi bi-info-circle text-lg transition-transform group-hover:scale-110"></i>
-          <span>About Us</span>
-        </div>
-        <i class="bi bi-chevron-right text-xs opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"></i>
-      </router-link>
-    </li>
-
-    <!-- Contact -->
-    <li>
-      <router-link 
-        to="/contact" 
-        class="group flex items-center justify-between h-12 px-4 rounded-xl text-gray-600 font-medium transition-all duration-200 hover:bg-slate-100 hover:text-black"
-        active-class="bg-indigo-50/80  font-semibold"
-      >
-        <div class="flex items-center space-x-3">
-          <i class="bi bi-envelope text-lg transition-transform group-hover:scale-110"></i>
-          <span>Contact</span>
-        </div>
-        <i class="bi bi-chevron-right text-xs opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"></i>
-      </router-link>
-    </li>
-  </ul>
-</div>
 
 </template>

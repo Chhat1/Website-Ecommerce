@@ -36,7 +36,7 @@ const register = () =>{
     <form
       :class="
         mode.darkMode
-          ? 'bg-blue-950 border-blue-800/50'
+          ? 'bg-[#1e293b]  border-[#334155]'
           : 'bg-[#ececf2]  border-gray-300'
       "
       class="w-full sm:w-[90%] md:w-[80%] lg:w-[60%] xl:w-[50%] mx-auto 0 shadow-2xl border rounded-2xl px-5 sm:px-8 md:px-12 lg:px-16 py-8"
@@ -65,7 +65,7 @@ const register = () =>{
           v-model="name"
           :class="
             mode.darkMode
-              ? 'text-white border-blue-800'
+              ? 'text-white bg-blue-950/40 border-blue-800'
               : 'bg-white border-gray-300'
           "
           class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl b w-full"
@@ -87,7 +87,7 @@ const register = () =>{
         v-model="email"
           :class="
             mode.darkMode
-              ? 'text-white border-blue-800'
+              ? 'text-white bg-blue-950/40 border-blue-800'
               : 'bg-white border-gray-300'
           "
           class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl b w-full"
@@ -108,7 +108,7 @@ const register = () =>{
           v-model="password"
           :class="
             mode.darkMode
-              ? 'text-white border-blue-800'
+              ? 'text-white bg-blue-950/40 border-blue-800'
               : 'bg-white border-gray-300'
           "
           class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl w-full"
@@ -129,7 +129,7 @@ const register = () =>{
           v-model="confirm_password"
           :class="
             mode.darkMode
-              ? 'text-white border-blue-800'
+              ? 'text-white bg-blue-950/40 border-blue-800'
               : 'bg-white border-gray-300'
           "
           class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl w-full"
@@ -198,6 +198,7 @@ const register = () =>{
       <!-- Register -->
       <div class="flex justify-center text-center">
         <p
+        :class="mode.darkMode ? 'text-white' : 'text-black'"
           class="text-gray-500 font-medium text-sm sm:text-base flex flex-wrap justify-center gap-1"
         >
           Already have an account?

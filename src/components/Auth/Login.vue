@@ -29,7 +29,7 @@ const login = () =>{
     <form
       :class="
         mode.darkMode
-          ? 'bg-blue-950 border-blue-800/50'
+          ? 'bg-[#1e293b]  border-[#334155]'
           : 'bg-[#ececf2]  border-gray-300'
       "
       class="w-full sm:w-[90%] md:w-[80%] lg:w-[60%] xl:w-[50%] mx-auto 0 shadow-2xl border rounded-2xl px-5 sm:px-8 md:px-12 lg:px-16 py-8"
@@ -58,7 +58,7 @@ const login = () =>{
           v-model="email"
           :class="
             mode.darkMode
-              ? 'text-white border-blue-800'
+              ? 'text-white bg-blue-950/40 border-blue-800'
               : 'bg-white border-gray-300'
           "
           class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl b w-full"
@@ -71,7 +71,7 @@ const login = () =>{
       <div class="mb-6">
         <div class="flex justify-between items-center gap-2">
           <label
-            :class="mode.darkMode ? 'text-white ' : ''"
+            :class="mode.darkMode ? 'text-white  ' : ''"
             class="text-gray-500 text-sm sm:text-base"
           >
             Password
@@ -86,7 +86,7 @@ const login = () =>{
           v-model="password"
           :class="
             mode.darkMode
-              ? 'text-white border-blue-800'
+              ? 'text-white bg-blue-950/40 border-blue-800'
               : 'bg-white border-gray-300'
           "
           class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl w-full"
@@ -114,7 +114,7 @@ const login = () =>{
       <div class="flex items-center gap-3 sm:gap-5 justify-center mb-8">
         <div class="line w-[25%] h-px bg-gray-400"></div>
 
-        <h1 class="text-gray-500 text-sm sm:text-base whitespace-nowrap">
+        <h1 :class="mode.darkMode ? 'text-white' : 'text-gray-500'" class=" text-sm sm:text-base whitespace-nowrap">
           Or continue with
         </h1>
 
@@ -155,7 +155,8 @@ const login = () =>{
       <!-- Register -->
       <div class="flex justify-center text-center">
         <p
-          class="text-gray-500 font-medium text-sm sm:text-base flex flex-wrap justify-center gap-1"
+        :class="mode.darkMode ? 'text-gray-400' : 'text-gray-500'"
+          class=" font-medium text-sm sm:text-base flex flex-wrap justify-center gap-1"
         >
           Don't have an account?
 
