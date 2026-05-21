@@ -10,6 +10,8 @@ import CheckSummery from '../components/views/CheckSummery.vue'
 import Register from '../components/Auth/Register.vue'
 import Login from '../components/Auth/Login.vue'
 import Account from '../components/Auth/Account.vue'
+import CheckOut from '../components/views/CheckOut.vue'
+
 
 
 const routes = [
@@ -52,7 +54,12 @@ const routes = [
     {
         path: '/account',
         component: Account
-    }
+    },
+    {
+        path: '/checkout',
+        component: CheckOut
+    },
+    
 ]
 
 

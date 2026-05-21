@@ -3,11 +3,18 @@ import { onMounted, computed } from "vue";
 import { useCartStore } from "../../stores/cartStore";
 import { useProductStore } from "../../stores/productStore";
 import { useDarkModeStore } from "../../stores/darkMode";
+import { useRouter } from "vue-router";
 
 const productStore = useProductStore();
 const cartStore = useCartStore();
 const mode = useDarkModeStore();
+const router = useRouter()
 
+
+const goCheckout = () => {
+  if (cartStore.cart.length === 0) return;
+  router.push("/checkout");
+};
 
 onMounted(async () => {
   if (!productStore.products.length) {
@@ -16,19 +23,11 @@ onMounted(async () => {
 });
 
 
-const totalItems = computed(() => {
-  return cartStore.cart.reduce((total, item) => total + item.qty, 0);
-});
+const subtotal = computed(() => cartStore.totalPrice || 0);
 
+const tax = computed(() => subtotal.value * 0.1);
 
-const tax = computed(() => {
-  return cartStore.totalPrice * 0.1;
-});
-
-
-const finalTotal = computed(() => {
-  return cartStore.totalPrice + tax.value;
-});
+const finalTotal = computed(() => subtotal.value + tax.value);
 
 </script>
 
@@ -289,7 +288,7 @@ const finalTotal = computed(() => {
                   :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
                   class="font-semibold"
                 >
-                  {{ totalItems }}
+                  {{ subtotal }}
                 </span>
               </div>
 
@@ -307,7 +306,7 @@ const finalTotal = computed(() => {
                   :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
                   class="font-semibold"
                 >
-                  ${{ cartStore.totalPrice.toFixed(2) }}
+                  ${{ subtotal.toFixed(2) }}
                 </span>
               </div>
 
@@ -369,6 +368,7 @@ const finalTotal = computed(() => {
 
             <!-- Checkout -->
             <button
+            @click="goCheckout"
               :class="
                 mode.darkMode
                   ? 'bg-blue-500 hover:bg-blue-600'

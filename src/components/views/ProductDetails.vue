@@ -7,19 +7,15 @@ import { useDarkModeStore } from "../../stores/darkMode";
 
 const route = useRoute();
 const router = useRouter();
-
 const productStoreId = useProductStore();
 const cartStore = useCartStore();
 const mode = useDarkModeStore();
-
 const qty = ref(1);
 
 
 const increaseQty = () => {
   qty.value++;
 };
-
-
 const decreaseQty = () => {
   if (qty.value > 1) {
     qty.value--;
@@ -34,7 +30,7 @@ const handleAddToCart = () => {
 
 const handleBuyNow = () => {
   cartStore.addToCart(productStoreId.productId, qty.value);
-  router.push("/cart");
+  router.push("/checksummery");
 };
 
 
