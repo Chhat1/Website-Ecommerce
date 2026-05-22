@@ -217,6 +217,45 @@ const sidebar = () =>{
     </li>
   </ul>
 
+  <div class="account flex justify-center items-center gap-2 mb-5">
+      <div class="profile-account">
+            <button @click="goToAccount">
+            <!-- If user has profile image -->
+            <img
+              :class="mode.darkMode ? 'border-blue-500' : ' border-gray-400 '"
+              v-if="authStore.user?.profile"
+              :src="authStore.user.profile"
+              class="lg:w-10 lg:h-10 w-7 h-7 rounded-full border-2 shadow-sm object-cover cursor-pointer"
+            />
+
+            <!-- If login but no profile -->
+            <div
+              v-else-if="authStore.user"
+              class="lg:w-10 lg:h-10 w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold lg:text-lg text-[10px] cursor-pointer"
+            >
+              {{ authStore.user.name.charAt(0).toUpperCase() }}
+            </div>
+
+            <!-- If not login -->
+            <div
+              v-else
+              :class="
+                mode.darkMode
+                  ? 'bg-slate-700 text-white'
+                  : 'bg-gray-200 text-black'
+              "
+              class="lg:w-10 lg:h-10 w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
+            >
+              <i class="bi bi-person-fill lg:text-2xl text-xl"></i>
+            </div>
+          </button>
+      </div>
+      <div class="username">
+          <h1 class="text-[10px]">{{ authStore.user.name }}</h1>
+          <p class="text-[6px]">{{ authStore.user.email }}</p>
+      </div>
+  </div>
+
 </div>
       
 

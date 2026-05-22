@@ -20,7 +20,7 @@
 
         <!-- Title -->
         <h1
-          class="lg:text-6xl md:text-5xl text-2xl font-bold tracking-tight text-black lg:mt-5 mt-3 leading-tight"
+          class="lg:text-6xl md:text-5xl text-2xl font-bold tracking-tight lg:text-black text-white lg:mt-5 mt-3 leading-tight"
         >
           The Future of <br />
           Style & Tech
