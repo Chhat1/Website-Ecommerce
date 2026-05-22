@@ -255,6 +255,7 @@ const sidebar = () =>{
           <p class="text-[6px]">{{ authStore.user.email }}</p>
       </div>
   </div>
+  
 
 </div>
       
