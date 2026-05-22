@@ -45,13 +45,15 @@ const uploadImage = (event) => {
 
   reader.readAsDataURL(file);
 };
+
+
 </script>
 
 <template>
   <div
-    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#f8fafc]'"
+    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#F3F0EF]'"
     class="min-h-screen flex items-center justify-center px-4 py-10 transition-all duration-300"
-  >
+  > 
     <!-- PROFILE CARD -->
     <div
       :class="
@@ -65,8 +67,8 @@ const uploadImage = (event) => {
       <div
         :class="
           mode.darkMode
-            ? 'bg-linear-to-r from-blue-900 to-blue-600'
-            : 'bg-linear-to-r from-black to-gray-800'
+            ? 'bg-linear-to-r from-blue-500/50 to-blue-950'
+            : 'bg-linear-to-r from-gray-500/50 to-black/80'
         "
         class="h-40 relative"
       >
@@ -83,13 +85,13 @@ const uploadImage = (event) => {
               v-if="authStore.user?.profile"
               :src="authStore.user.profile"
               :alt="authStore.user.name"
-              class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-2xl"
+              class="lg:w-35 lg:h-35 w-28 h-28 rounded-full object-cover border-4 border-white shadow-2xl"
             />
 
             <!-- Default Letter -->
             <div
               v-else
-              class="w-28 h-28 rounded-full bg-white text-black flex items-center justify-center text-4xl font-bold border-4 border-white shadow-2xl"
+              class="lg:w-35 lg:h-35 w-28 h-28 rounded-full bg-white text-black flex items-center justify-center text-4xl font-bold border-4 border-white shadow-2xl"
             >
               {{
                 authStore.user?.name?.charAt(0).toUpperCase()
@@ -141,9 +143,8 @@ const uploadImage = (event) => {
           </p>
         </div>
 
-        <!-- ===================================== -->
+       
         <!-- USER INFO -->
-        <!-- ===================================== -->
         <div class="mt-8 space-y-5">
 
           <!-- FULL NAME -->
@@ -244,9 +245,7 @@ const uploadImage = (event) => {
 
         </div>
 
-        <!-- ===================================== -->
         <!-- LOGOUT -->
-        <!-- ===================================== -->
         <div class="mt-8">
           <button
             @click="logout"
