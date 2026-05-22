@@ -32,7 +32,7 @@ const sidebar = () =>{
         ? 'bg-[#0f172a]/70 border-b border-b-white/40'
         : 'bg-white/70'
     "
-    class="backdrop-blur-xl border-b border-b-black/5 w-full h-auto sticky top-0 z-50"
+    class="backdrop-blur-xl border-b border-b-black/5 w-full h-auto sticky top-0 z-50 "
   >
     <!-- nav-top -->
     <div
@@ -172,8 +172,52 @@ const sidebar = () =>{
         </div>
 
       </div>
-
     </div>
+
+    
+
   </header>
+
+<!-- Menu Mobile -->
+<div class="fixed top-16 left-0 w-full overflow-hidden bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ease-in-out" 
+     :class="isOpen ? 'max-h-100 opacity-100 z-40': 'max-h-0 opacity-0 z-[-1] pointer-events-none'">
+  
+  <ul class="flex flex-col px-6 py-6 space-y-2 mt-10">
+    <li>
+      <router-link to="/" 
+                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
+                   active-class="bg-blue-50 text-blue-600">
+        <span>Home</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </router-link>
+    </li>
+    <li>
+      <router-link to="/shop" 
+                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
+                   active-class="bg-blue-50 text-blue-600">
+        <span>Shop</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </router-link>
+    </li>
+    <li>
+      <router-link to="/About" 
+                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
+                   active-class="bg-blue-50 text-blue-600">
+        <span>About</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </router-link>
+    </li>
+    <li>
+      <router-link to="/contact" 
+                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
+                   active-class="bg-blue-50 text-blue-600">
+        <span>Contact</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </router-link>
+    </li>
+  </ul>
+
+</div>
+      
 
 </template>
