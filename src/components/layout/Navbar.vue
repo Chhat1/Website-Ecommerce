@@ -215,6 +215,14 @@ const sidebar = () =>{
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </router-link>
     </li>
+    <li>
+      <router-link to="/account" 
+                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
+                   active-class="bg-blue-50 text-blue-600">
+        <span>Account</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </router-link>
+    </li>
   </ul>
 
 
