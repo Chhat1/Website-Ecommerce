@@ -15,10 +15,9 @@ export const useProductStore = defineStore('product',{
         async getAllProducts() { //get all products
             try {
                 this.isLoading = true;
-                const res = await fetch('https://api.escuelajs.co/api/v1/products');
-                const data = await res.json()
-                console.log("get all product success!",data);
-                this.products = data
+                const res = await axios.get('https://fakestoreapi.com/products');
+               this.products = res.data
+               console.log(res.data);
             } catch (err) {
                 console.error('Error', err);
             } finally {
@@ -29,7 +28,7 @@ export const useProductStore = defineStore('product',{
         async getIdProduct(id){
             try{
                 this.isLoading = true;
-                const res = await axios.get(`https://api.escuelajs.co/api/v1/products/${id}`)
+                const res = await axios.get(`https://fakestoreapi.com/products/${id}`)
                 this.productId = res.data
             }catch(err){
                 console.error("Error",err)

@@ -78,7 +78,7 @@
 
         <router-link
           to="/shop"
-          class="text-gray-500 hover:text-black dark:hover:text-white lg:text-lg text-sm font-medium transition-all"
+          class="text-gray-500 hover:text-black  lg:text-lg text-sm font-medium transition-all"
         >
           View All <i class="bi bi-arrow-right"></i>
         </router-link>
@@ -88,7 +88,7 @@
       <div
         class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5"
       >
-        <!-- Skeleton -->
+        <!-- Skeleton loading-->
         <template v-if="productStore.isLoading">
           <div
             v-for="n in 4"
@@ -135,7 +135,7 @@
         </template>
 
         <!-- Product Card -->
-        <template v-else>
+        <template v-else >
           <div
             v-for="item in productStore.products.slice(0, 4)"
             :key="item.id"
@@ -149,9 +149,9 @@
             <!-- Image -->
             <div class="overflow-hidden h-44 lg:h-72">
               <img
-                :src="item.images"
+                :src="item.image"
                 :alt="item.title"
-                class="w-full h-full object-cover hover:scale-105 transition-all duration-300"
+                class="w-full h-full object-contain hover:scale-105 transition-all duration-300"
               />
             </div>
 
@@ -327,6 +327,7 @@
         </p>
       </div>
     </section>
+
   </div>
 </template>
 

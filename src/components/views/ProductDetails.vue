@@ -131,8 +131,8 @@ watch(
             class="rounded-3xl overflow-hidden"
           >
             <img
-              class="w-full aspect-square object-cover hover:scale-105 transition-all duration-700"
-              :src="productStoreId.productId.images"
+              class="w-full aspect-square object-contain hover:scale-105 transition-all duration-700"
+              :src="productStoreId.productId.image"
               :alt="productStoreId.productId.title"
             />
           </div>
@@ -150,7 +150,7 @@ watch(
             "
             class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-5"
           >
-            Premium Product
+            {{ productStoreId.productId.category }}
           </p>
 
           <!-- Title -->

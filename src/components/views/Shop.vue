@@ -7,7 +7,7 @@ const productStore = useProductStore();
 const mode = useDarkModeStore();
 
 const search = ref("");
-
+const selectedCategory = ref("all");
 
 onMounted(async () => {
   if (!productStore.products.length) {
@@ -15,21 +15,31 @@ onMounted(async () => {
   }
 });
 
+const categories = computed(() => {
+  const cats = productStore.products.map((p) => p.category);
+  return ["all", ...new Set(cats)];
+});
 
-// Search Products
-const searchProducts = computed(() => {
-  const keyword = search.value.trim().toLowerCase();
+const filteredProducts = computed(() => {
+  let result = productStore.products;
 
-  if (!keyword) {
-    return productStore.products;
+  // category filter
+  if (selectedCategory.value !== "all") {
+    result = result.filter((p) => p.category === selectedCategory.value);
   }
 
-  return productStore.products.filter((item) => {
-    return (
-      item.title.toLowerCase().includes(keyword) ||
-      item.description.toLowerCase().includes(keyword)
-    );
-  });
+  // search filter
+  const keyword = search.value.trim().toLowerCase();
+  if (keyword) {
+    result = result.filter((item) => {
+      return (
+        item.title.toLowerCase().includes(keyword) ||
+        item.description.toLowerCase().includes(keyword)
+      );
+    });
+  }
+
+  return result;
 });
 </script>
 
@@ -39,7 +49,6 @@ const searchProducts = computed(() => {
     class="home-page min-h-screen"
   >
     <div class="container mx-auto lg:px-0 px-3 pb-16">
-
       <!-- Header -->
       <div class="py-12 lg:py-16">
         <h1
@@ -60,9 +69,7 @@ const searchProducts = computed(() => {
 
       <!-- Search -->
       <div class="flex justify-center lg:mb-16 mb-10">
-        <div
-          class="relative lg:w-[50%] md:w-[70%] w-full group"
-        >
+        <div class="relative lg:w-[50%] md:w-[70%] w-full group">
           <!-- Icon -->
           <i
             :class="
@@ -85,6 +92,31 @@ const searchProducts = computed(() => {
             "
             class="w-full py-4 pl-14 pr-5 rounded-2xl border outline-none shadow-lg text-sm lg:text-lg transition-all duration-300 focus:ring-4"
           />
+        </div>
+      </div>
+
+      <!-- CATEGORY -->
+      <div class="mb-10">
+        <div
+          class="flex gap-3 overflow-x-auto whitespace-nowrap scroll-smooth px-1 pb-2"
+        >
+          <button
+            v-for="cat in categories"
+            :key="cat"
+            @click="selectedCategory = cat"
+            class="shrink-0 cursor-pointer px-4 py-2 rounded-full transition-all duration-300 text-sm sm:text-base"
+            :class="
+              selectedCategory === cat
+                ? mode.darkMode
+                  ? 'bg-white text-[#0f172a] shadow-lg'
+                  : 'bg-black text-white shadow-lg'
+                : mode.darkMode
+                ? 'bg-[#1e293b] text-white hover:bg-[#334155]'
+                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+            "
+          >
+            {{ cat }}
+          </button>
         </div>
       </div>
 
@@ -146,12 +178,12 @@ const searchProducts = computed(() => {
 
       <!-- Products -->
       <div
-        v-else-if="searchProducts.length > 0"
+        v-else-if="filteredProducts.length > 0"
         class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5"
       >
         <!-- Card -->
         <div
-          v-for="item in searchProducts.slice(0, 40)"
+          v-for="item in filteredProducts"
           :key="item.id"
           :class="
             mode.darkMode
@@ -163,9 +195,9 @@ const searchProducts = computed(() => {
           <!-- Image -->
           <div class="overflow-hidden h-44 lg:h-72">
             <img
-              :src="item.images"
+              :src="item.image"
               :alt="item.title"
-              class="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+              class="w-full h-full object-contain hover:scale-105 transition-all duration-500"
             />
           </div>
 
@@ -210,12 +242,8 @@ const searchProducts = computed(() => {
         </div>
       </div>
 
-      
       <!-- No Products -->
-      <div
-        v-else
-        class="flex flex-col justify-center items-center py-24"
-      >
+      <div v-else class="flex flex-col justify-center items-center py-24">
         <!-- Icon -->
         <div
           :class="

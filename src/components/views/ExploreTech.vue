@@ -7,6 +7,7 @@ const productStore = useProductStore();
 const mode = useDarkModeStore();
 
 const search = ref("");
+const selectedCategory = ref("all")
 
 onMounted(async () => {
   if (!productStore.products.length) {
@@ -15,20 +16,40 @@ onMounted(async () => {
 });
 
 
-const searchProducts = computed(() => {
-  const keyword = search.value.trim().toLowerCase();
+const categories = computed(() => {
+  const cats = productStore.products.map(p => p.category);
+  return ["all", ...new Set(cats)];
+});
 
-  if (!keyword) {
-    return productStore.products;
+
+
+const filteredProducts = computed(() => {
+  let result = productStore.products;
+
+  // category filter
+  if (selectedCategory.value !== "all") {
+    result = result.filter(
+      p => p.category === selectedCategory.value
+    );
   }
 
-  return productStore.products.filter((item) => {
-    return (
-      item.title.toLowerCase().includes(keyword) ||
-      item.description.toLowerCase().includes(keyword)
-    );
-  });
+  // search filter
+  const keyword = search.value.trim().toLowerCase();
+  if (keyword) {
+    result = result.filter((item) => {
+      return (
+        item.title.toLowerCase().includes(keyword) ||
+        item.description.toLowerCase().includes(keyword)
+      );
+    });
+  }
+
+  return result;
 });
+
+
+
+
 </script>
 
 <template>
@@ -116,6 +137,31 @@ const searchProducts = computed(() => {
         </div>
       </section>
 
+      <!-- CATEGORY -->
+      <div class="mb-10">
+        <div
+          class="flex gap-3 overflow-x-auto whitespace-nowrap scroll-smooth px-1 pb-2"
+        >
+          <button
+            v-for="cat in categories"
+            :key="cat"
+            @click="selectedCategory = cat"
+            class="shrink-0 cursor-pointer px-4 py-2 rounded-full transition-all duration-300 text-sm sm:text-base"
+            :class="
+              selectedCategory === cat
+                ? mode.darkMode
+                  ? 'bg-white text-[#0f172a] shadow-lg'
+                  : 'bg-black text-white shadow-lg'
+                : mode.darkMode
+                ? 'bg-[#1e293b] text-white hover:bg-[#334155]'
+                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+            "
+          >
+            {{ cat }}
+          </button>
+        </div>
+      </div>
+
       <!-- LOADING -->
       <div
         v-if="productStore.isLoading"
@@ -174,12 +220,12 @@ const searchProducts = computed(() => {
 
       <!-- PRODUCTS -->
       <div
-        v-else-if="searchProducts.length > 0"
+        v-else-if="filteredProducts.length > 0"
         class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5"
       >
         <!-- Card -->
         <div
-          v-for="item in searchProducts.slice(0, 40)"
+          v-for="item in filteredProducts"
           :key="item.id"
           :class="
             mode.darkMode
@@ -191,9 +237,9 @@ const searchProducts = computed(() => {
           <!-- Image -->
           <div class="overflow-hidden h-44 lg:h-72">
             <img
-              :src="item.images"
+              :src="item.image"
               :alt="item.title"
-              class="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+              class="w-full h-full object-contain hover:scale-105 transition-all duration-500"
             />
           </div>
 
