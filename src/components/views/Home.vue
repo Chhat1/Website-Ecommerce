@@ -302,10 +302,10 @@
             placeholder="Email Address"
             :class="
               mode.darkMode
-                ? 'bg-[#1e293b] border-[#334155] text-white placeholder:text-blue-200'
-                : 'bg-[#F3F0EF] border-gray-200 text-black placeholder:text-gray-500'
+                ? 'bg-[#1e293b] border-[#334155] text-white placeholder:text-blue-200 focus:ring-2 focus:ring-blue-500'
+                : 'bg-[#F3F0EF] border-gray-200 text-black placeholder:text-gray-500 focus:ring-2 focus:ring-gray-300'
             "
-            class="w-full lg:w-100 py-4 px-6 rounded-xl outline-none border focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+            class="w-full lg:w-100 py-4 px-6 rounded-xl  outline-none border  transition-all duration-300"
           />
 
           <button
@@ -315,7 +315,7 @@
                 ? 'bg-blue-500 hover:bg-blue-600'
                 : 'bg-black hover:bg-gray-800'
             "
-            class="text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300"
+            class="text-white px-8 py-4 cursor-pointer rounded-xl font-semibold transition-all duration-300"
           >
             Subscribe
           </button>

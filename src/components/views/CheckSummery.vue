@@ -3,7 +3,7 @@ import { onMounted, computed } from "vue";
 import { useCartStore } from "../../stores/cartStore";
 import { useProductStore } from "../../stores/productStore";
 import { useDarkModeStore } from "../../stores/darkMode";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const productStore = useProductStore();
 const cartStore = useCartStore();
@@ -28,6 +28,10 @@ const subtotal = computed(() => cartStore.totalPrice || 0);
 const tax = computed(() => subtotal.value * 0.1);
 
 const finalTotal = computed(() => subtotal.value + tax.value);
+
+
+
+
 
 </script>
 
