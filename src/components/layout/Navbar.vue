@@ -179,52 +179,87 @@ const sidebar = () =>{
   </header>
 
 <!-- Menu Mobile -->
-<div class="fixed top-16 left-0 w-full overflow-hidden bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ease-in-out" 
-     :class="isOpen ? 'max-h-100 opacity-100 z-40': 'max-h-0 opacity-0 z-[-1] pointer-events-none'">
+<div class="fixed top-16 left-0 w-full overflow-hidden  shadow-lg transition-all  duration-300 ease-in-out" 
+     :class="[
+        isOpen ? 'max-h-100 opacity-100 z-40': 'max-h-0 opacity-0 z-[-1] pointer-events-none',
+        mode.darkMode ? 'bg-[#0f172a] border-b border-b-[#334155]' : 'bg-white border-b border-b-gray-300'
+     ]">
+
+     
   
   <ul class="flex flex-col px-6 py-6 space-y-2 mt-10">
+
+
+    <!-- home -->
     <li>
       <router-link to="/" 
-                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
-                   active-class="bg-blue-50 text-blue-600">
+                    :class="mode.darkMode ? 'text-blue-500 hover:bg-blue-950 hover:text-white' : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
+
+                   class="flex items-center justify-between px-4 py-3  font-medium rounded-xl  transition-colors duration-200"
+                   :active-class="mode.darkMode ? 'bg-blue-950 text-white' : 'bg-gray-100 text-black'">
         <span>Home</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </router-link>
     </li>
+
+
+    <!-- shop -->
     <li>
       <router-link to="/shop" 
-                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
-                   active-class="bg-blue-50 text-blue-600">
+                   :class="mode.darkMode ? 'text-blue-500 hover:bg-blue-950 hover:text-white' : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
+
+                   class="flex items-center justify-between px-4 py-3  font-medium rounded-xl  transition-colors duration-200"
+                   :active-class="mode.darkMode ? 'bg-blue-950 text-white' : 'bg-gray-100 text-black'">
         <span>Shop</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </router-link>
     </li>
+
+
+    <!-- about -->
     <li>
       <router-link to="/About" 
-                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
-                   active-class="bg-blue-50 text-blue-600">
+                   :class="mode.darkMode ? 'text-blue-500 hover:bg-blue-950 hover:text-white' : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
+
+                   class="flex items-center justify-between px-4 py-3  font-medium rounded-xl  transition-colors duration-200"
+                   :active-class="mode.darkMode ? 'bg-blue-950 text-white' : 'bg-gray-100 text-black'">
         <span>About</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </router-link>
     </li>
+
+
+    <!-- contact -->
     <li>
       <router-link to="/contact" 
-                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
-                   active-class="bg-blue-50 text-blue-600">
+                  :class="mode.darkMode ? 'text-blue-500 hover:bg-blue-950 hover:text-white' : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
+
+                   class="flex items-center justify-between px-4 py-3  font-medium rounded-xl  transition-colors duration-200"
+                   :active-class="mode.darkMode ? 'bg-blue-950 text-white' : 'bg-gray-100 text-black'">
         <span>Contact</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </router-link>
     </li>
+
+
+    <!-- account -->
     <li>
       <router-link to="/account" 
-                   class="flex items-center justify-between px-4 py-3 text-gray-700 font-medium rounded-xl hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
-                   active-class="bg-blue-50 text-blue-600">
+                   :class="mode.darkMode ? 'text-blue-500 hover:bg-blue-950 hover:text-white' : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
+
+                   class="flex items-center justify-between px-4 py-3  font-medium rounded-xl  transition-colors duration-200"
+                   :active-class="mode.darkMode ? 'bg-blue-950 text-white' : 'bg-gray-100 text-black'">
         <span>Account</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </router-link>
     </li>
   </ul>
 
+  <!-- button close -->
+  <div class="px-5 mb-5 flex justify-end">
+    <button @click="sidebar" class="bg-red-500 px-2 rounded-[5px] cursor-pointer transition-all ease-in-out hover:scale-105 text-white">X</button>
+  </div>
+  <div></div>
 
 </div>
       

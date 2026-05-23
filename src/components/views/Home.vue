@@ -30,14 +30,14 @@
         <div class="flex items-center gap-3 lg:gap-5 mt-5 lg:mt-10">
           <router-link
             to="/shop"
-            class="lg:py-5 py-2.5 lg:px-16 px-5 lg:text-base text-[11px] bg-black text-white rounded-lg font-medium shadow-lg hover:scale-105 transition-all duration-300"
+            class="lg:py-5 py-2.5 lg:px-16 px-5 lg:text-base text-[11px] bg-black text-white rounded-lg font-medium shadow-sm shadow-white/20 hover:scale-105 transition-all duration-300 "
           >
             Shop New Arrivals
           </router-link>
 
           <router-link
             to="/exploretech"
-            class="lg:py-5 py-2.5 lg:px-16 px-5 lg:text-base text-[11px] bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-lg font-medium hover:bg-white/20 transition-all duration-300"
+            class="lg:py-5 py-2.5 hover:scale-105 lg:px-16 px-5 lg:text-base text-[11px] bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-lg font-medium hover:bg-white/20 transition-all duration-300"
           >
             Explore Tech
           </router-link>

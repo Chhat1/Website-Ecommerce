@@ -125,14 +125,14 @@ const filteredProducts = computed(() => {
           <!-- Input -->
           <input
             v-model="search"
-            type="text"
+            type="search"
             placeholder="Search technology..."
             :class="
               mode.darkMode
                 ? 'bg-[#1e293b] border-[#334155] text-white placeholder:text-slate-400 focus:border-blue-500 focus:ring-blue-500/20'
                 : 'bg-white border-gray-200 text-black placeholder:text-gray-400 focus:border-gray-300 focus:ring-black/0'
             "
-            class="w-full py-4 pl-14 pr-5 rounded-2xl border outline-none shadow-lg text-sm lg:text-lg transition-all duration-300 focus:ring-4"
+            class="w-full py-4 pl-14 pr-5 rounded-2xl border outline-none shadow-lg text-[16px] lg:text-lg transition-all duration-300 focus:ring-4"
           />
         </div>
       </section>

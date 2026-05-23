@@ -231,7 +231,7 @@ const confirmPayment = () => {
 
                 <input
                   v-model="form.phone"
-                  type="number"
+                  type="text"
                   placeholder="Phone"
                   class="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-blue-500"
                   :class="
@@ -499,7 +499,10 @@ const confirmPayment = () => {
                   : 'bg-black '
               "
             >
-              {{ loading ? "Processing..." : "Place Order" }}
+              <div class="flex justify-center items-center gap-5">
+                {{ loading ? "Processing..." : "Place Order" }}
+                <img v-if="loading" class="w-5 h-5" src="/src/assets/images/loading.gif" alt="">
+              </div>
             </button>
 
           </div>
@@ -621,7 +624,7 @@ const confirmPayment = () => {
             @click="confirmPayment"
             class="flex-1 bg-black cursor-pointer text-white py-3 rounded-2xl font-semibold"
           >
-            I Have Paid
+           {{ loading ? "Wait..." : "I Have Paid" }}
           </button>
 
         </div>
