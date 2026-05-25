@@ -78,7 +78,7 @@
           :class="mode.darkMode ? 'bg-white text-black' : 'bg-white border border-gray-300 hover:bg-gray-100'"
             class="w-full   py-3 flex items-center justify-center gap-2 rounded-md  transition cursor-pointer"
           >
-            <i class="bi text-sky-400 bi-google-play"></i>
+            <img class="w-4" src="/src/assets/icons/icon-playstore.png" alt="">
             Play Store
           </button>
         </div>
