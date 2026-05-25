@@ -49,12 +49,14 @@ const sidebar = () =>{
     >
       <!-- logo -->
       <div class="logo flex items-center gap-5">
+
         <!-- menu Mobile -->
         <div class="lg:hidden">
           <button @click="sidebar" class="cursor-pointer">
-            <i class="bi lg:text-2xl text-xl bi-list"></i>
+            <i class="bi  text-2xl bi-list"></i>
           </button>
         </div>
+
         <!-- Logo text -->
         <h1 class="lg:text-5xl text-xl font-bold">ELYSIA</h1>
       </div>

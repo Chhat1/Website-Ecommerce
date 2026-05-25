@@ -29,10 +29,6 @@ const tax = computed(() => subtotal.value * 0.1);
 
 const finalTotal = computed(() => subtotal.value + tax.value);
 
-
-
-
-
 </script>
 
 <template>
