@@ -78,7 +78,8 @@
 
         <router-link
           to="/shop"
-          class="text-gray-500 hover:text-black  lg:text-lg text-sm font-medium transition-all"
+          :class="mode.darkMode ? 'hover:text-blue-500 text-white' : 'text-gray-500 hover:text-black'"
+          class="lg:text-lg text-sm ease-in-out font-medium transition-all"
         >
           View All <i class="bi bi-arrow-right"></i>
         </router-link>
