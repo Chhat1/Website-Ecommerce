@@ -4,7 +4,7 @@ import { useDarkModeStore } from './stores/darkMode';
 import Footer from './components/layout/Footer.vue'
 import Contact from './components/views/Contact.vue'
 const mode = useDarkModeStore()
-mode.initTheme();
+
 </script>
 
 <template>
