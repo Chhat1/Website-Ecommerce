@@ -2,6 +2,7 @@
 import Navbar from './components/layout/Navbar.vue';
 import { useDarkModeStore } from './stores/darkMode';
 import Footer from './components/layout/Footer.vue'
+import Contact from './components/views/Contact.vue'
 const mode = useDarkModeStore()
 
 </script>
@@ -12,10 +13,11 @@ const mode = useDarkModeStore()
       <Navbar/>
       <router-view></router-view>
       <Footer/>
+      <Contact/>
   </div>
 
 
 </template>
 
 
-
+​

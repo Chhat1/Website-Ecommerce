@@ -63,12 +63,10 @@
         </div>
 
       </div>
-
       <!-- Copyright -->
       <div class="text-center text-gray-500 mt-16 text-lg">
         © 2024 ELYSIA RETAIL GROUP. ALL RIGHTS RESERVED.
       </div>
-
     </div>
   </footer>
 </template>
