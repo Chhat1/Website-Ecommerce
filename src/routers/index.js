@@ -7,6 +7,10 @@ import ProductDetails from '../components/views/ProductDetails.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import ExploreTech from '../components/views/ExploreTech.vue'
 import CheckSummery from '../components/views/CheckSummery.vue'
+import Register from '../components/Auth/Register.vue'
+import Login from '../components/Auth/Login.vue'
+import Account from '../components/Auth/Account.vue'
+import CheckOut from '../components/views/CheckOut.vue'
 
 
 
@@ -38,12 +42,36 @@ const routes = [
     {
         path: '/checksummery',
         component: CheckSummery
-    }
+    },
+    {
+        path: '/register',
+        component: Register
+    },
+    {
+        path: '/login',
+        component: Login
+    },
+    {
+        path: '/account',
+        component: Account
+    },
+    {
+        path: '/checkout',
+        component: CheckOut
+    },
+    
 ]
 
 
 
 export const router = createRouter({
     history: createWebHistory(),
-    routes
+    routes,
+    scrollBehavior(to, from,savedPosition){
+        if(savedPosition){
+            return savedPosition;
+        }else{
+            return { top: 0};
+        }
+    }
 })
