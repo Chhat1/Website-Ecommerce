@@ -4,8 +4,6 @@ import App from './App.vue'
 import { router } from './routers'
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 import { createPinia } from 'pinia'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 createApp(App)
 .use(router)
 .use(createPinia())

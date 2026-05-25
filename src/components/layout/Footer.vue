@@ -84,11 +84,10 @@
         </div>
 
       </div>
-<<<<<<< HEAD
       <!-- Copyright -->
       <div class="text-center text-gray-500 mt-16 text-lg">
         © 2024 ELYSIA RETAIL GROUP. ALL RIGHTS RESERVED.
-=======
+
 
       <!-- Divider -->
       <div
@@ -96,13 +95,14 @@
         class="mt-16 text-center text-sm tracking-wide"
       >
         © 2026 RICHHAT & BUNTHAI. ALL RIGHTS RESERVED.
->>>>>>> 80463bfafb11095783be69ed219778c245e1220c
       </div>
+    </div>
     </div>
   </footer>
 </template>
 
 <script setup>
+
 import { useDarkModeStore } from '../../stores/darkMode'
 
 const mode = useDarkModeStore()

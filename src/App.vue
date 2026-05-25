@@ -13,11 +13,7 @@ const mode = useDarkModeStore()
       <Navbar/>
       <router-view></router-view>
       <Footer/>
-      <Contact/>
   </div>
 
 
 </template>
-
-
-​
