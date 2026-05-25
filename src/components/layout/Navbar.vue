@@ -188,7 +188,7 @@ const logout = () => {
 
 <!-- Menu Mobile -->
 <div
-  class="fixed top-25 left-0 w-[70%] h-full overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform"
+  class="fixed top-25 left-0 w-[80%] h-full overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform"
   :class="[
     isOpen
       ? 'translate-x-0 opacity-100 z-40'
