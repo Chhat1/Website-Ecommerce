@@ -19,16 +19,14 @@ const goToAccount = () => {
 
 const isOpen = ref(false);
 
-const sidebar = () =>{
+const sidebar = () => {
   isOpen.value = !isOpen.value;
-}
+};
 
 const logout = () => {
   authStore.logout();
-  router.push('/login')
+  router.push("/login");
 };
-
-
 </script>
 
 <template>
@@ -38,7 +36,7 @@ const logout = () => {
         ? 'bg-[#0f172a]/70 border-b border-b-white/40'
         : 'bg-white/70'
     "
-    class="backdrop-blur-xl border-b border-b-black/5 w-full h-auto sticky top-0 z-50 "
+    class="backdrop-blur-xl border-b border-b-black/5 w-full h-auto sticky top-0 z-50"
   >
     <!-- nav-top -->
     <div
@@ -55,11 +53,10 @@ const logout = () => {
     >
       <!-- logo -->
       <div class="logo flex items-center gap-5">
-
         <!-- menu Mobile -->
         <div class="lg:hidden">
           <button @click="sidebar" class="cursor-pointer">
-            <i class="bi  text-2xl bi-list"></i>
+            <i class="bi text-2xl bi-list"></i>
           </button>
         </div>
 
@@ -145,7 +142,7 @@ const logout = () => {
         </div>
 
         <!-- account -->
-        <div class="icon-person  lg:flex lg:items-center hidden">
+        <div class="icon-person lg:flex lg:items-center hidden">
           <button @click="goToAccount">
             <!-- If user has profile image -->
             <img
@@ -176,224 +173,254 @@ const logout = () => {
               <i class="bi bi-person-fill lg:text-2xl text-xl"></i>
             </div>
           </button>
-
         </div>
-
       </div>
     </div>
-
-    
-
   </header>
 
-<!-- Menu Mobile -->
-<div
-  class="fixed top-25 left-0 w-[80%] h-full overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform"
-  :class="[
-    isOpen
-      ? 'translate-x-0 opacity-100 z-40'
-      : '-translate-x-full opacity-0 z-[-1] pointer-events-none',
-
-    mode.darkMode
-      ? 'bg-[#0f172a] border-b border-b-[#334155]'
-      : 'bg-white border-b border-b-gray-300'
-  ]"
->
-
-
-  <ul class="flex flex-col px-6 py-1 space-y-2 mt-10">
-
-  
-    <li>
+  <!-- Menu Mobile -->
   <div
-    :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-    class="w-full h-15 rounded-xl mb-2 flex items-center justify-between px-3"
+    class="fixed top-25 left-0 w-[80%] h-full overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform"
+    :class="[
+      isOpen
+        ? 'translate-x-0 opacity-100 z-40'
+        : '-translate-x-full opacity-0 z-[-1] pointer-events-none',
+
+      mode.darkMode
+        ? 'bg-[#0f172a] border-b border-b-[#334155]'
+        : 'bg-white border-b border-b-gray-300',
+    ]"
   >
-
-    <!-- profile -->
-    <div class="profile-username flex items-center gap-2">
-
-      <!-- profile-image -->
-      <div class="w-8 h-8 border border-gray-400 shadow rounded-full overflow-hidden">
-
-        <!-- Profile Image -->
-        <img
-          v-if="authStore.user?.profile"
-          :src="authStore.user.profile"
-          :alt="authStore.user.name"
-          class="w-full h-full object-cover"
-        />
-
-        <!-- First Letter -->
+    <ul class="flex flex-col px-6 py-1 space-y-2 mt-10">
+      <li>
         <div
-          v-else-if="authStore.user?.name"
+          :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
+          class="w-full h-15 rounded-xl mb-2 flex items-center justify-between px-3"
+        >
+          <!-- profile -->
+          <div class="profile-username flex items-center gap-2">
+            <!-- profile-image -->
+            <div
+              class="w-8 h-8 border border-gray-400 shadow rounded-full overflow-hidden"
+            >
+              <!-- Profile Image -->
+              <img
+                v-if="authStore.user?.profile"
+                :src="authStore.user.profile"
+                :alt="authStore.user.name"
+                class="w-full h-full object-cover"
+              />
+
+              <!-- First Letter -->
+              <div
+                v-else-if="authStore.user?.name"
+                :class="
+                  mode.darkMode
+                    ? 'bg-slate-700 text-white'
+                    : 'bg-white text-black'
+                "
+                class="w-full h-full flex items-center justify-center font-bold uppercase"
+              >
+                {{ authStore.user.name.charAt(0) }}
+              </div>
+
+              <!-- Default Icon -->
+              <div
+                v-else
+                :class="
+                  mode.darkMode
+                    ? 'bg-slate-700 text-white'
+                    : 'bg-white text-black'
+                "
+                class="w-full h-full flex items-center justify-center"
+              >
+                <i class="bi bi-person-fill text-sm"></i>
+              </div>
+            </div>
+
+            <!-- username -->
+            <div>
+              <p
+                :class="mode.darkMode ? 'text-white' : 'text-black'"
+                class="text-sm font-medium"
+              >
+                {{ authStore.user?.name || "Username" }}
+              </p>
+            </div>
+          </div>
+
+          <!-- logout -->
+          <div v-if="authStore.user" class="logout">
+            <button
+              @click="logout"
+              class="cursor-pointer flex items-center gap-1 text-[10px] bg-red-500 text-white px-2 py-1 rounded-[5px]"
+            >
+              <i class="bi bi-box-arrow-in-left"></i>
+              Logout
+            </button>
+          </div>
+        </div>
+      </li>
+
+      <!-- home -->
+      <li>
+        <router-link
+          to="/"
           :class="
             mode.darkMode
-              ? 'bg-slate-700 text-white'
-              : 'bg-white text-black'
+              ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
+              : 'text-gray-700 hover:bg-gray-200 hover:text-black'
           "
-          class="w-full h-full flex items-center justify-center font-bold uppercase"
+          class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
+          :active-class="
+            mode.darkMode ? 'bg-slate-800 text-white' : 'bg-gray-100 text-black'
+          "
         >
-          {{ authStore.user.name.charAt(0) }}
-        </div>
+          <span>Home</span>
 
-        <!-- Default Icon -->
-        <div
-          v-else
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </router-link>
+      </li>
+
+      <!-- shop -->
+      <li>
+        <router-link
+          to="/shop"
           :class="
             mode.darkMode
-              ? 'bg-slate-700 text-white'
-              : 'bg-white text-black'
+              ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
+              : 'text-gray-700 hover:bg-gray-200 hover:text-black'
           "
-          class="w-full h-full flex items-center justify-center"
+          class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
+          :active-class="
+            mode.darkMode ? 'bg-slate-800 text-white' : 'bg-gray-100 text-black'
+          "
         >
-          <i class="bi bi-person-fill text-sm"></i>
-        </div>
+          <span>Shop</span>
 
-      </div>
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </router-link>
+      </li>
 
-      <!-- username -->
-      <div>
-        <p
-          :class="mode.darkMode ? 'text-white' : 'text-black'"
-          class="text-sm font-medium"
+      <!-- about -->
+      <li>
+        <router-link
+          to="/About"
+          :class="
+            mode.darkMode
+              ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
+              : 'text-gray-700 hover:bg-gray-200 hover:text-black'
+          "
+          class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
+          :active-class="
+            mode.darkMode ? 'bg-slate-800 text-white' : 'bg-gray-100 text-black'
+          "
         >
-          {{ authStore.user?.name || "Username" }}
-        </p>
-      </div>
+          <span>About</span>
 
-    </div>
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </router-link>
+      </li>
 
-    <!-- logout -->
-    <div v-if="authStore.user" class="logout">
-      <button
-        @click="logout"
-        class="cursor-pointer flex items-center gap-1 text-[10px] bg-red-500 text-white px-2 py-1 rounded-[5px]"
-      >
-        <i class="bi bi-box-arrow-in-left"></i>
-        Logout
-      </button>
-    </div>
+      <!-- contact -->
+      <li>
+        <router-link
+          to="/contact"
+          :class="
+            mode.darkMode
+              ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
+              : 'text-gray-700 hover:bg-gray-200 hover:text-black'
+          "
+          class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
+          :active-class="
+            mode.darkMode ? 'bg-slate-800 text-white' : 'bg-gray-100 text-black'
+          "
+        >
+          <span>Contact</span>
 
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </router-link>
+      </li>
+
+      <!-- account -->
+      <li>
+        <router-link
+          to="/account"
+          :class="
+            mode.darkMode
+              ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
+              : 'text-gray-700 hover:bg-gray-200 hover:text-black'
+          "
+          class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
+          :active-class="
+            mode.darkMode ? 'bg-slate-800 text-white' : 'bg-gray-100 text-black'
+          "
+        >
+          <span>Account</span>
+
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </router-link>
+      </li>
+    </ul>
   </div>
-</li>
-
-    <!-- home -->
-    <li>
-      <router-link
-        to="/"
-        :class="mode.darkMode
-          ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
-          : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
-
-        class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
-
-        :active-class="mode.darkMode
-          ? 'bg-blue-950 text-white'
-          : 'bg-gray-100 text-black'"
-      >
-        <span>Home</span>
-
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </router-link>
-    </li>
-
-    <!-- shop -->
-    <li>
-      <router-link
-        to="/shop"
-        :class="mode.darkMode
-          ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
-          : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
-
-        class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
-
-        :active-class="mode.darkMode
-          ? 'bg-blue-950 text-white'
-          : 'bg-gray-100 text-black'"
-      >
-        <span>Shop</span>
-
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </router-link>
-    </li>
-
-    <!-- about -->
-    <li>
-      <router-link
-        to="/About"
-        :class="mode.darkMode
-          ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
-          : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
-
-        class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
-
-        :active-class="mode.darkMode
-          ? 'bg-blue-950 text-white'
-          : 'bg-gray-100 text-black'"
-      >
-        <span>About</span>
-
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </router-link>
-    </li>
-
-    <!-- contact -->
-    <li>
-      <router-link
-        to="/contact"
-        :class="mode.darkMode
-          ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
-          : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
-
-        class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
-
-        :active-class="mode.darkMode
-          ? 'bg-blue-950 text-white'
-          : 'bg-gray-100 text-black'"
-      >
-        <span>Contact</span>
-
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </router-link>
-    </li>
-
-    <!-- account -->
-    <li>
-      <router-link
-        to="/account"
-        :class="mode.darkMode
-          ? 'text-blue-500 hover:bg-blue-950 hover:text-white'
-          : 'text-gray-700 hover:bg-gray-200 hover:text-black'"
-
-        class="flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-colors duration-200"
-
-        :active-class="mode.darkMode
-          ? 'bg-blue-950 text-white'
-          : 'bg-gray-100 text-black'"
-      >
-        <span>Account</span>
-
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      </router-link>
-    </li>
-
-
-
-  </ul>
-
- 
-  
-</div>
-
 </template>
