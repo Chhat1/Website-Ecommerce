@@ -235,7 +235,7 @@ const filteredProducts = computed(() => {
           class="rounded-2xl overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
         >
           <!-- Image -->
-          <div class="overflow-hidden h-44 lg:h-72">
+          <div class="overflow-hidden lg:p-5 p-3 h-44 lg:h-72">
             <img
               :src="item.image"
               :alt="item.title"

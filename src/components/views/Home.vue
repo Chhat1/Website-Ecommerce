@@ -148,11 +148,11 @@
             class="rounded-2xl overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
           >
             <!-- Image -->
-            <div class="overflow-hidden h-44 lg:h-72">
+            <div class="overflow-hidden lg:p-5 p-5 h-44 lg:h-72">
               <img
                 :src="item.image"
                 :alt="item.title"
-                class="w-full h-full object-contain hover:scale-105 transition-all duration-300"
+                class="w-full h-full object-contain hover:scale-105 transition-all dur p-5ation-300"
               />
             </div>
 

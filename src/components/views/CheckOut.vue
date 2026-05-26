@@ -6,7 +6,7 @@ import { useRouter } from "vue-router";
 
 // IMPORT QR IMAGES
 import qrABA from "../../../src/assets/images/QrABA.jpg";
-import qrACLEDA from "../../../src/assets/images/QrABA.jpg";
+import qrACLEDA from "../../../src/assets/images/acledaqe.jpg";
 
 // STATE
 const cartStore = useCartStore();
