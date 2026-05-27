@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page container mx-auto lg:px-0 lg:py-0 px-5 py-5">
+  <div class="home-page container mx-auto  lg:px-0 lg:py-0 px-5 py-5">
     <!-- Banner -->
     <section
       class="banner relative w-full lg:h-screen h-56 bg-[url('/src/assets/images/image-banner.png')] bg-cover bg-center bg-no-repeat lg:rounded-none rounded-2xl overflow-hidden shadow"

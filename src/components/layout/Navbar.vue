@@ -61,7 +61,7 @@ const logout = () => {
         </div>
 
         <!-- Logo text -->
-        <h1 class="lg:text-5xl text-xl font-bold">ELYSIA</h1>
+        <h1 class="lg:text-3xl text-xl font-bold">ELYSIA</h1>
       </div>
 
       <!-- menu-links  -->

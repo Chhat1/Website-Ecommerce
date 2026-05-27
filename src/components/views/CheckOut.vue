@@ -129,9 +129,9 @@ const confirmPayment = () => {
 
 <template>
 
-<div  class="py-2 lg:hidden bg-gray-100 text-black px-4">
+<div :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-gray-100'"  class="py-2 lg:hidden  text-black px-4">
         <router-link to="/checksummery">
-          <i class="bi text-black  text-xl bi-box-arrow-left"></i>
+          <i :class="mode.darkMode ? 'text-white' : 'text-black'" class="bi   text-xl bi-box-arrow-left"></i>
         </router-link>
   </div>
 

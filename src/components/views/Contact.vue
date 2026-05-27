@@ -1,4 +1,5 @@
 <script setup>
+
 import { useDarkModeStore } from "../../stores/darkMode";
 
 const mode = useDarkModeStore();
@@ -6,7 +7,7 @@ const mode = useDarkModeStore();
 
 <template>
   <section
-    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#F3F0EF]'"
+    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-white'"
     class="min-h-screen px-4 sm:px-8 lg:px-16 py-12 transition-all duration-300"
   >
     <!-- Header -->
@@ -57,10 +58,10 @@ const mode = useDarkModeStore();
                 placeholder="Enter your name"
                 :class="
                   mode.darkMode
-                    ? 'bg-[#0f172a] border-slate-600 text-white'
-                    : 'bg-[#f5f3f8] border-gray-300 text-black'
+                    ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
+                    : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
                 "
-                class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 transition-all"
+                class="w-full border rounded-lg px-4 py-3 outline-none  transition-all"
               />
             </div>
 
@@ -78,10 +79,10 @@ const mode = useDarkModeStore();
                 placeholder="email@example.com"
                 :class="
                   mode.darkMode
-                    ? 'bg-[#0f172a] border-slate-600 text-white'
-                    : 'bg-[#f5f3f8] border-gray-300 text-black'
+                    ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
+                    : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
                 "
-                class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 transition-all"
+                class="w-full border rounded-lg px-4 py-3 outline-none  transition-all"
               />
             </div>
           </div>
@@ -98,10 +99,10 @@ const mode = useDarkModeStore();
             <select
               :class="
                 mode.darkMode
-                  ? 'bg-[#0f172a] border-slate-600 text-white'
-                  : 'bg-[#f5f3f8] border-gray-300 text-black'
+                  ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
+                  : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
               "
-              class="w-full border rounded-lg px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 transition-all"
+              class="w-full border rounded-lg px-4 py-3 outline-none   transition-all"
             >
               <option>General Inquiry</option>
               <option>Order Support</option>
@@ -124,16 +125,17 @@ const mode = useDarkModeStore();
               placeholder="How can we help?"
               :class="
                 mode.darkMode
-                  ? 'bg-[#0f172a] border-slate-600 text-white placeholder:text-white'
-                  : 'bg-[#f5f3f8] border-gray-300 text-black placeholder:text-gray-400'
+                  ? 'bg-[#0f172a] border-slate-600 text-white placeholder:text-white focus:ring-1 focus:ring-blue-500'
+                  : 'bg-[#f5f3f8] border-gray-300 text-black placeholder:text-gray-400 focus:ring-1 focus:ring-gray-300'
               "
-              class="w-full resize-none border rounded-lg px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 transition-all"
+              class="w-full resize-none border rounded-lg px-4 py-3 outline-none  transition-all"
             ></textarea>
           </div>
 
           <!-- Button -->
           <div class="lg:flex lg:justify-start  flex justify-center">
             <button
+            type="text"
             :class="
               mode.darkMode ? 'bg-blue-500 hover:bg-blue-600' : 'bg-black'
             "

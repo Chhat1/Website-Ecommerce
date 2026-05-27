@@ -67,13 +67,14 @@ const showDescription = ref(false);
     class="product-details min-h-screen py-10 lg:py-16 transition-all duration-300"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
       <!-- Loading -->
       <div
         v-if="productStoreId.isLoading"
-        class="flex flex-col lg:flex-row gap-12 animate-pulse"
+        class="flex flex-col lg:flex-row gap-12 lg:justify-center animate-pulse"
       >
         <!-- Image -->
-        <div class="lg:w-1/2 w-full">
+        <div class="lg:w-100 w-full">
           <div
             :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
             class="w-full aspect-square rounded-3xl"

@@ -6,7 +6,7 @@ const mode = useDarkModeStore();
 
 <template>
   <div
-    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#F3F0EF]'"
+    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-white'"
     class="min-h-screen transition-all duration-300"
   >
     <!-- HERO -->

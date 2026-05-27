@@ -139,7 +139,8 @@ const finalTotal = computed(() => subtotal.value + tax.value);
 
                 <!-- IMAGE -->
                 <div
-                  class="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl overflow-hidden bg-gray-100 shrink-0"
+                :class="mode.darkMode ? 'bg-gray-100' : 'bg-gray-100'"
+                  class="w-24 p-2 h-24 lg:w-32 lg:h-32 rounded-2xl overflow-hidden  shrink-0"
                 >
                   <img
                     :src="item.image"
