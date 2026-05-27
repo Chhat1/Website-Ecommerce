@@ -13,14 +13,14 @@ const mode = useDarkModeStore();
     <section class="max-w-6xl mx-auto px-5 py-16 text-center">
       <h1
         :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-        class="text-4xl md:text-6xl font-black"
+        class="lg:text-4xl text-2xl font-black"
       >
         About ELYSIA
       </h1>
 
       <p
         :class="mode.darkMode ? 'text-slate-300' : 'text-gray-500'"
-        class="mt-5 mb-10 max-w-2xl mx-auto text-lg leading-relaxed"
+        class="mt-5 mb-10 max-w-2xl mx-auto text-base leading-relaxed"
       >
         ELYSIA is a modern fashion brand built for simplicity, elegance, and
         comfort. We bring high-quality fashion directly to your fingertips with

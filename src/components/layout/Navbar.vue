@@ -125,15 +125,15 @@ const logout = () => {
           <button class="cursor-pointer" @click="mode.toggleDarkMode">
             <i
               v-if="mode.darkMode"
-              class="bi lg:text-3xl text-xl bi-moon-fill"
+              class="bi lg:text-2xl text-xl bi-moon-fill"
             ></i>
-            <i v-else class="bi lg:text-3xl text-xl bi-sun-fill"></i>
+            <i v-else class="bi lg:text-2xl text-xl bi-sun-fill"></i>
           </button>
         </div>
         <!-- cart bag -->
         <div class="icon-bag relative">
           <router-link to="/checksummery">
-            <i class="bi lg:text-2xl text-xl cursor-pointer bi-bag-fill"></i>
+            <i class="bi lg:text-xl text-xl cursor-pointer bi-bag-fill"></i>
           </router-link>
           <span
             class="bg-red-500 py-0 px-1 rounded-[50%] font-bold text-white text-[13px] absolute left-3 top-0"

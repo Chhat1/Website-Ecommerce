@@ -134,7 +134,7 @@ const mode = useDarkModeStore();
 
           <!-- Button -->
           <div class="lg:flex lg:justify-start  flex justify-center">
-            <button
+            <router-link
             type="text"
             :class="
               mode.darkMode ? 'bg-blue-500 hover:bg-blue-600' : 'bg-black'
@@ -142,7 +142,7 @@ const mode = useDarkModeStore();
             class="text-white lg:px-8 px-5 py-3 lg:py-4 cursor-pointer rounded-full font-semibold shadow-lg transition-all duration-300"
           >
             Send Message
-          </button>
+          </router-link>
           </div>
         </form>
       </div>
