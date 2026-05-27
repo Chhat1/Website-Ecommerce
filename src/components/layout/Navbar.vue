@@ -178,6 +178,9 @@ const logout = () => {
     </div>
   </header>
 
+  
+
+
   <!-- Menu Mobile -->
   <div
     class="fixed top-25 left-0 w-[80%] h-full overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform"
@@ -191,7 +194,11 @@ const logout = () => {
         : 'bg-white border-b border-b-gray-300',
     ]"
   >
-    <ul class="flex flex-col px-6 py-1 space-y-2 mt-10">
+  <!-- close -->
+  <div  class="mt-3 flex justify-end pr-5 py-1">
+    <button @click="sidebar"><i class="bi bi-x-lg cursor-pointer hover:text-gray-500"></i></button>
+  </div>
+    <ul class="flex flex-col px-6 py-1 space-y-2 mt-5">
       <li>
         <div
           :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
@@ -422,5 +429,15 @@ const logout = () => {
         </router-link>
       </li>
     </ul>
+    <!-- Copyright -->
+      <div class="text-center  text-gray-500 mt-60 text-lg ">
+        <!-- Divider -->
+        <div
+          :class="mode.darkMode ? 'text-gray-400' : 'text-gray-500'"
+          class="mt-16 text-center text-sm tracking-wide border-t border-t-gray-200 pt-5"
+        >
+          © 2026 RICHHAT & BUNTHAI. ALL RIGHTS RESERVED.
+        </div>
+    </div>
   </div>
 </template>

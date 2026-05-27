@@ -86,17 +86,15 @@
       </div>
       <!-- Copyright -->
       <div class="text-center text-gray-500 mt-16 text-lg">
-        
-
-
-      <!-- Divider -->
-      <div
-        :class="mode.darkMode ? 'text-gray-400' : 'text-gray-500'"
-        class="mt-16 text-center text-sm tracking-wide"
-      >
-        © 2026 RICHHAT & BUNTHAI. ALL RIGHTS RESERVED.
-      </div>
+        <!-- Divider -->
+        <div
+          :class="mode.darkMode ? 'text-gray-400' : 'text-gray-500'"
+          class="mt-16 text-center text-sm tracking-wide"
+        >
+          © 2026 RICHHAT & BUNTHAI. ALL RIGHTS RESERVED.
+        </div>
     </div>
+    
     </div>
   </footer>
 </template>

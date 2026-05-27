@@ -12,7 +12,6 @@ const cartStore = useCartStore();
 const mode = useDarkModeStore();
 const qty = ref(1);
 
-
 const increaseQty = () => {
   qty.value++;
 };
@@ -22,17 +21,14 @@ const decreaseQty = () => {
   }
 };
 
-
 const handleAddToCart = () => {
   cartStore.addToCart(productStoreId.productId, qty.value);
 };
-
 
 const handleBuyNow = () => {
   cartStore.addToCart(productStoreId.productId, qty.value);
   router.push("/checksummery");
 };
-
 
 const fetchProduct = async () => {
   await productStoreId.getIdProduct(route.params.id);
@@ -42,7 +38,6 @@ onMounted(() => {
   fetchProduct();
 });
 
-
 watch(
   () => route.params.id,
   () => {
@@ -51,28 +46,27 @@ watch(
   }
 );
 
-
+const showDescription = ref(false);
 </script>
 
 <template>
-
-  <div  class="py-2 lg:hidden bg-gray-100 text-black px-4">
-        <router-link to="/shop">
-          <i class="bi text-black  text-xl bi-box-arrow-left"></i>
-        </router-link>
+  <div
+    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-gray-100 text-black'"
+    class="py-2 lg:hidden px-4"
+  >
+    <router-link to="/shop">
+      <i
+        :class="mode.darkMode ? 'text-white' : 'text-black'"
+        class="bi text-xl bi-box-arrow-left"
+      ></i>
+    </router-link>
   </div>
-   
+
   <div
     :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#f8fafc]'"
     class="product-details min-h-screen py-10 lg:py-16 transition-all duration-300"
   >
-
-  
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      
-      
       <!-- Loading -->
       <div
         v-if="productStoreId.isLoading"
@@ -127,16 +121,13 @@ watch(
         </div>
       </div>
 
-      
-
       <!-- Product -->
       <div
         v-else-if="productStoreId.productId"
-        class="flex flex-col lg:flex-row gap-12 lg:items-start"
+        class="flex flex-col lg:flex-row lg:justify-center gap-12 lg:items-start"
       >
-        
         <!-- Product Image -->
-        <div class="lg:w-1/2  lg:sticky lg:top-10">
+        <div class="lg:w-100 lg:sticky lg:top-10">
           <div
             :class="
               mode.darkMode
@@ -146,14 +137,13 @@ watch(
             class="lg:rounded-3xl rounded-xl overflow-hidden"
           >
             <img
-              class="w-full aspect-square object-contain hover:scale-105 transition-all duration-700"
+              class="w-full aspect-square object-contain hover:scale-105 transition-all duration-700 p-5"
               :src="productStoreId.productId.image"
               :alt="productStoreId.productId.title"
             />
           </div>
         </div>
 
-        
         <!-- Product Content -->
         <div class="lg:w-1/2 w-full">
           <!-- Category -->
@@ -163,7 +153,7 @@ watch(
                 ? 'bg-blue-500/10 text-blue-300 border border-blue-500/20'
                 : 'bg-gray-100 text-gray-700 border border-gray-200'
             "
-            class="inline-flex items-center lg:px-4 lg:py-2 px-5 py-1 rounded-xl lg:rounded-full text-sm font-medium mb-5"
+            class="inline-flex items-center lg:px-4 lg:py-1 px-5 py-1 rounded-xl lg:rounded-full text-sm font-medium mb-5"
           >
             {{ productStoreId.productId.category }}
           </p>
@@ -171,22 +161,20 @@ watch(
           <!-- Title -->
           <h1
             :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-            class="text-xl lg:text-5xl font-extrabold leading-tight mb-6"
+            class="text-[30px] lg:text-3xl font-extrabold leading-tight mb-6"
           >
             {{ productStoreId.productId.title }}
           </h1>
 
           <!-- Price -->
           <div class="mb-8">
-            <h2
-              class="text-4xl lg:text-5xl font-black text-red-500"
-            >
+            <h2 class="text-2xl lg:text-3xl font-black text-red-500">
               ${{ parseFloat(productStoreId.productId.price).toFixed(2) }}
             </h2>
           </div>
 
           <!-- Description -->
-          <div class="mb-5">
+          <div class="mb-5 lg:block hidden">
             <h3
               :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
               class="text-sm uppercase font-bold tracking-wider mb-3"
@@ -196,14 +184,51 @@ watch(
 
             <p
               :class="mode.darkMode ? 'text-slate-300' : 'text-gray-600'"
-              class="leading-8 lg:text-base text-[10px]"
+              class="leading-8 lg:text-base text-[15px]"
             >
               {{ productStoreId.productId.description }}
             </p>
           </div>
 
+          <!-- Dropdown Description -->
+          <div class="mb-5 lg:hidden block border-t border-t-gray-200 pt-3">
+            <!-- Button -->
+            <button
+              @click="showDescription = !showDescription"
+              :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
+              class="flex items-center justify-between w-full text-sm uppercase font-bold tracking-wider mb-3 cursor-pointer"
+            >
+              <span>Product Description</span>
+
+              <!-- Arrow -->
+              <i
+                :class="showDescription ? 'rotate-180' : ''"
+                class="bi bi-chevron-down transition-all duration-300 text-base"
+              ></i>
+            </button>
+
+            <!-- Dropdown Content -->
+            <transition
+              enter-active-class="transition-all duration-300 ease-out"
+              leave-active-class="transition-all duration-200 ease-in"
+              enter-from-class="opacity-0 max-h-0"
+              enter-to-class="opacity-100 max-h-[500px]"
+              leave-from-class="opacity-100 max-h-[500px]"
+              leave-to-class="opacity-0 max-h-0"
+            >
+              <div v-show="showDescription" class="overflow-hidden">
+                <p
+                  :class="mode.darkMode ? 'text-slate-300' : 'text-gray-600'"
+                  class="leading-8 lg:text-base text-[15px]"
+                >
+                  {{ productStoreId.productId.description }}
+                </p>
+              </div>
+            </transition>
+          </div>
+
           <!-- Quantity -->
-          <div class="mb-10">
+          <div class="mb-10 pt-3 border-t border-t-gray-200">
             <h3
               :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
               class="text-sm uppercase font-bold tracking-wider mb-4"
@@ -286,7 +311,6 @@ watch(
         </div>
       </div>
 
-      
       <!-- Product Not Found -->
       <div
         v-else
