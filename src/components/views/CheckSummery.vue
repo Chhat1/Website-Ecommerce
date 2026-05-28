@@ -41,7 +41,7 @@ const finalTotal = computed(() => subtotal.value + tax.value);
       <div class="text-center mb-10 lg:mb-14">
         <h1
           :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-          class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-3"
+          class="text-3xl sm:text-4xl lg:text-3xl font-extrabold mb-3"
         >
           Your Shopping Cart
         </h1>
@@ -140,7 +140,7 @@ const finalTotal = computed(() => subtotal.value + tax.value);
                 <!-- IMAGE -->
                 <div
                 :class="mode.darkMode ? 'bg-gray-100' : 'bg-gray-100'"
-                  class="w-24 p-2 h-24 lg:w-32 lg:h-32 rounded-2xl overflow-hidden  shrink-0"
+                  class="w-24 p-0 h-24 lg:w-32 lg:h-32 rounded-2xl overflow-hidden  shrink-0"
                 >
                   <img
                     :src="item.image"
