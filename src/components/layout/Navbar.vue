@@ -434,7 +434,7 @@ const logout = () => {
         <!-- Divider -->
         <div
           :class="mode.darkMode ? 'text-gray-400' : 'text-gray-500'"
-          class="mt-16 text-center text-sm tracking-wide border-t border-t-gray-200 pt-5"
+          class="mt-16 text-center text-[10px] tracking-wide border-t border-t-gray-100 pt-5"
         >
           © 2026 RICHHAT & BUNTHAI. ALL RIGHTS RESERVED.
         </div>
