@@ -1,7 +1,8 @@
 <script setup>
-
 import { useDarkModeStore } from "../../stores/darkMode";
-
+const sendSuccess = () => {
+  alert("Message sent successfully.");
+};
 const mode = useDarkModeStore();
 </script>
 
@@ -61,7 +62,7 @@ const mode = useDarkModeStore();
                     ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
                     : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
                 "
-                class="w-full border rounded-lg px-4 py-3 outline-none  transition-all"
+                class="w-full border rounded-lg px-4 py-3 outline-none transition-all"
               />
             </div>
 
@@ -82,7 +83,7 @@ const mode = useDarkModeStore();
                     ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
                     : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
                 "
-                class="w-full border rounded-lg px-4 py-3 outline-none  transition-all"
+                class="w-full border rounded-lg px-4 py-3 outline-none transition-all"
               />
             </div>
           </div>
@@ -102,7 +103,7 @@ const mode = useDarkModeStore();
                   ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
                   : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
               "
-              class="w-full border rounded-lg px-4 py-3 outline-none   transition-all"
+              class="w-full border rounded-lg px-4 py-3 outline-none transition-all"
             >
               <option>General Inquiry</option>
               <option>Order Support</option>
@@ -128,21 +129,22 @@ const mode = useDarkModeStore();
                   ? 'bg-[#0f172a] border-slate-600 text-white placeholder:text-white focus:ring-1 focus:ring-blue-500'
                   : 'bg-[#f5f3f8] border-gray-300 text-black placeholder:text-gray-400 focus:ring-1 focus:ring-gray-300'
               "
-              class="w-full resize-none border rounded-lg px-4 py-3 outline-none  transition-all"
+              class="w-full resize-none border rounded-lg px-4 py-3 outline-none transition-all"
             ></textarea>
           </div>
 
           <!-- Button -->
-          <div class="lg:flex lg:justify-start  flex justify-center">
-            <router-link
-            type="text"
-            :class="
-              mode.darkMode ? 'bg-blue-500 hover:bg-blue-600' : 'bg-black'
-            "
-            class="text-white lg:px-8 px-5 py-3 lg:py-4 cursor-pointer rounded-full font-semibold shadow-lg transition-all duration-300"
-          >
-            Send Message
-          </router-link>
+          <div class="lg:flex lg:justify-start flex justify-center">
+            <button
+            @click="sendSuccess"
+              type="submit"
+              :class="
+                mode.darkMode ? 'bg-blue-500 hover:bg-blue-600' : 'bg-black'
+              "
+              class="text-white lg:px-8 px-5 py-3 lg:py-4 cursor-pointer rounded-full font-semibold shadow-lg transition-all duration-300"
+            >
+              Send Message
+            </button>
           </div>
         </form>
       </div>
@@ -160,7 +162,7 @@ const mode = useDarkModeStore();
         >
           <h2
             :class="mode.darkMode ? 'text-white' : 'text-black'"
-            class="text-3xl  font-bold mb-8"
+            class="text-3xl font-bold mb-8"
           >
             Customer Support
           </h2>
@@ -246,11 +248,21 @@ const mode = useDarkModeStore();
           </p>
 
           <div class="flex justify-center gap-6">
-            <i class="bi bi-instagram text-xl hover:text-pink-500 cursor-pointer"></i>
-            <i class="bi bi-facebook text-xl hover:text-blue-500 cursor-pointer"></i>
-            <i class="bi bi-telegram text-xl hover:text-sky-500 cursor-pointer"></i>
-            <i class="bi bi-twitter text-xl hover:text-sky-400 cursor-pointer"></i>
-            <i class="bi bi-tiktok text-xl hover:text-gray-500 cursor-pointer"></i>
+            <i
+              class="bi bi-instagram text-xl hover:text-pink-500 cursor-pointer"
+            ></i>
+            <i
+              class="bi bi-facebook text-xl hover:text-blue-500 cursor-pointer"
+            ></i>
+            <i
+              class="bi bi-telegram text-xl hover:text-sky-500 cursor-pointer"
+            ></i>
+            <i
+              class="bi bi-twitter text-xl hover:text-sky-400 cursor-pointer"
+            ></i>
+            <i
+              class="bi bi-tiktok text-xl hover:text-gray-500 cursor-pointer"
+            ></i>
           </div>
         </div>
       </div>
