@@ -430,7 +430,7 @@ const logout = () => {
       </li>
     </ul>
     <!-- Copyright -->
-      <div class="text-center  text-gray-500 mt-60 text-lg ">
+      <div class="text-center  text-gray-500 mt-20 text-lg ">
         <!-- Divider -->
         <div
           :class="mode.darkMode ? 'text-gray-400' : 'text-gray-500'"
@@ -438,6 +438,23 @@ const logout = () => {
         >
           © 2026 RICHHAT & BUNTHAI. ALL RIGHTS RESERVED.
         </div>
+        <div class="flex justify-center gap-6 mt-5">
+            <i
+              class="bi bi-instagram text-xl hover:text-pink-500 cursor-pointer"
+            ></i>
+            <i
+              class="bi bi-facebook text-xl hover:text-blue-500 cursor-pointer"
+            ></i>
+            <i
+              class="bi bi-telegram text-xl hover:text-sky-500 cursor-pointer"
+            ></i>
+            <i
+              class="bi bi-twitter text-xl hover:text-sky-400 cursor-pointer"
+            ></i>
+            <i
+              class="bi bi-tiktok text-xl hover:text-gray-500 cursor-pointer"
+            ></i>
+          </div> 
     </div>
   </div>
 </template>
