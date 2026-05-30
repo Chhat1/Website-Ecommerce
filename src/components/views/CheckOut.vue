@@ -191,7 +191,7 @@ const confirmPayment = () => {
                   v-model="form.fullname"
                   type="text"
                   placeholder="E.g. Sophia Loren"
-                  class="w-full px-5 py-4 rounded-xl border outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
+                  class="w-full px-5 py-4 rounded-xl border outline-none text-[16px] transition-all duration-300 focus:ring-4 font-medium"
                   :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
                 />
                 <p v-if="errors.fullname" class="text-red-500 text-xs font-medium mt-1"><i class="bi bi-exclamation-circle mr-1"></i>{{ errors.fullname }}</p>
@@ -204,7 +204,7 @@ const confirmPayment = () => {
                   v-model="form.email"
                   type="email"
                   placeholder="sophia@example.com"
-                  class="w-full px-5 py-4 rounded-xl border outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
+                  class="w-full px-5 py-4 rounded-xl border outline-none text-[16px] transition-all duration-300 focus:ring-4 font-medium"
                   :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
                 />
                 <p v-if="errors.email" class="text-red-500 text-xs font-medium mt-1"><i class="bi bi-exclamation-circle mr-1"></i>{{ errors.email }}</p>
@@ -217,7 +217,7 @@ const confirmPayment = () => {
                   v-model="form.phone"
                   type="text"
                   placeholder="+855 12 345 678"
-                  class="w-full px-5 py-4 rounded-xl border outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
+                  class="w-full px-5 py-4 rounded-xl border outline-none text-[16px] transition-all duration-300 focus:ring-4 font-medium"
                   :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
                 />
                 <p v-if="errors.phone" class="text-red-500 text-xs font-medium mt-1"><i class="bi bi-exclamation-circle mr-1"></i>{{ errors.phone }}</p>
@@ -230,7 +230,7 @@ const confirmPayment = () => {
                   v-model="form.city"
                   type="text"
                   placeholder="Phnom Penh"
-                  class="w-full px-5 py-4 rounded-xl border outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
+                  class="w-full px-5 py-4 rounded-xl border outline-none text-[16px] transition-all duration-300 focus:ring-4 font-medium"
                   :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
                 />
                 <p v-if="errors.city" class="text-red-500 text-xs font-medium mt-1"><i class="bi bi-exclamation-circle mr-1"></i>{{ errors.city }}</p>
@@ -244,7 +244,7 @@ const confirmPayment = () => {
                 v-model="form.address"
                 rows="4"
                 placeholder="House number, Street name, District..."
-                class="w-full px-5 py-4 rounded-xl border outline-none text-sm transition-all duration-300 focus:ring-4 font-medium resize-none"
+                class="w-full px-5 py-4 rounded-xl border outline-none text-[16px] transition-all duration-300 focus:ring-4 font-medium resize-none"
                 :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
               ></textarea>
               <p v-if="errors.address" class="text-red-500 text-xs font-medium mt-1"><i class="bi bi-exclamation-circle mr-1"></i>{{ errors.address }}</p>
@@ -306,6 +306,7 @@ const confirmPayment = () => {
                 </div>
               </label>
             </div>
+            
           </div>
         </div>
 
