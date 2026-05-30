@@ -220,7 +220,7 @@
                   ? 'bg-slate-900 border-slate-800 text-white placeholder:text-slate-600 focus:border-indigo-500'
                   : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400'
               "
-              class="w-full py-3.5 px-5 rounded-xl outline-none border font-medium text-sm transition-all duration-300"
+              class="w-full py-3.5 px-5 rounded-xl outline-none border font-medium text-[16px] transition-all duration-300"
             />
 
             <button

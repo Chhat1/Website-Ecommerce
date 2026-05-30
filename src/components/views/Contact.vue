@@ -52,7 +52,7 @@ const mode = useDarkModeStore();
                 required
                 placeholder="Enter your name"
                 :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
-                class="w-full border rounded-xl px-5 py-4 outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
+                class="w-full mt-1 border rounded-xl px-5 py-4 outline-none text-[16px] transition-all duration-300 focus:ring-4 font-medium"
               />
             </div>
 
@@ -69,7 +69,7 @@ const mode = useDarkModeStore();
                 required
                 placeholder="email@example.com"
                 :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
-                class="w-full border rounded-xl px-5 py-4 outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
+                class="w-full mt-1 border rounded-xl px-5 py-4 outline-none text-[16px] transition-all duration-300 focus:ring-4 font-medium"
               />
             </div>
           </div>
@@ -85,7 +85,7 @@ const mode = useDarkModeStore();
             <div class="relative">
               <select
                 :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white focus:border-indigo-500' : 'bg-slate-50 border-slate-200 text-slate-900 focus:border-slate-400'"
-                class="w-full border rounded-xl px-5 py-4 outline-none text-sm transition-all duration-300 appearance-none cursor-pointer font-medium"
+                class="w-full mt-1 border rounded-xl px-5 py-4 outline-none text-[16px] transition-all duration-300 appearance-none cursor-pointer font-medium"
               >
                 <option class="bg-white dark:bg-slate-950">General Inquiry</option>
                 <option class="bg-white dark:bg-slate-950">Order Support</option>
@@ -111,7 +111,7 @@ const mode = useDarkModeStore();
               required
               placeholder="How can our concierge team assist you today?"
               :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
-              class="w-full resize-none border rounded-xl px-5 py-4 outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
+              class="w-full mt-1 resize-none border rounded-xl px-5 py-4 outline-none text-16px transition-all duration-300 focus:ring-4 font-medium"
             ></textarea>
           </div>
 

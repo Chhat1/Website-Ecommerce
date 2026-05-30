@@ -45,7 +45,7 @@ const logout = () => {
       class="w-full py-2.5 px-4 overflow-hidden relative group border-b border-white/5"
     >
       <p class="font-medium text-center tracking-wide text-xs md:text-sm transition-transform duration-300 group-hover:scale-105">
-        ✨ Free Shipping On All Domestic Orders Over $250
+        Free Shipping On All Domestic Orders Over $250
       </p>
     </div>
 
@@ -57,7 +57,7 @@ const logout = () => {
         <!-- Mobile Menu Trigger -->
         <button 
           @click="sidebar" 
-          class="lg:hidden flex flex-col gap-1.5 justify-center items-center w-9 h-9 rounded-xl border border-slate-500/20 active:scale-95 transition-all"
+          class="lg:hidden cursor-pointer flex flex-col gap-1.5 justify-center items-center w-9 h-9 rounded-xl border border-slate-500/20 active:scale-95 transition-all"
         >
           <span :class="isOpen ? 'rotate-45 translate-y-2' : ''" class="w-5 h-0.5 bg-current transition-all duration-300"></span>
           <span :class="isOpen ? 'opacity-0' : ''" class="w-5 h-0.5 bg-current transition-all duration-300"></span>
@@ -68,6 +68,7 @@ const logout = () => {
         <h1 class="text-2xl md:text-3xl font-black tracking-[0.2em] bg-clip-text text-transparent bg-linear-to-r from-current via-slate-400 to-current cursor-pointer select-none">
           ELYSIA
         </h1>
+
       </div>
 
       <!-- Desktop Navigation Menu (Advance Interactions) -->
@@ -160,7 +161,7 @@ const logout = () => {
         <h2 class="text-xl font-black tracking-widest">ELYSIA</h2>
         <button 
           @click="sidebar" 
-          class="w-9 h-9 rounded-xl flex items-center justify-center border border-slate-500/10 hover:bg-rose-500/10 hover:text-rose-500 active:scale-90 transition-all"
+          class="w-9 h-9 cursor-pointer rounded-xl flex items-center justify-center border border-slate-500/10 hover:bg-rose-500/10 hover:text-rose-500 active:scale-90 transition-all"
         >
           <i class="bi bi-x-lg text-sm"></i>
         </button>
@@ -182,15 +183,14 @@ const logout = () => {
             </div>
           </div>
           <div>
-            <h4 class="text-sm font-bold tracking-wide">{{ authStore.user?.name || "Welcome Guest" }}</h4>
-            <p class="text-[11px] text-slate-400">Premium Member</p>
+            <h4 class="text-[10px] font-bold tracking-wide">{{ authStore.user?.name || "Welcome Guest" }}</h4>
           </div>
         </div>
         
         <button 
           v-if="authStore.user" 
           @click="logout" 
-          class="flex items-center gap-1.5 text-xs bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white px-3 py-1.5 rounded-xl font-medium transition-all duration-300"
+          class="flex items-center gap-1.5 text-[10px] bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white px-3 py-1.5 rounded-xl font-medium transition-all duration-300"
         >
           <i class="bi bi-box-arrow-right"></i> Log out
         </button>
