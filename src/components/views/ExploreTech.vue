@@ -110,7 +110,7 @@ const filteredProducts = computed(() => {
                 ? 'bg-[#090d16] border-slate-900 text-white placeholder:text-slate-600 focus:border-indigo-500 focus:ring-indigo-500/10'
                 : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-indigo-600 focus:ring-indigo-600/5'
             "
-            class="w-full py-5 pl-16 pr-8 rounded-2xl border outline-none shadow-2xl text-sm lg:text-base transition-all duration-300 focus:ring-8 font-medium"
+            class="w-full py-5 pl-16 pr-8 rounded-2xl border outline-none shadow-2xl text-[16px] lg:text-base transition-all duration-300 focus:ring-8 font-medium"
           />
         </div>
       </section>

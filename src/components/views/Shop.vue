@@ -77,7 +77,7 @@ const filteredProducts = computed(() => {
                 ? 'text-slate-500 group-focus-within:text-indigo-400'
                 : 'text-slate-400 group-focus-within:text-slate-900'
             "
-            class="bi bi-search absolute left-5 top-1/2 -translate-y-1/2 text-base transition-colors duration-300"
+            class="bi bi-search absolute left-5 top-1/2 -translate-y-1/2 text-[16px] transition-colors duration-300"
           ></i>
 
           <!-- Premium Input field -->
