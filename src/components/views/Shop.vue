@@ -77,7 +77,7 @@ const filteredProducts = computed(() => {
                 ? 'text-slate-500 group-focus-within:text-indigo-400'
                 : 'text-slate-400 group-focus-within:text-slate-900'
             "
-            class="bi bi-search absolute left-5 top-1/2 -translate-y-1/2 text-[16px] transition-colors duration-300"
+            class="bi bi-search absolute left-5 top-1/2 -translate-y-1/2 text-base transition-colors duration-300"
           ></i>
 
           <!-- Premium Input field -->
@@ -90,7 +90,7 @@ const filteredProducts = computed(() => {
                 ? 'bg-[#090d16] border-slate-900 text-white placeholder:text-slate-600 focus:border-indigo-500 focus:ring-indigo-500/10'
                 : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'
             "
-            class="w-full py-4 pl-14 pr-6 rounded-2xl border outline-none shadow-xl text-sm lg:text-base font-medium transition-all duration-300 focus:ring-4"
+            class="w-full py-4 pl-14 pr-6 rounded-2xl border outline-none shadow-xl text-[16px] lg:text-base font-medium transition-all duration-300 focus:ring-4"
           />
         </div>
       </div>
