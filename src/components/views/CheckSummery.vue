@@ -33,219 +33,190 @@ const finalTotal = computed(() => subtotal.value + tax.value);
 
 <template>
   <div
-    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#f8fafc]'"
-    class="shopping-cart min-h-screen py-6 lg:py-10 transition-all duration-300"
+    :class="mode.darkMode ? 'bg-[#030712]' : 'bg-[#fafafa]'"
+    class="shopping-cart min-h-screen pb-24 transition-colors duration-500"
   >
-    <div class="container mx-auto lg:px-0 px-4">
-      <!-- TITLE -->
-      <div class="text-center mb-10 lg:mb-14">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6">
+      
+      <!-- 1. Editorial Header Section -->
+      <div class="text-center pt-16 mb-12 space-y-4 animate-fade-in">
+        <span class="text-xs font-bold tracking-[0.3em] text-indigo-500 uppercase">Your Selection</span>
         <h1
-          :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-          class="text-3xl sm:text-4xl lg:text-3xl font-extrabold mb-3"
+          :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+          class="text-4xl lg:text-5xl font-black tracking-tight"
         >
-          Your Shopping Cart
+          Shopping Cart
         </h1>
-
         <p
-          :class="mode.darkMode ? 'text-slate-300' : 'text-gray-500'"
-          class="text-sm sm:text-base max-w-2xl mx-auto leading-7"
+          :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+          class="text-sm font-light max-w-xl mx-auto leading-relaxed"
         >
-          Review your selected products before proceeding to secure checkout.
+          Review your selected products with detailed precision before proceeding to secure checkout.
         </p>
       </div>
 
-      <!-- Main Item cart -->
-      <div
-        class="flex flex-col lg:flex-row justify-between items-start gap-8"
-      >
-
+      <!-- 2. Main Content Split Layout Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-12 items-start">
         
-        <!-- EMPTY CART -->
+        <!-- STATE A: EMPTY CART VIEW -->
         <div
           v-if="cartStore.cart.length === 0"
           :class="
             mode.darkMode
-              ? 'bg-[#1e293b] border border-[#334155]'
-              : 'bg-white border border-gray-200'
+              ? 'bg-[#090d16] border-slate-900 shadow-black/40'
+              : 'bg-white border-slate-100 shadow-slate-200/50'
           "
-          class="w-full lg:w-[65%] min-h-125 rounded-3xl shadow-xl flex flex-col justify-center items-center text-center px-6"
+          class="w-full lg:col-span-2 min-h-[450px] rounded-3xl border shadow-2xl flex flex-col justify-center items-center text-center p-8 transition-all duration-500"
         >
-          <!-- Icon -->
+          <!-- Elegant Dotted Circle Icon Frame -->
           <div
-            :class="
-              mode.darkMode
-                ? 'bg-blue-500/20 text-blue-400'
-                : 'bg-gray-100 text-gray-400'
-            "
-            class="w-28 h-28 rounded-full flex items-center justify-center mb-8"
+            :class="mode.darkMode ? 'bg-slate-900/50 text-slate-700 border-slate-800' : 'bg-slate-50 text-slate-300 border-slate-200'"
+            class="w-24 h-24 rounded-2xl border border-dashed flex items-center justify-center mb-6"
           >
-            <i class="bi bi-bag-x text-5xl"></i>
+            <i class="bi bi-bag-x text-4xl"></i>
           </div>
 
-          <!-- Title -->
-          <h1
-            :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-            class="text-2xl lg:text-4xl font-bold mb-3"
+          <h2
+            :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+            class="text-lg font-bold tracking-widest uppercase text-xs tracking-[0.2em] mb-2"
           >
-            Your cart is empty
-          </h1>
+            Your cart is currently empty
+          </h2>
 
-          <!-- Description -->
           <p
-            :class="mode.darkMode ? 'text-slate-400' : 'text-gray-500'"
-            class="max-w-md leading-7 mb-8"
+            :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+            class="max-w-xs text-xs font-light leading-relaxed mb-8"
           >
-            Looks like you haven’t added any products to your cart yet.
-            Start exploring our latest tech collection.
+            Looks like you haven't selected any collections yet. Start exploring our latest modern tech drops.
           </p>
 
-          <!-- Button -->
           <router-link
             to="/shop"
             :class="
               mode.darkMode
-                ? 'bg-blue-500 hover:bg-blue-600'
-                : 'bg-black hover:bg-gray-800'
+                ? 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-500/20'
+                : 'bg-slate-900 hover:bg-black shadow-slate-950/15'
             "
-            class="px-10 py-4 rounded-2xl text-white font-semibold transition-all duration-300 hover:scale-105"
+            class="px-8 py-4 rounded-xl text-white text-xs font-bold tracking-wider uppercase transition-all duration-300 shadow-lg active:scale-95"
           >
-            Continue Shopping
+            Continue Browsing
           </router-link>
         </div>
 
-        
-        <!-- CART ITEMS -->
+        <!-- STATE B: ACTIVE CART ITEMS LIST -->
         <div
           v-else
-          class="w-full lg:w-[65%] flex flex-col gap-5"
+          class="w-full flex flex-col gap-6"
         >
-          <!-- Card -->
+          <!-- Premium Luxury Item Card Component -->
           <div
             v-for="item in cartStore.cart"
             :key="item.id"
             :class="
               mode.darkMode
-                ? 'bg-[#1e293b] border border-[#334155]'
-                : 'bg-white border border-gray-200'
+                ? 'bg-[#090d16] border-slate-900/60 shadow-black/40'
+                : 'bg-white border-slate-100 shadow-slate-200/50'
             "
-            class="rounded-3xl p-4 lg:p-5 shadow-xl hover:shadow-2xl transition-all duration-300"
+            class="rounded-3xl p-4 sm:p-5 border shadow-xl hover:shadow-2xl transition-all duration-500 group"
           >
-            <div
-              class="flex flex-row justify-between items-start gap-4"
-            >
+            <div class="flex flex-row justify-between items-start gap-4 sm:gap-6">
 
-              <!-- LEFT -->
-              <div class="flex gap-4 flex-1 min-w-0">
+              <!-- Image & Content Block (Left Section) -->
+              <div class="flex gap-4 sm:gap-6 flex-1 min-w-0">
 
-                <!-- IMAGE -->
+                <!-- Photo Wrapper Frame -->
                 <div
-                :class="mode.darkMode ? 'bg-gray-100' : 'bg-gray-100'"
-                  class="w-24 p-0 h-24 lg:w-32 lg:h-32 rounded-2xl overflow-hidden  shrink-0"
+                  class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 bg-slate-50 border border-slate-100 p-2 dark:bg-white flex items-center justify-center transition-colors"
                 >
                   <img
                     :src="item.image"
                     :alt="item.title"
-                    class="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                    class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
-                <!-- CONTENT -->
-                <div
-                  class="flex flex-col justify-between flex-1 min-w-0"
-                >
-                  <div>
-                    <!-- Title -->
-                    <h1
-                      :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                      class="text-sm lg:text-xl font-bold line-clamp-1 mb-1"
+                <!-- Text & Metrical Quantity controls -->
+                <div class="flex flex-col justify-between flex-1 min-w-0 py-1">
+                  <div class="space-y-1">
+                    <h2
+                      :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+                      class="text-base font-bold tracking-tight line-clamp-1"
                     >
                       {{ item.title }}
-                    </h1>
+                    </h2>
 
-                    <!-- Description -->
                     <p
-                      :class="
-                        mode.darkMode
-                          ? 'text-slate-400'
-                          : 'text-gray-500'
-                      "
-                      class="text-[11px] lg:text-sm line-clamp-1"
+                      :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+                      class="text-xs font-light line-clamp-2 leading-relaxed"
                     >
                       {{ item.description }}
                     </p>
                   </div>
 
-                  <!-- QUANTITY -->
+                  <!-- Stepper Component (Matches Contact/About design guidelines) -->
                   <div
                     :class="
                       mode.darkMode
-                        ? 'bg-[#0f172a] border border-[#334155]'
-                        : 'bg-gray-50 border border-gray-200'
+                        ? 'bg-[#030712] border-slate-800/80'
+                        : 'bg-slate-50 border-slate-200'
                     "
-                    class="flex items-center justify-between rounded-full p-1 w-30 lg:w-36 mt-3"
+                    class="flex items-center justify-between rounded-xl p-1 w-28 sm:w-32 mt-3 border shadow-inner"
                   >
-                    <!-- Minus -->
+                    <!-- Decrement Button -->
                     <button
                       @click="cartStore.updateQty(item.id, -1)"
                       :class="
                         mode.darkMode
-                          ? 'bg-blue-500 hover:bg-blue-600 text-white'
-                          : 'bg-white hover:bg-black hover:text-white border border-gray-200'
+                          ? 'bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-white'
+                          : 'bg-white hover:bg-slate-900 hover:text-white shadow-sm text-slate-600'
                       "
-                      class="w-8 h-8 lg:w-10 lg:h-10 rounded-full transition-all duration-300 flex items-center justify-center font-bold cursor-pointer"
+                      class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg transition-all duration-300 flex items-center justify-center font-bold text-xs cursor-pointer active:scale-90"
                     >
-                      -
+                      <i class="bi bi-dash"></i>
                     </button>
 
-                    <!-- Qty -->
+                    <!-- Present Qty Value -->
                     <span
-                      :class="
-                        mode.darkMode ? 'text-white' : 'text-gray-800'
-                      "
-                      class="font-bold text-sm lg:text-base"
+                      :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+                      class="font-bold text-xs sm:text-sm"
                     >
                       {{ item.qty }}
                     </span>
 
-                    <!-- Plus -->
+                    <!-- Increment Button -->
                     <button
                       @click="cartStore.addToCart(item)"
                       :class="
                         mode.darkMode
-                          ? 'bg-blue-500 hover:bg-blue-600 text-white'
-                          : 'bg-white hover:bg-black hover:text-white border border-gray-200'
+                          ? 'bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-white'
+                          : 'bg-white hover:bg-slate-900 hover:text-white shadow-sm text-slate-600'
                       "
-                      class="w-8 h-8 lg:w-10 lg:h-10 rounded-full transition-all duration-300 flex items-center justify-center font-bold cursor-pointer"
+                      class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg transition-all duration-300 flex items-center justify-center font-bold text-xs cursor-pointer active:scale-90"
                     >
-                      +
+                      <i class="bi bi-plus"></i>
                     </button>
                   </div>
                 </div>
               </div>
 
-              <!-- RIGHT -->
-              <div
-                class="flex flex-col items-end justify-between h-24 lg:h-32"
-              >
-                <!-- Remove -->
+              <!-- Delete & Pricing Matrix (Right Section) -->
+              <div class="flex flex-col items-end justify-between h-24 sm:h-28 py-1 shrink-0">
+                <!-- Delete Card Button -->
                 <button
                   @click="cartStore.removeFromCart(item.id)"
-                  class="text-gray-400 hover:text-red-500 transition-all duration-300 cursor-pointer"
+                  class="text-slate-400 hover:text-red-500 dark:text-slate-600 dark:hover:text-red-400 transition-colors duration-300 cursor-pointer p-1"
                 >
-                  <i class="bi bi-x-lg text-lg"></i>
+                  <i class="bi bi-x-lg text-sm"></i>
                 </button>
 
-                <!-- Price -->
+                <!-- Combined calculated Total label -->
                 <div class="text-right">
-                  <h1
-                    :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-                    class="text-[13px] lg:text-2xl font-bold"
+                  <h3
+                    :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+                    class="text-base sm:text-xl font-black tracking-tight"
                   >
-                    $
-                    {{
-                      (item.price * item.qty).toFixed(2)
-                    }}
-                  </h1>
+                    ${{ (item.price * item.qty).toFixed(2) }}
+                  </h3>
                 </div>
               </div>
 
@@ -253,163 +224,111 @@ const finalTotal = computed(() => subtotal.value + tax.value);
           </div>
         </div>
 
-       
-        <!-- ORDER SUMMARY -->
-        <div class="w-full lg:w-[30%]">
+        <!-- RIGHT SIDEBAR COLUMN: GEOMETRIC ORDER SUMMARY STICKY -->
+        <div v-if="cartStore.cart.length > 0" class="w-full lg:sticky lg:top-8">
           <div
             :class="
               mode.darkMode
-                ? 'bg-[#1e293b] border border-[#334155]'
-                : 'bg-white border border-gray-200'
+                ? 'bg-[#090d16] border-slate-900 shadow-black/40'
+                : 'bg-white border-slate-100 shadow-slate-200/50'
             "
-            class="rounded-3xl shadow-xl p-5 sm:p-7 lg:sticky lg:top-5"
+            class="rounded-3xl border shadow-2xl p-6 sm:p-8"
           >
-            <!-- Title -->
-            <h1
-              :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-              class="text-2xl sm:text-3xl font-bold mb-8"
+            <!-- Title Header Label -->
+            <h2
+              :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+              class="text-xs font-bold tracking-[0.15em] uppercase mb-8"
             >
               Order Summary
-            </h1>
+            </h2>
 
-            <!-- Summary -->
-            <div class="space-y-5">
-
-              <!-- Items -->
-              <div class="flex justify-between items-center">
-                <span
-                  :class="
-                    mode.darkMode ? 'text-slate-300' : 'text-gray-500'
-                  "
-                >
-                  Items
-                </span>
-
-                <span
-                  :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                  class="font-semibold"
-                >
-                  {{ subtotal }}
-                </span>
-              </div>
-
-              <!-- Subtotal -->
-              <div class="flex justify-between items-center">
-                <span
-                  :class="
-                    mode.darkMode ? 'text-slate-300' : 'text-gray-500'
-                  "
-                >
-                  Subtotal
-                </span>
-
-                <span
-                  :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                  class="font-semibold"
-                >
+            <!-- Financial Accumulator Presentation Rows -->
+            <div class="space-y-4">
+              
+              <!-- Total Items Count Info -->
+              <div class="flex justify-between items-center text-xs font-medium">
+                <span :class="mode.darkMode ? 'text-slate-400' : 'text-slate-400'">Gross Items Base</span>
+                <span :class="mode.darkMode ? 'text-slate-200' : 'text-slate-800'" class="font-bold">
                   ${{ subtotal.toFixed(2) }}
                 </span>
               </div>
 
-              <!-- Shipping -->
-              <div class="flex justify-between items-center">
-                <span
-                  :class="
-                    mode.darkMode ? 'text-slate-300' : 'text-gray-500'
-                  "
-                >
-                  Shipping
-                </span>
-
-                <span class="font-semibold text-green-500">
-                  Free
+              <!-- Net Subtotal Pricing Entry -->
+              <div class="flex justify-between items-center text-xs font-medium">
+                <span :class="mode.darkMode ? 'text-slate-400' : 'text-slate-400'">Subtotal Amount</span>
+                <span :class="mode.darkMode ? 'text-slate-200' : 'text-slate-800'" class="font-bold">
+                  ${{ subtotal.toFixed(2) }}
                 </span>
               </div>
 
-              <!-- Tax -->
-              <div class="flex justify-between items-center">
-                <span
-                  :class="
-                    mode.darkMode ? 'text-slate-300' : 'text-gray-500'
-                  "
-                >
-                  Tax (10%)
-                </span>
+              <!-- Shipping Tariffs Status -->
+              <div class="flex justify-between items-center text-xs font-medium">
+                <span :class="mode.darkMode ? 'text-slate-400' : 'text-slate-400'">Complimentary Shipping</span>
+                <span class="font-bold text-emerald-500 uppercase text-[10px] tracking-wider">Free</span>
+              </div>
 
-                <span
-                  :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-                  class="font-semibold"
-                >
+              <!-- Internal VAT Assessment Rate -->
+              <div class="flex justify-between items-center text-xs font-medium">
+                <span :class="mode.darkMode ? 'text-slate-400' : 'text-slate-400'">Value Added Tax (10%)</span>
+                <span :class="mode.darkMode ? 'text-slate-200' : 'text-slate-800'" class="font-bold">
                   ${{ tax.toFixed(2) }}
                 </span>
               </div>
 
-              <!-- Divider -->
-              <div
-                class="border-t border-dashed border-gray-300 pt-5"
-              ></div>
+              <!-- Linear Segment Breakdown Line Divider -->
+              <div class="border-t border-dashed border-slate-200 dark:border-slate-800 my-6 pt-2"></div>
 
-              <!-- Total -->
-              <div class="flex justify-between items-center">
-                <span
-                  :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-                  class="text-xl font-bold"
-                >
-                  Total
+              <!-- Complete Grand Net Aggregate Evaluation -->
+              <div class="flex justify-between items-baseline">
+                <span :class="mode.darkMode ? 'text-white' : 'text-slate-900'" class="text-xs font-bold tracking-wider uppercase">
+                  Grand Total
                 </span>
-
-                <span
-                  :class="mode.darkMode ? 'text-white' : 'text-black'"
-                  class="text-3xl font-extrabold"
-                >
+                <span :class="mode.darkMode ? 'text-white' : 'text-slate-900'" class="text-2xl font-black tracking-tight text-indigo-500">
                   ${{ finalTotal.toFixed(2) }}
                 </span>
               </div>
             </div>
 
-            <!-- Checkout -->
-            <button
-            @click="goCheckout"
-              :class="
-                mode.darkMode
-                  ? 'bg-blue-500 hover:bg-blue-600'
-                  : 'bg-black hover:bg-gray-800'
-              "
-              class="w-full py-4 rounded-2xl mt-8 text-white text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-            >
-              Proceed to Checkout
-            </button>
+            <!-- PRIMITIVE CTA DISPATCH TRIGGERS -->
+            <div class="space-y-3 mt-8">
+              <!-- SECURE DEPLOYMENT CHECKOUT PROCEED ACTION -->
+              <button
+                @click="goCheckout"
+                :class="
+                  mode.darkMode
+                    ? 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-500/10'
+                    : 'bg-slate-900 hover:bg-black shadow-slate-950/15'
+                "
+                class="w-full py-4 rounded-xl text-white text-xs font-bold tracking-wider uppercase transition-all duration-300 active:scale-97 cursor-pointer shadow-lg flex justify-center items-center gap-2"
+              >
+                <span>Proceed to Secure Checkout</span>
+                <i class="bi bi-shield-lock text-sm"></i>
+              </button>
 
-            <!-- Continue Shopping -->
-            <router-link
-              to="/shop"
-              :class="
-                mode.darkMode
-                  ? 'bg-white text-black hover:bg-gray-200'
-                  : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
-              "
-              class="block text-center w-full py-4 rounded-2xl mt-4 font-medium transition-all duration-300"
-            >
-              Continue Shopping
-            </router-link>
+              <!-- SHOP ROLLING NAVIGATION BUTTON LINK -->
+              <router-link
+                to="/shop"
+                :class="
+                  mode.darkMode
+                    ? 'border-slate-800 text-slate-400 hover:text-white hover:bg-slate-900/50'
+                    : 'border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                "
+                class="block text-center w-full py-4 rounded-xl font-bold text-xs tracking-wider uppercase border transition-colors duration-300"
+              >
+                Continue Browsing
+              </router-link>
+            </div>
 
-            <!-- Payment -->
-            <div
-              :class="
-                mode.darkMode ? 'text-slate-300' : 'text-gray-400'
-              "
-              class="mt-8"
-            >
-              <p class="text-center text-sm mb-4">
-                Secure Payment Methods
+            <!-- GATEWAY CREDENTIAL EMBLEMS FOLLOWER SHIELD -->
+            <div class="mt-8 border-t border-slate-100 dark:border-slate-900/60 pt-6 text-center">
+              <p :class="mode.darkMode ? 'text-slate-500' : 'text-slate-400'" class="text-[10px] uppercase tracking-widest font-bold mb-3">
+                Secure SSL Encrypted Gateway
               </p>
 
-              <div
-                class="flex justify-center gap-5 text-3xl"
-              >
-                <i class="bi bi-credit-card"></i>
-                <i class="bi bi-paypal"></i>
-                <i class="bi bi-wallet2"></i>
+              <div :class="mode.darkMode ? 'text-slate-600' : 'text-slate-300'" class="flex justify-center gap-6 text-xl items-center">
+                <i class="bi bi-credit-card hover:text-indigo-500 transition-colors" title="Credit Cards"></i>
+                <i class="bi bi-paypal hover:text-indigo-500 transition-colors" title="PayPal Gateways"></i>
+                <i class="bi bi-shield-check hover:text-indigo-500 transition-colors" title="PCI Compliant SSL"></i>
               </div>
             </div>
 
@@ -420,3 +339,17 @@ const finalTotal = computed(() => subtotal.value + tax.value);
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Custom modern minimal scrollbar mechanics */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 10px;
+}
+</style>

@@ -25,150 +25,80 @@ const login = () =>{
 </script>
 
 <template>
-  <div class="container mx-auto min-h-screen px-4 py-10">
-    <form
-      :class="
-        mode.darkMode
-          ? 'bg-[#1e293b]  border-[#334155]'
-          : 'bg-[#ececf2]  border-gray-300'
-      "
-      class="w-full sm:w-[90%] md:w-[80%] lg:w-[60%] xl:w-[50%] mx-auto 0 shadow-2xl border rounded-2xl px-5 sm:px-8 md:px-12 lg:px-16 py-8"
-    >
+  <div :class="mode.darkMode ? 'bg-[#030712]' : 'bg-[#fafafa]'" 
+       class="min-h-screen flex items-center justify-center px-4 py-10 transition-colors duration-500">
+    
+    <!-- Login Card -->
+    <form @submit.prevent="login"
+          :class="mode.darkMode ? 'bg-[#090d16] border-slate-900 shadow-black/40' : 'bg-white border-slate-100 shadow-slate-200/50'"
+          class="w-full max-w-lg rounded-3xl border p-8 lg:p-12 shadow-2xl transition-all duration-500">
+      
       <!-- Title -->
-      <div class="title text-center py-5">
-        <h1 class="text-2xl sm:text-3xl font-medium mb-3">Welcome Back</h1>
-        <p
-          :class="mode.darkMode ? 'text-white' : 'text-gray-500'"
-          class="text-sm sm:text-base"
-        >
-          Sign in to your Elysia account
+      <div class="text-center mb-10">
+        <h1 class="text-3xl lg:text-4xl font-black tracking-tight mb-3" 
+            :class="mode.darkMode ? 'text-white' : 'text-slate-950'">
+          Welcome Back
+        </h1>
+        <p class="text-sm font-light tracking-wide" 
+           :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'">
+          Sign in to your account
         </p>
       </div>
 
-      <!-- Email -->
-      <div class="mb-5">
-        <label
-          :class="mode.darkMode ? 'text-white' : 'text-gray-500'"
-          class="text-sm sm:text-base"
-        >
-          Email Address
-        </label>
-
-        <input
-          v-model="email"
-          :class="
-            mode.darkMode
-              ? 'text-white bg-blue-950/40 border-blue-800'
-              : 'bg-white border-gray-300'
-          "
-          class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl b w-full"
-          type="email"
-          placeholder="name@example.com"
-        />
-      </div>
-
-      <!-- Password -->
-      <div class="mb-6">
-        <div class="flex justify-between items-center gap-2">
-          <label
-            :class="mode.darkMode ? 'text-white  ' : ''"
-            class="text-gray-500 text-sm sm:text-base"
-          >
-            Password
-          </label>
-
-          <router-link class="font-bold text-sm hover:underline" to="">
-            Forgot password?
-          </router-link>
+      <!-- Input Fields -->
+      <div class="space-y-6 mb-8">
+        <div>
+          <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-2" 
+                 :class="mode.darkMode ? 'text-slate-500' : 'text-slate-400'">Email Address</label>
+          <input v-model="email" type="email" placeholder="name@example.com"
+                 :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white' : 'bg-slate-50 border-slate-200 text-slate-900'"
+                 class="w-full py-4 px-5 rounded-xl border outline-none focus:border-indigo-500 transition-all" />
         </div>
 
-        <input
-          v-model="password"
-          :class="
-            mode.darkMode
-              ? 'text-white bg-blue-950/40 border-blue-800'
-              : 'bg-white border-gray-300'
-          "
-          class="border outline-0 mt-2 py-3 sm:py-4 px-4 sm:px-5 rounded-xl w-full"
-          type="password"
-          placeholder="Password"
-        />
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-[10px] font-bold uppercase tracking-[0.2em]" 
+                   :class="mode.darkMode ? 'text-slate-500' : 'text-slate-400'">Password</label>
+            <router-link to="" class="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-500 hover:underline">
+              Forgot?
+            </router-link>
+          </div>
+          <input v-model="password" type="password" placeholder="••••••••"
+                 :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white' : 'bg-slate-50 border-slate-200 text-slate-900'"
+                 class="w-full py-4 px-5 rounded-xl border outline-none focus:border-indigo-500 transition-all" />
+        </div>
       </div>
 
-      <!-- Sign In Button -->
-      <div class="btn mb-8">
-        <button @click="login"
-          to=""
-          :class="
-            mode.darkMode
-              ? 'bg-blue-700 hover:bg-blue-800'
-              : 'bg-black text-white hover:bg-gray-800'
-          "
-          class="py-3 sm:py-4 font-medium cursor-pointer w-full rounded-xl flex justify-center items-center duration-300"
-        >
-          Login
-        </button>
-      </div>
+      <!-- Login Button -->
+      <button type="submit" 
+              class="w-full py-4 rounded-xl font-black text-[11px] uppercase tracking-widest text-white transition-all active:scale-95 shadow-lg bg-indigo-600 hover:bg-indigo-500 mb-8">
+        Login
+      </button>
 
       <!-- Divider -->
-      <div class="flex items-center gap-3 sm:gap-5 justify-center mb-8">
-        <div class="line w-[25%] h-px bg-gray-400"></div>
-
-        <h1 :class="mode.darkMode ? 'text-white' : 'text-gray-500'" class=" text-sm sm:text-base whitespace-nowrap">
-          Or continue with
-        </h1>
-
-        <div class="line w-[25%] h-px bg-gray-400"></div>
+      <div class="flex items-center gap-4 mb-8">
+        <div class="flex-1 h-px" :class="mode.darkMode ? 'bg-slate-800' : 'bg-slate-200'"></div>
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em]" :class="mode.darkMode ? 'text-slate-600' : 'text-slate-400'">Or continue with</span>
+        <div class="flex-1 h-px" :class="mode.darkMode ? 'bg-slate-800' : 'bg-slate-200'"></div>
       </div>
 
       <!-- Social Login -->
-      <div
-        class="btn-connect-account flex flex-col sm:flex-row items-center gap-4 mb-10"
-      >
-        <router-link
-          to=""
-          :class="
-            mode.darkMode
-              ? 'bg-blue-950/40 border-blue-800 text-white hover:bg-blue-900/40'
-              : 'bg-white border-gray-300 text-black hover:bg-gray-100'
-          "
-          class="py-3 sm:py-4 cursor-pointer border font-medium w-full sm:w-[50%] rounded-xl flex justify-center items-center gap-2 duration-300 backdrop-blur-xl"
-        >
-          <i class="bi bi-google"></i>
-          Google
+      <div class="flex gap-4 mb-10">
+        <router-link to="" class="flex-1 py-4 border rounded-xl flex items-center justify-center gap-2 font-bold text-[11px] uppercase tracking-widest transition-all"
+                     :class="mode.darkMode ? 'border-slate-800 text-white hover:bg-slate-900' : 'border-slate-200 text-slate-900 hover:bg-slate-50'">
+          <i class="bi bi-google"></i> Google
         </router-link>
-
-        <router-link
-          to=""
-          :class="
-            mode.darkMode
-              ? 'bg-blue-950/40 border-blue-800 text-white hover:bg-blue-900/40'
-              : 'bg-white border-gray-300 text-black hover:bg-gray-100'
-          "
-          class="py-3 sm:py-4 cursor-pointer border font-medium w-full sm:w-[50%] rounded-xl flex justify-center items-center gap-2 duration-300 backdrop-blur-xl"
-        >
-          <i class="bi bi-apple"></i>
-          Apple
+        <router-link to="" class="flex-1 py-4 border rounded-xl flex items-center justify-center gap-2 font-bold text-[11px] uppercase tracking-widest transition-all"
+                     :class="mode.darkMode ? 'border-slate-800 text-white hover:bg-slate-900' : 'border-slate-200 text-slate-900 hover:bg-slate-50'">
+          <i class="bi bi-apple"></i> Apple
         </router-link>
       </div>
 
       <!-- Register -->
-      <div class="flex justify-center text-center">
-        <p
-        :class="mode.darkMode ? 'text-gray-400' : 'text-gray-500'"
-          class=" font-medium text-sm sm:text-base flex flex-wrap justify-center gap-1"
-        >
-          Don't have an account?
-
-          <router-link
-            :class="mode.darkMode ? 'text-white' : 'text-black'"
-            class="font-bold hover:underline"
-            to="/register"
-          >
-            Sign up for free
-          </router-link>
-        </p>
-      </div>
+      <p class="text-center text-sm font-light" :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'">
+        Don't have an account? 
+        <router-link to="/register" class="font-bold text-indigo-500 hover:underline">Sign up for free</router-link>
+      </p>
     </form>
   </div>
 </template>

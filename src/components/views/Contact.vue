@@ -7,141 +7,120 @@ const mode = useDarkModeStore();
 </script>
 
 <template>
-  <section
-    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-white'"
-    class="min-h-screen px-4 sm:px-8 lg:px-16 py-12 transition-all duration-300"
+  <div
+    :class="mode.darkMode ? 'bg-[#030712]' : 'bg-[#fafafa]'"
+    class="contact-page min-h-screen transition-colors duration-500 pb-20"
   >
-    <!-- Header -->
-    <div class="max-w-7xl mx-auto lg:mb-12 mb-5 text-center">
+    <!-- 1. Editorial Header Section -->
+    <section class="max-w-7xl mx-auto px-4 lg:px-6 pt-20 pb-16 text-center space-y-6">
+      <span class="text-xs font-bold tracking-[0.3em] text-indigo-500 uppercase">Connect With Us</span>
       <h1
-        :class="mode.darkMode ? 'text-white' : 'text-black'"
-        class="lg:text-4xl text-2xl font-black tracking-tight mb-4"
+        :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+        class="text-4xl lg:text-6xl font-black tracking-tight"
       >
         Get in touch
       </h1>
-
       <p
-        :class="mode.darkMode ? 'text-slate-300' : 'text-gray-500'"
-        class="max-w-2xl lg:text-base text-[10px] mx-auto leading-relaxed"
+        :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+        class="max-w-2xl mx-auto text-sm lg:text-base font-light leading-relaxed"
       >
-        We're here to assist you with any inquiries regarding our collections,
-        orders, or styling advice. Expect a response within 24 hours.
+        We are here to assist you with any inquiries regarding our premium collections, orders, or styling advice. Expect an attentive response from our concierge team within 24 hours.
       </p>
-    </div>
+    </section>
 
-    <!-- Main Grid -->
-    <div
-      class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6"
-    >
-      <!-- LEFT FORM -->
+    <!-- 2. Main Content Grid Layout -->
+    <section class="max-w-7xl mx-auto px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-12 items-start">
+      
+      <!-- LEFT: Luxury Message Form -->
       <div
-        :class="
-          mode.darkMode
-            ? 'bg-[#1e293b] border-slate-700'
-            : 'bg-[#efedf3] border-gray-300'
-        "
-        class="rounded-2xl p-6 sm:p-8 shadow border"
+        :class="mode.darkMode ? 'bg-[#090d16] border-slate-900 shadow-black/40' : 'bg-white border-slate-100 shadow-slate-200/50'"
+        class="rounded-3xl p-6 sm:p-10 border shadow-2xl transition-all duration-500"
       >
-        <form class="space-y-6">
-          <!-- Name + Email -->
-          <div class="grid sm:grid-cols-2 gap-4">
+        <form @submit.prevent="sendSuccess" class="space-y-6">
+          <!-- Name & Email Inputs -->
+          <div class="grid sm:grid-cols-2 gap-6">
             <!-- Name -->
-            <div>
-              <label
-                :class="mode.darkMode ? 'text-slate-300' : 'text-gray-600'"
-                class="block text-sm mb-2 font-medium"
+            <div class="space-y-2">
+              <label 
+                :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+                class="text-xs font-bold tracking-[0.2em] uppercase"
               >
                 Name
               </label>
-
               <input
                 type="text"
+                required
                 placeholder="Enter your name"
-                :class="
-                  mode.darkMode
-                    ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
-                    : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
-                "
-                class="w-full border rounded-lg px-4 py-3 outline-none transition-all"
+                :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
+                class="w-full border rounded-xl px-5 py-4 outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
               />
             </div>
 
             <!-- Email -->
-            <div>
-              <label
-                :class="mode.darkMode ? 'text-slate-300' : 'text-gray-600'"
-                class="block text-sm mb-2 font-medium"
+            <div class="space-y-2">
+              <label 
+                :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+                class="text-xs font-bold tracking-[0.2em] uppercase"
               >
                 Email Address
               </label>
-
               <input
                 type="email"
+                required
                 placeholder="email@example.com"
-                :class="
-                  mode.darkMode
-                    ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
-                    : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
-                "
-                class="w-full border rounded-lg px-4 py-3 outline-none transition-all"
+                :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
+                class="w-full border rounded-xl px-5 py-4 outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
               />
             </div>
           </div>
 
-          <!-- Subject -->
-          <div>
-            <label
-              :class="mode.darkMode ? 'text-slate-300' : 'text-gray-600'"
-              class="block text-sm mb-2 font-medium"
+          <!-- Subject Selection -->
+          <div class="space-y-2">
+            <label 
+              :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+              class="text-xs font-bold tracking-[0.2em] uppercase"
             >
               Subject
             </label>
-
-            <select
-              :class="
-                mode.darkMode
-                  ? 'bg-[#0f172a] border-slate-600 text-white focus:ring-1 focus:ring-blue-500'
-                  : 'bg-[#f5f3f8] border-gray-300 text-black focus:ring-1 focus:ring-gray-300'
-              "
-              class="w-full border rounded-lg px-4 py-3 outline-none transition-all"
-            >
-              <option>General Inquiry</option>
-              <option>Order Support</option>
-              <option>Refund</option>
-              <option>Partnership</option>
-            </select>
+            <div class="relative">
+              <select
+                :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white focus:border-indigo-500' : 'bg-slate-50 border-slate-200 text-slate-900 focus:border-slate-400'"
+                class="w-full border rounded-xl px-5 py-4 outline-none text-sm transition-all duration-300 appearance-none cursor-pointer font-medium"
+              >
+                <option class="bg-white dark:bg-slate-950">General Inquiry</option>
+                <option class="bg-white dark:bg-slate-950">Order Support</option>
+                <option class="bg-white dark:bg-slate-950">Refund Request</option>
+                <option class="bg-white dark:bg-slate-950">Corporate Partnership</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-5 text-slate-400">
+                <i class="bi bi-chevron-down text-xs"></i>
+              </div>
+            </div>
           </div>
 
-          <!-- Message -->
-          <div>
-            <label
-              :class="mode.darkMode ? 'text-slate-300' : 'text-gray-600'"
-              class="block text-sm mb-2 font-medium"
+          <!-- Message Textarea -->
+          <div class="space-y-2">
+            <label 
+              :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+              class="text-xs font-bold tracking-[0.2em] uppercase"
             >
               Message
             </label>
-
             <textarea
               rows="6"
-              placeholder="How can we help?"
-              :class="
-                mode.darkMode
-                  ? 'bg-[#0f172a] border-slate-600 text-white placeholder:text-white focus:ring-1 focus:ring-blue-500'
-                  : 'bg-[#f5f3f8] border-gray-300 text-black placeholder:text-gray-400 focus:ring-1 focus:ring-gray-300'
-              "
-              class="w-full resize-none border rounded-lg px-4 py-3 outline-none transition-all"
+              required
+              placeholder="How can our concierge team assist you today?"
+              :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500 focus:ring-indigo-500/10' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'"
+              class="w-full resize-none border rounded-xl px-5 py-4 outline-none text-sm transition-all duration-300 focus:ring-4 font-medium"
             ></textarea>
           </div>
 
-          <!-- Button -->
-          <div class="lg:flex lg:justify-start flex justify-center">
+          <!-- Submit Action Button (Consistent About Design) -->
+          <div class="flex justify-center lg:justify-start">
             <button
-            @click="sendSuccess"
               type="submit"
-              :class="
-                mode.darkMode ? 'bg-blue-500 hover:bg-blue-600' : 'bg-black'
-              "
-              class="text-white lg:px-8 px-5 py-3 lg:py-4 cursor-pointer rounded-full font-semibold shadow-lg transition-all duration-300"
+              :class="mode.darkMode ? 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-500/20' : 'bg-slate-900 hover:bg-black shadow-slate-950/15'"
+              class="text-white px-10 py-4 cursor-pointer rounded-xl font-bold text-xs tracking-wider uppercase shadow-lg transition-all duration-300 active:scale-97 whitespace-nowrap"
             >
               Send Message
             </button>
@@ -149,125 +128,109 @@ const mode = useDarkModeStore();
         </form>
       </div>
 
-      <!-- RIGHT SIDE -->
-      <div class="space-y-6">
-        <!-- Support Card -->
+      <!-- RIGHT: Customer Support & Brand Spatial Info -->
+      <div class="space-y-8">
+        
+        <!-- Support Channels Card -->
         <div
-          :class="
-            mode.darkMode
-              ? 'bg-[#1e293b] border-slate-700'
-              : 'bg-[#efedf3] border-gray-300'
-          "
-          class="rounded-2xl p-8 shadow border"
+          :class="mode.darkMode ? 'bg-[#090d16] border-slate-900 shadow-black/40' : 'bg-white border-slate-100 shadow-slate-200/50'"
+          class="rounded-3xl p-8 border shadow-lg space-y-8"
         >
-          <h2
-            :class="mode.darkMode ? 'text-white' : 'text-black'"
-            class="text-3xl font-bold mb-8"
-          >
-            Customer Support
-          </h2>
-
-          <!-- Email -->
-          <div class="flex gap-4 mb-8">
-            <i class="bi bi-envelope text-xl text-blue-500"></i>
-
-            <div>
-              <p
-                :class="mode.darkMode ? 'text-white' : 'text-black'"
-                class="text-sm font-semibold mb-1"
+          <span class="text-xs font-bold tracking-[0.3em] text-indigo-500 uppercase">Concierge Support</span>
+          
+          <div class="space-y-6">
+            <!-- Email Vector -->
+            <div class="flex gap-4 items-start">
+              <div 
+                :class="mode.darkMode ? 'bg-slate-950 border border-slate-900' : 'bg-slate-50 border border-slate-100'"
+                class="w-12 h-12 rounded-xl flex items-center justify-center text-lg text-indigo-500 shrink-0"
               >
-                Email Us
-              </p>
-
-              <p :class="mode.darkMode ? 'text-slate-300' : 'text-gray-500'">
-                support@elysia.com
-              </p>
+                <i class="bi bi-envelope"></i>
+              </div>
+              <div>
+                <p 
+                  :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+                  class="text-sm font-bold tracking-tight mb-1"
+                >
+                  Email Us
+                </p>
+                <p :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'" class="text-sm font-light">
+                  support@elysia.com
+                </p>
+              </div>
             </div>
-          </div>
 
-          <!-- Phone -->
-          <div class="flex gap-4">
-            <i class="bi bi-telephone text-xl text-green-500"></i>
-
-            <div>
-              <p
-                :class="mode.darkMode ? 'text-white' : 'text-black'"
-                class="text-sm font-semibold mb-1"
+            <!-- Phone Vector -->
+            <div class="flex gap-4 items-start">
+              <div 
+                :class="mode.darkMode ? 'bg-slate-950 border border-slate-900' : 'bg-slate-50 border border-slate-100'"
+                class="w-12 h-12 rounded-xl flex items-center justify-center text-lg text-indigo-500 shrink-0"
               >
-                Phone Support
-              </p>
-
-              <p :class="mode.darkMode ? 'text-slate-300' : 'text-gray-500'">
-                +855 972-425-545
-              </p>
-
-              <p class="text-xs text-gray-400 mt-1">Mon–Fri, 9am–5pm EST</p>
+                <i class="bi bi-telephone"></i>
+              </div>
+              <div>
+                <p 
+                  :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+                  class="text-sm font-bold tracking-tight mb-1"
+                >
+                  Phone Support
+                </p>
+                <p :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'" class="text-sm font-light">
+                  +855 972-425-545
+                </p>
+                <p :class="mode.darkMode ? 'text-slate-600' : 'text-slate-400'" class="text-[11px] tracking-wide mt-1">
+                  Mon–Fri, 9am–5pm EST
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Store Card -->
-        <div class="relative overflow-hidden rounded-2xl h-60 group">
+        <!-- Luxury Concept Space Card (Asymmetric Hover Zoom) -->
+        <div class="relative overflow-hidden rounded-3xl h-64 group border" :class="mode.darkMode ? 'border-slate-900' : 'border-slate-100'">
           <img
             src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400&auto=format&fit=crop"
-            class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+            alt="Elysia Flagship Studio"
+            class="w-full h-full object-cover transform scale-100 group-hover:scale-103 transition-transform duration-1000"
           />
-
-          <div class="absolute inset-0 bg-black/60"></div>
-
-          <div
-            class="absolute inset-0 p-6 flex flex-col justify-end text-white"
-          >
-            <h3 class="text-3xl font-bold mb-2">Flagship Store</h3>
-
-            <p class="text-gray-200 mb-5">Phnom Penh, Cambodia</p>
-
-            <button
-              class="flex items-center gap-2 text-sm font-semibold hover:translate-x-1 transition-all"
-            >
-              Store Locator
+          <div class="absolute inset-0 bg-black/50"></div>
+          
+          <div class="absolute inset-0 p-8 flex flex-col justify-end text-white space-y-2">
+            <span class="text-xs uppercase tracking-widest text-indigo-400 font-bold">Flagship Studio</span>
+            <h3 class="text-2xl font-black tracking-tight">Phnom Penh, Cambodia</h3>
+            <button class="flex items-center gap-2 text-xs uppercase tracking-wider font-bold hover:text-indigo-400 transition-colors w-fit">
+              <span>Store Locator</span>
               <i class="bi bi-arrow-right"></i>
             </button>
           </div>
         </div>
 
-        <!-- Social -->
+        <!-- Social Connections (Consolidated Design) -->
         <div
-          :class="
-            mode.darkMode
-              ? 'bg-[#1e293b] border-slate-700'
-              : 'bg-[#efedf3] border-gray-300'
-          "
-          class="rounded-2xl p-6 shadow-sm border"
+          :class="mode.darkMode ? 'bg-[#090d16] border-slate-900 shadow-black/40' : 'bg-white border-slate-100 shadow-slate-200/50'"
+          class="rounded-3xl p-6 border shadow-sm"
         >
           <p
-            :class="mode.darkMode ? 'text-white' : 'text-gray-500'"
-            class="text-xs text-center font-bold uppercase tracking-[4px] mb-5"
+            :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+            class="text-[11px] text-center font-bold uppercase tracking-[0.25em] mb-4"
           >
             Connect
           </p>
-
           <div class="flex justify-center gap-6">
-            <i
-              class="bi bi-instagram text-xl hover:text-pink-500 cursor-pointer"
-            ></i>
-            <i
-              class="bi bi-facebook text-xl hover:text-blue-500 cursor-pointer"
-            ></i>
-            <i
-              class="bi bi-telegram text-xl hover:text-sky-500 cursor-pointer"
-            ></i>
-            <i
-              class="bi bi-twitter text-xl hover:text-sky-400 cursor-pointer"
-            ></i>
-            <i
-              class="bi bi-tiktok text-xl hover:text-gray-500 cursor-pointer"
-            ></i>
+            <a 
+              v-for="social in ['instagram', 'facebook', 'telegram', 'twitter', 'tiktok']" 
+              :key="social"
+              href="#"
+              :class="mode.darkMode ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-black'"
+              class="text-xl transition-all duration-300 hover:-translate-y-1 block"
+            >
+              <i :class="`bi bi-${social}`"></i>
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-</template>
 
+      </div>
+    </section>
+  </div>
+</template>
 <style scoped></style>

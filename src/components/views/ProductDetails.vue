@@ -50,292 +50,100 @@ const showDescription = ref(false);
 </script>
 
 <template>
-  <div
-    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-gray-100 text-black'"
-    class="py-2 lg:hidden px-4"
-  >
-    <router-link to="/shop">
-      <i
-        :class="mode.darkMode ? 'text-white' : 'text-black'"
-        class="bi text-xl bi-box-arrow-left"
-      ></i>
+  <!-- 1. Header (Mobile Back Button) -->
+  <div :class="mode.darkMode ? 'bg-[#030712]' : 'bg-[#fafafa]'" class="py-4 px-6 lg:hidden">
+    <router-link to="/shop" class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase" :class="mode.darkMode ? 'text-slate-500' : 'text-slate-400'">
+      <i class="bi bi-arrow-left"></i> Back
     </router-link>
   </div>
 
-  <div
-    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#f8fafc]'"
-    class="product-details min-h-screen py-10 lg:py-16 transition-all duration-300"
-  >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div :class="mode.darkMode ? 'bg-[#030712]' : 'bg-[#fafafa]'" class="min-h-screen py-10 lg:py-16 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6">
 
-      <!-- Loading -->
-      <div
-        v-if="productStoreId.isLoading"
-        class="flex flex-col lg:flex-row gap-12 lg:justify-center animate-pulse"
-      >
-        <!-- Image -->
-        <div class="lg:w-100 w-full">
-          <div
-            :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-            class="w-full aspect-square rounded-3xl"
-          ></div>
-        </div>
-
-        <!-- Content -->
+      <!-- Loading State -->
+      <div v-if="productStoreId.isLoading" class="flex flex-col lg:flex-row gap-12 lg:justify-center animate-pulse">
+        <div class="lg:w-1/2 w-full aspect-square rounded-3xl" :class="mode.darkMode ? 'bg-slate-900' : 'bg-slate-200'"></div>
         <div class="lg:w-1/2 w-full space-y-6">
-          <div
-            :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-            class="w-32 h-8 rounded-full"
-          ></div>
-
-          <div
-            :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-            class="w-full h-12 rounded-xl"
-          ></div>
-
-          <div
-            :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-            class="w-2/3 h-6 rounded-lg"
-          ></div>
-
-          <div
-            :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-            class="w-40 h-10 rounded-xl"
-          ></div>
-
-          <div
-            :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-            class="w-full h-28 rounded-2xl"
-          ></div>
-
-          <div class="flex gap-4">
-            <div
-              :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-              class="flex-1 h-14 rounded-xl"
-            ></div>
-
-            <div
-              :class="mode.darkMode ? 'bg-slate-800' : 'bg-gray-200'"
-              class="flex-1 h-14 rounded-xl"
-            ></div>
-          </div>
+          <div class="h-8 w-32 rounded-full" :class="mode.darkMode ? 'bg-slate-900' : 'bg-slate-200'"></div>
+          <div class="h-12 w-full rounded-xl" :class="mode.darkMode ? 'bg-slate-900' : 'bg-slate-200'"></div>
         </div>
       </div>
 
-      <!-- Product -->
-      <div
-        v-else-if="productStoreId.productId"
-        class="flex flex-col lg:flex-row lg:justify-center gap-12 lg:items-start"
-      >
-        <!-- Product Image -->
-        <div class="lg:w-100 lg:sticky lg:top-10">
-          <div
-            :class="
-              mode.darkMode
-                ? 'bg-[#1e293b] border border-blue-900/40 shadow-2xl shadow-blue-950/20'
-                : 'bg-white border border-gray-200 shadow-lg'
-            "
-            class="lg:rounded-3xl rounded-xl overflow-hidden"
-          >
-            <img
-              class="w-full aspect-square object-contain hover:scale-105 transition-all duration-700 p-5"
-              :src="productStoreId.productId.image"
-              :alt="productStoreId.productId.title"
-            />
+      <!-- Product Section -->
+      <div v-else-if="productStoreId.productId" class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+        
+        <!-- Image Section -->
+        <div class="lg:w-1/2 w-full">
+          <div :class="mode.darkMode ? 'bg-[#090d16] border-slate-900 shadow-black/40' : 'bg-white border-slate-100 shadow-slate-200/50'"
+               class="rounded-3xl p-6 lg:p-10 border shadow-2xl transition-all duration-500">
+            <img class="w-full aspect-square object-contain hover:scale-105 transition-all duration-1000" 
+                 :src="productStoreId.productId.image" :alt="productStoreId.productId.title" />
           </div>
         </div>
 
-        <!-- Product Content -->
-        <div class="lg:w-1/2 w-full">
+        <!-- Content Section -->
+        <div class="lg:w-1/2 w-full space-y-8">
           <!-- Category -->
-          <p
-            :class="
-              mode.darkMode
-                ? 'bg-blue-500/10 text-blue-300 border border-blue-500/20'
-                : 'bg-gray-100 text-gray-700 border border-gray-200'
-            "
-            class="inline-flex items-center lg:px-4 lg:py-1 px-5 py-1 rounded-xl lg:rounded-full text-sm font-medium mb-5"
-          >
+          <span :class="mode.darkMode ? 'bg-indigo-900/20 text-indigo-400 border-indigo-500/20' : 'bg-indigo-50 text-indigo-600 border-indigo-100'"
+                class="inline-flex items-center px-5 py-1.5 rounded-full text-[10px] font-bold tracking-[0.25em] uppercase border">
             {{ productStoreId.productId.category }}
-          </p>
+          </span>
 
           <!-- Title -->
-          <h1
-            :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-            class="text-[30px] lg:text-3xl font-extrabold leading-tight mb-6"
-          >
+          <h1 :class="mode.darkMode ? 'text-white' : 'text-slate-950'" class="text-4xl lg:text-5xl font-black tracking-tight leading-tight">
             {{ productStoreId.productId.title }}
           </h1>
 
           <!-- Price -->
-          <div class="mb-8">
-            <h2 class="text-2xl lg:text-3xl font-black text-red-500">
-              ${{ parseFloat(productStoreId.productId.price).toFixed(2) }}
-            </h2>
+          <h2 class="text-3xl font-black text-indigo-500">
+            ${{ parseFloat(productStoreId.productId.price).toFixed(2) }}
+          </h2>
+
+          <!-- Description (Desktop) -->
+          <div class="hidden lg:block space-y-3">
+            <h3 :class="mode.darkMode ? 'text-slate-500' : 'text-slate-400'" class="text-[10px] font-bold uppercase tracking-[0.3em]">Product Description</h3>
+            <p :class="mode.darkMode ? 'text-slate-300' : 'text-slate-600'" class="leading-relaxed font-light">{{ productStoreId.productId.description }}</p>
           </div>
 
-          <!-- Description -->
-          <div class="mb-5 lg:block hidden">
-            <h3
-              :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-              class="text-sm uppercase font-bold tracking-wider mb-3"
-            >
-              Product Description
-            </h3>
-
-            <p
-              :class="mode.darkMode ? 'text-slate-300' : 'text-gray-600'"
-              class="leading-8 lg:text-base text-[15px]"
-            >
-              {{ productStoreId.productId.description }}
-            </p>
-          </div>
-
-          <!-- Dropdown Description -->
-          <div class="mb-5 lg:hidden block border-t border-t-gray-200 pt-3">
-            <!-- Button -->
-            <button
-              @click="showDescription = !showDescription"
-              :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-              class="flex items-center justify-between w-full text-sm uppercase font-bold tracking-wider mb-3 cursor-pointer"
-            >
-              <span>Product Description</span>
-
-              <!-- Arrow -->
-              <i
-                :class="showDescription ? 'rotate-180' : ''"
-                class="bi bi-chevron-down transition-all duration-300 text-base"
-              ></i>
+          <!-- Description (Mobile Dropdown) -->
+          <div class="lg:hidden border-y border-slate-200 dark:border-slate-800 py-4">
+            <button @click="showDescription = !showDescription" class="flex items-center justify-between w-full uppercase text-[10px] font-bold tracking-[0.2em]">
+              <span>Description</span>
+              <i class="bi bi-chevron-down transition-transform duration-300" :class="showDescription ? 'rotate-180' : ''"></i>
             </button>
-
-            <!-- Dropdown Content -->
-            <transition
-              enter-active-class="transition-all duration-300 ease-out"
-              leave-active-class="transition-all duration-200 ease-in"
-              enter-from-class="opacity-0 max-h-0"
-              enter-to-class="opacity-100 max-h-[500px]"
-              leave-from-class="opacity-100 max-h-[500px]"
-              leave-to-class="opacity-0 max-h-0"
-            >
-              <div v-show="showDescription" class="overflow-hidden">
-                <p
-                  :class="mode.darkMode ? 'text-slate-300' : 'text-gray-600'"
-                  class="leading-8 lg:text-base text-[15px]"
-                >
-                  {{ productStoreId.productId.description }}
-                </p>
-              </div>
+            <transition enter-active-class="transition-all duration-300" leave-active-class="transition-all duration-200"
+                        enter-from-class="opacity-0 max-h-0" enter-to-class="opacity-100 max-h-60"
+                        leave-from-class="opacity-100 max-h-60" leave-to-class="opacity-0 max-h-0">
+              <p v-show="showDescription" class="mt-4 text-sm text-slate-500">{{ productStoreId.productId.description }}</p>
             </transition>
           </div>
 
           <!-- Quantity -->
-          <div class="mb-10 pt-3 border-t border-t-gray-200">
-            <h3
-              :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-              class="text-sm uppercase font-bold tracking-wider mb-4"
-            >
-              Quantity
-            </h3>
-
-            <div
-              :class="
-                mode.darkMode
-                  ? 'border border-blue-900/50 bg-[#1e293b]'
-                  : 'border border-gray-300 bg-white'
-              "
-              class="inline-flex items-center rounded-2xl overflow-hidden shadow-sm"
-            >
-              <!-- Minus -->
-              <button
-                @click="decreaseQty"
-                :class="
-                  mode.darkMode
-                    ? 'bg-blue-900 hover:bg-blue-800 text-white'
-                    : 'bg-gray-100 hover:bg-gray-200 text-black'
-                "
-                class="w-14 h-14 text-2xl font-bold transition-all duration-300 cursor-pointer"
-              >
-                -
-              </button>
-
-              <!-- Qty -->
-              <div
-                :class="mode.darkMode ? 'text-white' : 'text-black'"
-                class="w-16 h-14 flex items-center justify-center font-bold text-lg"
-              >
-                {{ qty }}
-              </div>
-
-              <!-- Plus -->
-              <button
-                @click="increaseQty"
-                :class="
-                  mode.darkMode
-                    ? 'bg-blue-900 hover:bg-blue-800 text-white'
-                    : 'bg-gray-100 hover:bg-gray-200 text-black'
-                "
-                class="w-14 h-14 text-2xl font-bold transition-all duration-300 cursor-pointer"
-              >
-                +
-              </button>
+          <div class="space-y-4">
+            <h3 :class="mode.darkMode ? 'text-slate-500' : 'text-slate-400'" class="text-[10px] font-bold uppercase tracking-[0.3em]">Quantity</h3>
+            <div :class="mode.darkMode ? 'bg-[#090d16] border-slate-800' : 'bg-white border-slate-200'" class="inline-flex items-center rounded-2xl border p-1.5 w-fit">
+              <button @click="decreaseQty" class="w-12 h-12 rounded-xl hover:bg-indigo-500 hover:text-white transition-all font-bold">-</button>
+              <span class="w-16 text-center font-black">{{ qty }}</span>
+              <button @click="increaseQty" class="w-12 h-12 rounded-xl hover:bg-indigo-500 hover:text-white transition-all font-bold">+</button>
             </div>
           </div>
 
           <!-- Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4">
-            <!-- Add To Cart -->
-            <button
-              @click="handleAddToCart"
-              :class="
-                mode.darkMode
-                  ? 'bg-white text-black hover:bg-gray-200'
-                  : 'bg-white border border-gray-300 text-black hover:bg-gray-100'
-              "
-              class="flex-1 py-4 rounded-2xl font-bold transition-all duration-300 cursor-pointer shadow-sm"
-            >
-              Add To Cart
-            </button>
-
-            <!-- Buy Now -->
-            <button
-              @click="handleBuyNow"
-              :class="
-                mode.darkMode
-                  ? 'bg-blue-500 hover:bg-blue-600'
-                  : 'bg-black hover:bg-gray-800'
-              "
-              class="flex-1 py-4 rounded-2xl font-bold text-white transition-all duration-300 cursor-pointer shadow-lg"
-            >
-              Buy Now
-            </button>
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <button @click="handleAddToCart" :class="mode.darkMode ? 'border-slate-800 hover:bg-slate-800 text-white' : 'border-slate-200 hover:bg-slate-100 text-slate-900'"
+                    class="flex-1 py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest border transition-all">Add To Cart</button>
+            <button @click="handleBuyNow" :class="mode.darkMode ? 'bg-indigo-600 hover:bg-indigo-500' : 'bg-slate-950 hover:bg-black'"
+                    class="flex-1 py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest text-white transition-all shadow-lg">Buy Now</button>
           </div>
         </div>
       </div>
 
       <!-- Product Not Found -->
-      <div
-        v-else
-        class="flex flex-col justify-center items-center min-h-[60vh]"
-      >
-        <h1
-          :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-          class="text-3xl font-bold mb-4"
-        >
-          Product Not Found
-        </h1>
-
-        <router-link
-          to="/shop"
-          :class="
-            mode.darkMode
-              ? 'bg-blue-500 hover:bg-blue-600'
-              : 'bg-black hover:bg-gray-800'
-          "
-          class="px-8 py-4 rounded-xl text-white font-semibold transition-all duration-300"
-        >
-          Back To Shop
-        </router-link>
+      <div v-else class="flex flex-col items-center justify-center min-h-[50vh] text-center">
+        <h1 class="text-2xl font-black uppercase tracking-widest mb-6">Product Not Found</h1>
+        <router-link to="/shop" class="px-8 py-3 rounded-xl bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest">Back To Shop</router-link>
       </div>
+
     </div>
   </div>
 </template>

@@ -45,234 +45,179 @@ const filteredProducts = computed(() => {
 
 <template>
   <div
-    :class="mode.darkMode ? 'bg-[#0f172a]' : 'bg-[#f8fafc]'"
-    class="home-page min-h-screen"
+    :class="mode.darkMode ? 'bg-[#030712]' : 'bg-[#fafafa]'"
+    class="home-page min-h-screen transition-colors duration-500 pb-24"
   >
-    <div class="container mx-auto lg:px-0 px-3 pb-16">
-      <!-- Header -->
-      <div class="py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto lg:px-6 px-4">
+      
+      <!-- 1. Header Section (Editorial Typography) -->
+      <div class="py-16 lg:py-24 space-y-4 max-w-3xl mx-auto text-center">
+        <span class="text-xs font-bold tracking-[0.3em] text-indigo-500 uppercase">Elysia Catalog</span>
         <h1
-          :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-          class="text-center lg:text-5xl md:text-4xl text-3xl font-extrabold mb-4"
+          :class="mode.darkMode ? 'text-white' : 'text-slate-900'"
+          class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight"
         >
           Shop All Technology
         </h1>
-
         <p
-          :class="mode.darkMode ? 'text-slate-300' : 'text-gray-500'"
-          class="text-center lg:text-lg md:text-base text-sm leading-7 lg:w-[60%] w-full mx-auto"
+          :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'"
+          class="text-sm lg:text-base font-light leading-relaxed"
         >
-          Refined sound and precision engineering. Discover the latest
-          minimalist tech essentials designed for the modern professional.
+          Refined sound and precision engineering. Discover the latest minimalist tech essentials designed to seamlessly elevate the modern professional's workflow.
         </p>
       </div>
 
-      <!-- Search -->
-      <div class="flex justify-center lg:mb-16 mb-10">
-        <div class="relative lg:w-[50%] md:w-[70%] w-full group">
-          <!-- Icon -->
+      <!-- 2. Advanced Search Bar Section -->
+      <div class="flex justify-center mb-12 lg:mb-16">
+        <div class="relative w-full md:w-[80%] lg:w-[60%] group">
+          <!-- Search Icon Indicator -->
           <i
             :class="
               mode.darkMode
-                ? 'text-slate-300 group-focus-within:text-blue-300'
-                : 'text-gray-400 group-focus-within:text-black'
+                ? 'text-slate-500 group-focus-within:text-indigo-400'
+                : 'text-slate-400 group-focus-within:text-slate-900'
             "
-            class="bi bi-search absolute left-5 top-1/2 -translate-y-1/2 text-lg transition-all duration-300"
+            class="bi bi-search absolute left-5 top-1/2 -translate-y-1/2 text-base transition-colors duration-300"
           ></i>
 
-          <!-- Input -->
+          <!-- Premium Input field -->
           <input
             v-model="search"
             type="search"
-            placeholder="Search products..."
+            placeholder="Search for premium products..."
             :class="
               mode.darkMode
-                ? 'bg-[#1e293b] border-[#334155] text-white placeholder:text-slate-400 focus:border-blue-500 focus:ring-blue-500/20'
-                : 'bg-white border-gray-200 text-black placeholder:text-gray-400 focus:border-gray-300 focus:ring-black/0'
+                ? 'bg-[#090d16] border-slate-900 text-white placeholder:text-slate-600 focus:border-indigo-500 focus:ring-indigo-500/10'
+                : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:ring-slate-950/5'
             "
-            class="w-full py-4 pl-14 pr-5 rounded-2xl border outline-none shadow-lg text-[16px] lg:text-lg transition-all duration-300 focus:ring-4"
+            class="w-full py-4 pl-14 pr-6 rounded-2xl border outline-none shadow-xl text-sm lg:text-base font-medium transition-all duration-300 focus:ring-4"
           />
         </div>
       </div>
 
-      <!-- CATEGORY -->
-      <div class="mb-10">
-        <div
-          class="flex gap-3 overflow-x-auto whitespace-nowrap scroll-smooth px-1 pb-2"
-        >
+      <!-- 3. Curated Categories Filter (Smooth Scrollable Row) -->
+      <div class="mb-12 border-b pb-4" :class="mode.darkMode ? 'border-slate-900' : 'border-slate-100'">
+        <div class="flex items-center gap-2.5 overflow-x-auto whitespace-nowrap scroll-smooth no-scrollbar pb-2">
           <button
             v-for="cat in categories"
             :key="cat"
             @click="selectedCategory = cat"
-            class="shrink-0 cursor-pointer px-4 py-2 rounded-full transition-all duration-300 text-sm sm:text-base"
             :class="
               selectedCategory === cat
                 ? mode.darkMode
-                  ? 'bg-white text-[#0f172a] shadow-lg'
-                  : 'bg-black text-white shadow-lg'
+                  ? 'bg-white text-slate-950 shadow-lg shadow-white/5 font-bold'
+                  : 'bg-slate-900 text-white shadow-lg shadow-slate-950/10 font-bold'
                 : mode.darkMode
-                ? 'bg-[#1e293b] text-white hover:bg-[#334155]'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                ? 'bg-slate-950 text-slate-400 border border-slate-900 hover:text-white hover:bg-slate-900'
+                : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900 hover:bg-slate-50'
             "
+            class="shrink-0 cursor-pointer px-5 py-2.5 rounded-xl transition-all duration-300 text-xs tracking-wider uppercase active:scale-95"
           >
             {{ cat }}
           </button>
         </div>
       </div>
 
-      <!-- Loading -->
+      <!-- 4. Skeleton Loading State -->
       <div
         v-if="productStore.isLoading"
-        class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5"
+        class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
       >
-        <!-- Skeleton Card -->
         <div
-          v-for="n in 12"
+          v-for="n in 8"
           :key="n"
-          :class="
-            mode.darkMode
-              ? 'bg-[#1e293b] border border-[#334155]'
-              : 'bg-white border border-gray-200'
-          "
-          class="rounded-2xl overflow-hidden shadow-xl animate-pulse"
+          :class="mode.darkMode ? 'bg-[#090d16] border-slate-900/60' : 'bg-white border-slate-100'"
+          class="rounded-2xl border p-4 space-y-4 animate-pulse"
         >
-          <!-- Image -->
-          <div
-            :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-200'"
-            class="h-44 lg:h-72"
-          ></div>
-
-          <!-- Body -->
-          <div class="p-3 lg:p-5">
-            <!-- Title -->
-            <div
-              :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-200'"
-              class="w-[80%] h-4 lg:h-5 rounded mb-3"
-            ></div>
-
-            <!-- Description -->
-            <div
-              :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-200'"
-              class="w-full h-3 rounded mb-2"
-            ></div>
-
-            <div
-              :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-200'"
-              class="w-[70%] h-3 rounded mb-4"
-            ></div>
-
-            <!-- Price -->
-            <div
-              :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-200'"
-              class="w-[35%] h-5 lg:h-7 rounded mb-5"
-            ></div>
-
-            <!-- Button -->
-            <div
-              :class="mode.darkMode ? 'bg-slate-700' : 'bg-gray-200'"
-              class="w-full h-10 lg:h-12 rounded-xl"
-            ></div>
+          <div :class="mode.darkMode ? 'bg-slate-950' : 'bg-slate-100'" class="h-44 lg:h-64 rounded-xl"></div>
+          <div class="space-y-2">
+            <div :class="mode.darkMode ? 'bg-slate-950' : 'bg-slate-100'" class="h-4 w-3/4 rounded"></div>
+            <div :class="mode.darkMode ? 'bg-slate-950' : 'bg-slate-100'" class="h-3 w-full rounded"></div>
+            <div :class="mode.darkMode ? 'bg-slate-950' : 'bg-slate-100'" class="h-5 w-1/4 rounded"></div>
           </div>
+          <div :class="mode.darkMode ? 'bg-slate-950' : 'bg-slate-100'" class="h-11 rounded-xl w-full"></div>
         </div>
       </div>
 
-      <!-- Products -->
+      <!-- 5. Dynamic Products Grid -->
       <div
         v-else-if="filteredProducts.length > 0"
-        class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5"
+        class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
       >
-        <!-- Card -->
+        <!-- Luxury Product Card Card -->
         <div
           v-for="item in filteredProducts"
           :key="item.id"
-          :class="
-            mode.darkMode
-              ? 'bg-[#1e293b] border border-[#334155]'
-              : 'bg-white border border-gray-200'
-          "
-          class="rounded-2xl overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+          :class="mode.darkMode ? 'bg-[#090d16] border-slate-900/60 shadow-black/40' : 'bg-white border-slate-100 shadow-slate-200/50'"
+          class="rounded-2xl border p-3 lg:p-4 flex flex-col justify-between group/card transition-all duration-500 hover:-translate-y-1.5 shadow-lg hover:shadow-2xl"
         >
-          <!-- Image -->
-          <div class="overflow-hidden lg:p-5 p-3 h-44 lg:h-72">
+          <!-- Image Box -->
+          <div :class="mode.darkMode ? 'bg-slate-950' : 'bg-[#fafafa]'" class="relative rounded-xl overflow-hidden p-6 h-44 lg:h-64 flex items-center justify-center transition-colors duration-500">
             <img
               :src="item.image"
               :alt="item.title"
-              class="w-full h-full object-contain hover:scale-105 transition-all duration-500"
+              class="max-w-full max-h-full object-contain mix-blend-multiply dark:mix-blend-normal transform scale-95 group-hover/card:scale-100 transition-transform duration-500"
             />
           </div>
 
-          <!-- Body -->
-          <div class="p-3 lg:p-5 flex flex-col justify-between">
-            <div>
-              <!-- Title -->
-              <h1
-                :class="mode.darkMode ? 'text-white' : 'text-gray-900'"
-                class="lg:text-lg text-sm font-semibold mb-2 line-clamp-1"
-              >
+          <!-- Content Info Block -->
+          <div class="pt-4 flex flex-col flex-grow justify-between">
+            <div class="mb-4">
+              <h3 :class="mode.darkMode ? 'text-slate-100' : 'text-slate-900'" class="text-sm lg:text-base font-bold tracking-tight line-clamp-1 group-hover/card:text-indigo-500 transition-colors duration-300">
                 {{ item.title }}
-              </h1>
-
-              <!-- Description -->
-              <p
-                :class="mode.darkMode ? 'text-slate-400' : 'text-gray-500'"
-                class="lg:text-sm text-[11px] mb-3 line-clamp-2"
-              >
+              </h3>
+              <p :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'" class="text-xs mt-1.5 line-clamp-2 font-light leading-relaxed">
                 {{ item.description }}
               </p>
-
-              <!-- Price -->
-              <p class="text-red-500 font-bold lg:text-2xl text-base mb-4">
+              <p :class="mode.darkMode ? 'text-white' : 'text-slate-900'" class="text-lg lg:text-xl font-black tracking-tight mt-3">
                 ${{ item.price }}
               </p>
             </div>
 
-            <!-- Button -->
+            <!-- Interactive Action Button -->
             <router-link
               :to="`/productdetails/${item.id}`"
-              :class="
-                mode.darkMode
-                  ? 'bg-blue-500 hover:bg-blue-600'
-                  : 'bg-black hover:bg-gray-800'
-              "
-              class="block w-full text-center text-white lg:py-3 py-2 rounded-xl lg:text-base text-[11px] font-medium transition-all duration-300"
+              :class="mode.darkMode ? 'bg-slate-900 text-white hover:bg-indigo-600' : 'bg-slate-900 text-white hover:bg-black'"
+              class="w-full py-3 rounded-xl font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center gap-2 shadow-sm transition-all duration-300 active:scale-98"
             >
-              View Details <i class="bi bi-eye"></i>
+              <span>View Details</span>
+              <i class="bi bi-arrow-up-right text-xs"></i>
             </router-link>
           </div>
         </div>
       </div>
 
-      <!-- No Products -->
-      <div v-else class="flex flex-col justify-center items-center py-24">
-        <!-- Icon -->
+      <!-- 6. Premium Empty Search State -->
+      <div v-else class="flex flex-col justify-center items-center py-24 text-center space-y-4 animate-fade-in">
+        <!-- Minimal Graphic Ring -->
         <div
-          :class="
-            mode.darkMode
-              ? 'bg-[#1e293b] text-slate-300'
-              : 'bg-gray-100 text-gray-500'
-          "
-          class="w-24 h-24 rounded-full flex items-center justify-center mb-6"
+          :class="mode.darkMode ? 'bg-slate-950 border-slate-900 text-slate-600' : 'bg-slate-100 border-slate-200 text-slate-400'"
+          class="w-20 h-20 rounded-full border flex items-center justify-center shadow-inner"
         >
-          <i class="bi bi-search text-4xl"></i>
+          <i class="bi bi-search text-2xl"></i>
         </div>
 
-        <!-- Title -->
-        <h1
-          :class="mode.darkMode ? 'text-white' : 'text-gray-800'"
-          class="text-2xl lg:text-4xl font-bold mb-3"
-        >
-          No Products Found
-        </h1>
-
-        <!-- Description -->
-        <p
-          :class="mode.darkMode ? 'text-slate-400' : 'text-gray-500'"
-          class="text-center text-sm lg:text-base"
-        >
-          No results found for
-          <span class="font-semibold">"{{ search }}"</span>
-        </p>
+        <div class="space-y-1">
+          <h2 :class="mode.darkMode ? 'text-white' : 'text-slate-900'" class="text-xl font-black tracking-tight">
+            No Products Found
+          </h2>
+          <p :class="mode.darkMode ? 'text-slate-500' : 'text-slate-400'" class="text-sm font-light max-w-sm">
+            We couldn't find any results matching <span class="font-semibold text-indigo-500">"{{ search }}"</span>. Try checking your spelling or adjusting your filters.
+          </p>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Hiding standard scrollbar for category filter while retaining functional scrolling mechanics */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>
