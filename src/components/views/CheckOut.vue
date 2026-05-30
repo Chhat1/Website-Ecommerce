@@ -125,6 +125,9 @@ const confirmPayment = () => {
 
   }, 2000);
 };
+
+
+
 </script>
 
 <template>
@@ -306,6 +309,8 @@ const confirmPayment = () => {
                 </div>
               </label>
             </div>
+
+
             
           </div>
         </div>
