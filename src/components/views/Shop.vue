@@ -156,12 +156,12 @@ const filteredProducts = computed(() => {
             <img
               :src="item.image"
               :alt="item.title"
-              class="max-w-full max-h-full object-contain mix-blend-multiply dark:mix-blend-normal transform scale-95 group-hover/card:scale-100 transition-transform duration-500"
+              class="max-w-full max-h-full object-contain  transform scale-95 group-hover/card:scale-100 transition-transform duration-500"
             />
           </div>
 
           <!-- Content Info Block -->
-          <div class="pt-4 flex flex-col flex-grow justify-between">
+          <div class="pt-4 flex flex-col grow justify-between">
             <div class="mb-4">
               <h3 :class="mode.darkMode ? 'text-slate-100' : 'text-slate-900'" class="text-sm lg:text-base font-bold tracking-tight line-clamp-1 group-hover/card:text-indigo-500 transition-colors duration-300">
                 {{ item.title }}
@@ -186,6 +186,8 @@ const filteredProducts = computed(() => {
           </div>
         </div>
       </div>
+
+      
 
       <!-- 6. Premium Empty Search State -->
       <div v-else class="flex flex-col justify-center items-center py-24 text-center space-y-4 animate-fade-in">

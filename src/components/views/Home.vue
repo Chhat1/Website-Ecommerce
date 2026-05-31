@@ -2,14 +2,14 @@
   <div class="home-page max-w-7xl mx-auto lg:px-6 px-4 py-6 transition-colors duration-500">
     
     <!-- 1. Hero Banner Section (Editorial Style) -->
-    <section class="banner relative w-full lg:h-[85vh] h-[400px] lg:rounded-3xl rounded-2xl overflow-hidden shadow-2xl group/banner">
+    <section class="banner relative w-full lg:h-[85vh] h-100 lg:rounded-3xl rounded-2xl overflow-hidden shadow-2xl group/banner">
       <!-- Background Image with Parallax & Smooth Scale -->
       <div 
         class="absolute inset-0 bg-[url('/src/assets/images/image-banner.png')] bg-cover bg-center bg-no-repeat transform scale-100 group-hover/banner:scale-102 transition-transform duration-1000"
       ></div>
       <!-- Premium Dual-Layer Overlay -->
-      <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+      <div class="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent"></div>
+      <div class="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
 
       <!-- Banner Content -->
       <div class="absolute top-1/2 -translate-y-1/2 lg:left-20 left-6 right-6 z-10 max-w-2xl space-y-6">
@@ -22,7 +22,7 @@
         <!-- Typography Heading -->
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
           The Future of <br />
-          <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">Style & Tech</span>
+          <span class="bg-clip-text text-transparent bg-linear-to-r from-white via-slate-200 to-slate-400">Style & Tech</span>
         </h1>
 
         <!-- Call to Action Buttons -->
@@ -46,6 +46,7 @@
 
     <!-- 2. Curated Categories Section -->
     <section class="lg:mt-32 mt-20">
+
       <!-- Section Header -->
       <div v-if="productStore.isLoading" class="flex justify-between items-center mb-8 animate-pulse">
         <div :class="mode.darkMode ? 'bg-slate-800' : 'bg-slate-200'" class="h-8 w-56 rounded-xl"></div>
@@ -70,8 +71,10 @@
         </router-link>
       </div>
 
+
       <!-- Products Grid -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+
         <!-- Skeleton Loading -->
         <template v-if="productStore.isLoading">
           <div
@@ -103,16 +106,16 @@
               <img
                 :src="item.image"
                 :alt="item.title"
-                class="max-w-full max-h-full object-contain mix-blend-multiply dark:mix-blend-normal transform scale-95 group-hover/card:scale-100 transition-transform duration-500"
+                class="max-w-full max-h-full object-contain  transform scale-95 group-hover/card:scale-100 transition-transform duration-500"
               />
               <!-- Quick Badge (Optional Tech Tag) -->
-              <span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 backdrop-blur-md text-[9px] font-bold uppercase tracking-wider opacity-60">
+              <span :class="mode.darkMode ? 'bg-black/5 dark:bg-white/5 text-indigo-500' : ''" class="absolute top-3 left-3 px-2 py-0.5 rounded  backdrop-blur-md text-[9px] font-bold uppercase tracking-wider opacity-60">
                 Premium
               </span>
             </div>
 
             <!-- Product Details Details -->
-            <div class="pt-4 flex flex-col flex-grow justify-between">
+            <div class="pt-4 flex flex-col grow justify-between">
               <div class="mb-4">
                 <h3 :class="mode.darkMode ? 'text-slate-100' : 'text-slate-900'" class="text-sm lg:text-base font-bold tracking-tight line-clamp-1 group-hover/card:text-indigo-500 transition-colors duration-300">
                   {{ item.title }}
@@ -140,9 +143,10 @@
       </div>
     </section>
 
+
     <!-- 3. Flash Sale Section (Luxury Dark Card) -->
     <section
-      :class="mode.darkMode ? 'bg-gradient-to-br from-[#090d16] to-[#04070e] border border-slate-900' : 'bg-gradient-to-br from-slate-950 to-slate-900'"
+      :class="mode.darkMode ? 'bg-linear-to-br from-[#090d16] to-[#04070e] border border-slate-900' : 'bg-linear-to-br from-slate-950 to-slate-900'"
       class="mt-24 rounded-3xl overflow-hidden shadow-2xl relative"
     >
       <!-- Decorative Ambient Light -->
@@ -175,7 +179,7 @@
         </div>
 
         <!-- Event Image Showcase -->
-        <div class="w-full lg:w-[480px] h-64 lg:h-80 rounded-2xl overflow-hidden shadow-2xl group/sale relative border border-white/5">
+        <div class="w-full lg:w-120 h-64 lg:h-80 rounded-2xl overflow-hidden shadow-2xl group/sale relative border border-white/5">
           <img
             src="/src/assets/images/headphone2.jpg"
             alt="Flash Sale Product Showcase"
@@ -185,6 +189,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- 4. Newsletter / Subscription Section (Minimalist Elegance) -->
     <section

@@ -35,7 +35,7 @@ const logout = () => {
     :class="
       mode.darkMode
         ? 'bg-[#0b0f19]/70 border-b border-slate-800 text-slate-100'
-        : 'bg-white/70 border-b border-slate-200/80 text-slate-800'
+        : 'bg-white/50 border-b border-slate-200/80 text-slate-800'
     "
     class="backdrop-blur-xl w-full h-auto sticky top-0 z-50 transition-all duration-500"
   >
