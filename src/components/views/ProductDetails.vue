@@ -133,7 +133,7 @@ const showDescription = ref(false);
             <button @click="handleAddToCart" :class="mode.darkMode ? 'border-slate-800 hover:bg-slate-800 text-white' : 'border-slate-200 hover:bg-slate-100 text-slate-900'"
                     class="flex-1 py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest border transition-all">Add To Cart</button>
             <button @click="handleBuyNow" :class="mode.darkMode ? 'bg-indigo-600 hover:bg-indigo-500' : 'bg-slate-950 hover:bg-black'"
-                    class="flex-1 py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest text-white transition-all shadow-lg">Buy Now</button>
+                    class="flex-1 py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest text-white transition-all shadow-lg cursor-pointer">Buy Now</button>
           </div>
         </div>
       </div>
