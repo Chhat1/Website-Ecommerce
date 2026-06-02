@@ -119,13 +119,13 @@ const imgPayments = [
     id: "ABA",
     name: "ABA Pay",
     desc: "Instant spatial gateway transfer",
-    img: "/src/assets/images/khoraba.webp",
+    img: "images/khoraba.webp",
   },
   {
     id: "ACLEDA",
     name: "ACLEDA ToanChet",
     desc: "Secure local payment gateway",
-    img: "/src/assets/images/acleda.png",
+    img: "images/acleda.png",
   },
   {
     id: "COD",
