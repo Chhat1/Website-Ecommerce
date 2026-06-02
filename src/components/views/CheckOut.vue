@@ -131,7 +131,7 @@ const imgPayments = [
     id: "COD",
     name: "Cash On Delivery",
     desc: "Pay with physical cash upon arrival",
-    img: "/src/assets/images/money.png",
+    img: "images/money.png",
   },
 ];
 
