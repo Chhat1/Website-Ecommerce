@@ -384,7 +384,7 @@ const imgPayments = [
                   paymentMethod === method.id
                     ? mode.darkMode
                       ? 'border-indigo-500 bg-indigo-500/5'
-                      : 'border-slate-900 bg-slate-950/[0.02]'
+                      : 'border-slate-900 bg-slate-950/2'
                     : mode.darkMode
                     ? 'border-slate-800/80 hover:border-slate-700'
                     : 'border-slate-100 hover:border-slate-200',
@@ -450,7 +450,7 @@ const imgPayments = [
 
             <!-- ITEMS NESTED SCROLL -->
             <div
-              class="space-y-4 max-h-[240px] overflow-y-auto pr-2 divide-y divide-slate-100 dark:divide-slate-900/40"
+              class="space-y-4 max-h-60 overflow-y-auto pr-2 divide-y divide-slate-100 dark:divide-slate-900/40"
             >
               <div
                 v-for="(item, index) in cartStore.cart"
@@ -640,7 +640,7 @@ const imgPayments = [
 
         <!-- SCAN QR FRAME -->
         <div
-          class="bg-white p-4 rounded-2xl border border-slate-100 dark:border-slate-900 shadow-inner max-w-[260px] mx-auto"
+          class="bg-white p-4 rounded-2xl border border-slate-100 dark:border-slate-900 shadow-inner max-w-65 mx-auto"
         >
           <img
             :src="qrImage"
@@ -665,7 +665,7 @@ const imgPayments = [
 
           <button
             @click="confirmPayment"
-            class="flex-1 text-xs font-bold tracking-wider uppercase text-white py-3.5 rounded-xl shadow-md transition-colors"
+            class="flex-1 cursor-pointer text-xs font-bold tracking-wider uppercase text-white py-3.5 rounded-xl shadow-md transition-colors"
             :class="
               mode.darkMode
                 ? 'bg-indigo-600 hover:bg-indigo-500'

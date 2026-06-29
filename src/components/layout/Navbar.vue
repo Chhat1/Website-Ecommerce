@@ -119,7 +119,7 @@ const logout = () => {
             <img
               v-if="authStore.user?.profile"
               :src="authStore.user.profile"
-              class="relative w-10 h-10 rounded-full object-cover border border-white/20 shadow-md"
+              class="relative w-10 h-10 rounded-full cursor-pointer object-cover border border-white/20 shadow-md"
             />
             <div
               v-else-if="authStore.user"
@@ -190,7 +190,7 @@ const logout = () => {
         <button 
           v-if="authStore.user" 
           @click="logout" 
-          class="flex items-center gap-1.5 text-[10px] bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white px-3 py-1.5 rounded-xl font-medium transition-all duration-300"
+          class="flex items-center gap-1.5 text-[10px] bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white px-3 py-1.5 rounded-md font-medium transition-all duration-300"
         >
           <i class="bi bi-box-arrow-right"></i> Log out
         </button>

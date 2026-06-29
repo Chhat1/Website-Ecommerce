@@ -122,16 +122,16 @@ const showDescription = ref(false);
           <div class="space-y-4">
             <h3 :class="mode.darkMode ? 'text-slate-500' : 'text-slate-400'" class="text-[10px] font-bold uppercase tracking-[0.3em]">Quantity</h3>
             <div :class="mode.darkMode ? 'bg-[#090d16] border-slate-800' : 'bg-white border-slate-200'" class="inline-flex items-center rounded-2xl border p-1.5 w-fit">
-              <button @click="decreaseQty" class="w-12 h-12 rounded-xl hover:bg-indigo-500 hover:text-white transition-all font-bold">-</button>
+              <button @click="decreaseQty" class="w-12 h-12 cursor-pointer rounded-xl hover:bg-indigo-500 hover:text-white transition-all font-bold">-</button>
               <span class="w-16 text-center font-black">{{ qty }}</span>
-              <button @click="increaseQty" class="w-12 h-12 rounded-xl hover:bg-indigo-500 hover:text-white transition-all font-bold">+</button>
+              <button @click="increaseQty" class="w-12 h-12 cursor-pointer rounded-xl hover:bg-indigo-500 hover:text-white transition-all font-bold">+</button>
             </div>
           </div>
 
           <!-- Buttons -->
           <div class="flex flex-col sm:flex-row gap-4 pt-4">
             <button @click="handleAddToCart" :class="mode.darkMode ? 'border-slate-800 hover:bg-slate-800 text-white' : 'border-slate-200 hover:bg-slate-100 text-slate-900'"
-                    class="flex-1 py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest border transition-all">Add To Cart</button>
+                    class="flex-1 py-4 rounded-xl font-bold text-[11px] uppercase cursor-pointer tracking-widest border transition-all">Add To Cart</button>
             <button @click="handleBuyNow" :class="mode.darkMode ? 'bg-indigo-600 hover:bg-indigo-500' : 'bg-slate-950 hover:bg-black'"
                     class="flex-1 py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest text-white transition-all shadow-lg cursor-pointer">Buy Now</button>
           </div>
@@ -141,7 +141,7 @@ const showDescription = ref(false);
       <!-- Product Not Found -->
       <div v-else class="flex flex-col items-center justify-center min-h-[50vh] text-center">
         <h1 class="text-2xl font-black uppercase tracking-widest mb-6">Product Not Found</h1>
-        <router-link to="/shop" class="px-8 py-3 rounded-xl bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest">Back To Shop</router-link>
+        <router-link to="/shop" class="px-8 py-3 cursor-pointer rounded-xl bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest">Back To Shop</router-link>
       </div>
 
     </div>

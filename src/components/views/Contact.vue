@@ -84,13 +84,14 @@ const mode = useDarkModeStore();
             </label>
             <div class="relative">
               <select
-                :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white focus:border-indigo-500' : 'bg-slate-50 border-slate-200 text-slate-900 focus:border-slate-400'"
+                :class="mode.darkMode ? 'bg-[#030712] border-slate-800 text-white focus:border-indigo-500' : 'bg-slate-50 border-slate-200 text-gray-500 focus:border-slate-400'"
                 class="w-full mt-1 border rounded-xl px-5 py-4 outline-none text-[16px] transition-all duration-300 appearance-none cursor-pointer font-medium"
               >
-                <option class="bg-white dark:bg-slate-950">General Inquiry</option>
-                <option class="bg-white dark:bg-slate-950">Order Support</option>
-                <option class="bg-white dark:bg-slate-950">Refund Request</option>
-                <option class="bg-white dark:bg-slate-950">Corporate Partnership</option>
+                <option >General Inquiry</option>
+                <option >Order Support</option>
+                <option >Refund Request</option>
+                <option >Corporate Partnership</option>
+                
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-5 text-slate-400">
                 <i class="bi bi-chevron-down text-xs"></i>
