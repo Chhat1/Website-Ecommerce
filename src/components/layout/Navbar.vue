@@ -130,7 +130,7 @@ const logout = () => {
             <div
               v-else
               :class="mode.darkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700'"
-              class="relative w-10 h-10 rounded-full flex items-center justify-center border border-slate-500/10"
+              class="relative cursor-pointer w-10 h-10 rounded-full flex items-center justify-center border border-slate-500/10"
             >
               <i class="bi bi-person text-xl"></i>
             </div>
