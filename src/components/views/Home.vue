@@ -181,7 +181,7 @@
         <!-- Event Image Showcase -->
         <div class="w-full lg:w-120 h-64 lg:h-80 rounded-2xl overflow-hidden shadow-2xl group/sale relative border border-white/5">
           <img
-            src="/src/assets/images/headphone2.jpg"
+            src="/images/T-Shirts12.jpg"
             alt="Flash Sale Product Showcase"
             class="w-full h-full object-cover transform scale-100 group-hover/sale:scale-105 transition-transform duration-700"
           />
