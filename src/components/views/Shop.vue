@@ -152,7 +152,7 @@ const filteredProducts = computed(() => {
           class="rounded-2xl border p-3 lg:p-4 flex flex-col justify-between group/card transition-all duration-500 hover:-translate-y-1.5 shadow-lg hover:shadow-2xl"
         >
           <!-- Image Box -->
-          <div :class="mode.darkMode ? 'bg-slate-950' : 'bg-[#fafafa]'" class="relative rounded-xl overflow-hidden p-6 h-44 lg:h-64 flex items-center justify-center transition-colors duration-500">
+          <div :class="mode.darkMode ? 'bg-gray-200' : 'bg-[#fafafa]'" class="relative rounded-xl overflow-hidden p-6 h-44 lg:h-64 flex items-center justify-center transition-colors duration-500">
             <img
               :src="item.image"
               :alt="item.title"

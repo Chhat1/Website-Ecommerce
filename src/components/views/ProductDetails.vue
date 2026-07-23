@@ -109,7 +109,7 @@ const showDescription = ref(false);
           <div
             :class="
               mode.darkMode
-                ? 'bg-[#090d16] border-slate-900 shadow-black/40'
+                ? 'bg-gray-200 border-slate-900 shadow-black/40'
                 : 'bg-white border-slate-100 shadow-slate-200/50'
             "
             class="rounded-3xl p-6 lg:p-10 border shadow-2xl transition-all duration-500"

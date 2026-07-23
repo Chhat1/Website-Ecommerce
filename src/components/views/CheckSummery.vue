@@ -66,7 +66,7 @@ const finalTotal = computed(() => subtotal.value + tax.value);
               ? 'bg-[#090d16] border-slate-900 shadow-black/40'
               : 'bg-white border-slate-100 shadow-slate-200/50'
           "
-          class="w-full lg:col-span-2 min-h-[450px] rounded-3xl border shadow-2xl flex flex-col justify-center items-center text-center p-8 transition-all duration-500"
+          class="w-full lg:col-span-2 min-h-112.5 rounded-3xl border shadow-2xl flex flex-col justify-center items-center text-center p-8 transition-all duration-500"
         >
           <!-- Elegant Dotted Circle Icon Frame -->
           <div
@@ -204,9 +204,9 @@ const finalTotal = computed(() => subtotal.value + tax.value);
                 <!-- Delete Card Button -->
                 <button
                   @click="cartStore.removeFromCart(item.id)"
-                  class="text-slate-400 hover:text-red-500 dark:text-slate-600 dark:hover:text-red-400 transition-colors duration-300 cursor-pointer p-1"
+                  class=" dark:text-red-500 hover:rotate-12 hover:scale-110 ease-in-out  transition-all duration-300 cursor-pointer p-1"
                 >
-                  <i class="bi bi-x-lg text-sm"></i>
+                  <i class="bi bi-trash3 text-lg text-red-500"></i>
                 </button>
 
                 <!-- Combined calculated Total label -->

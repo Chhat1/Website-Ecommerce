@@ -1,5 +1,6 @@
 import axios from "axios";
 import { defineStore } from "pinia";
+// import { myProduct } from "../api/myProduct";
 
 
 
@@ -17,6 +18,7 @@ export const useProductStore = defineStore('product',{
                 this.isLoading = true;
                 const res = await axios.get('https://fakestoreapi.com/products');
                this.products = res.data
+                
                console.log(res.data);
             } catch (err) {
                 console.error('Error', err);
@@ -30,6 +32,7 @@ export const useProductStore = defineStore('product',{
                 this.isLoading = true;
                 const res = await axios.get(`https://fakestoreapi.com/products/${id}`)
                 this.productId = res.data
+                
             }catch(err){
                 console.error("Error",err)
             } finally {
