@@ -166,7 +166,7 @@ const filteredProducts = computed(() => {
               <h3 :class="mode.darkMode ? 'text-slate-100' : 'text-slate-900'" class="text-sm lg:text-base font-bold tracking-tight line-clamp-1 group-hover/card:text-indigo-500 transition-colors duration-300">
                 {{ item.title }}
               </h3>
-              <p :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'" class="text-xs mt-1.5 line-clamp-2 font-light leading-relaxed">
+              <p :class="mode.darkMode ? 'text-slate-400' : 'text-slate-500'" class="text-xs  hidden mt-1.5 line-clamp-2 font-light leading-relaxed">
                 {{ item.description }}
               </p>
               <p :class="mode.darkMode ? 'text-white' : 'text-slate-900'" class="text-lg lg:text-xl font-black tracking-tight mt-3">

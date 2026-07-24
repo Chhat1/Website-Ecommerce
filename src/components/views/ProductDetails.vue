@@ -139,7 +139,7 @@ const showDescription = ref(false);
           <!-- Title -->
           <h1
             :class="mode.darkMode ? 'text-white' : 'text-slate-950'"
-            class="text-4xl lg:text-5xl font-black tracking-tight leading-tight"
+            class="text-lg lg:text-2xl font-black tracking-tight leading-tight"
           >
             {{ productStoreId.productId.title }}
           </h1>
@@ -166,7 +166,7 @@ const showDescription = ref(false);
           </div>
 
           <!-- Description (Mobile Dropdown) -->
-          <div class="lg:hidden border-y border-slate-200 dark:border-slate-800 py-4">
+          <div :class="mode.darkMode ? 'border-y-slate-500' : 'border-y-gray-400'" class="lg:hidden border-y  py-4">
             <button
               @click="showDescription = !showDescription"
               class="flex items-center justify-between w-full uppercase text-[10px] font-bold tracking-[0.2em]"
